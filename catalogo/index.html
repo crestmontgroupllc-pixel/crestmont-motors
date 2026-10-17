@@ -15,6 +15,16 @@
     <link rel="stylesheet" href="../assets/css/style.css">
 
     <style>
+        /* Estilos limpios y directos para garantizar centrado total y separación */
+        body {
+            background-color: #000;
+            color: #f3f4f6;
+            font-family: system-ui, -apple-system, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
         .top-navbar {
             display: flex;
             justify-content: space-between;
@@ -24,11 +34,11 @@
             margin: 0 auto;
             padding: 1.5rem 3rem;
         }
-        /* Forzamos el centrado absoluto con CSS nativo para evitar conflictos */
-        .forced-center-box {
+        /* Contenedor central forzado para que nada se mueva hacia los lados */
+        .seccion-centrada {
             text-align: center !important;
             width: 100%;
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto !important;
             display: flex;
             flex-direction: column;
@@ -47,77 +57,77 @@
         }
     </style>
 </head>
-<body class="bg-black text-gray-100 font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-red-600 selection:text-white">
+<body>
 
     <!-- 1. BARRA SUPERIOR EXTREMA -->
-    <header class="bg-zinc-950 border-b border-zinc-900 sticky top-0 z-50 backdrop-blur-md">
+    <header style="background-color: #09090b; border-bottom: 1px solid #27272a; position: sticky; top: 0; z-index: 50; backdrop-filter: blur(10px);">
         <div class="top-navbar">
-            <div class="text-left">
-                <span class="text-[11px] uppercase tracking-[0.3em] text-red-500 font-bold block">
+            <div style="text-align: left;">
+                <span style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.3em; color: #dc2626; font-weight: bold; display: block;">
                     THE CRESTMONT FAMILY
                 </span>
-                <span class="text-xs uppercase tracking-widest text-gray-400 font-light block mt-0.5">
+                <span style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em; color: #9ca3af; font-weight: 300; display: block; margin-top: 2px;">
                     Crestmont
                 </span>
             </div>
 
-            <nav class="flex items-center gap-10 text-sm font-medium">
-                <a href="../" class="text-gray-300 hover:text-white transition flex items-center gap-2">
-                    <i class="fas fa-home text-xs text-red-500"></i> Inicio / Portal
+            <nav style="display: flex; align-items: center; gap: 2.5rem; font-size: 14px; font-weight: 500;">
+                <a href="../" style="color: #d1d5db; text-decoration: none; display: flex; align-items: center; gap: 8px;">
+                    <i class="fas fa-home" style="font-size: 12px; color: #dc2626;"></i> Inicio / Portal
                 </a>
-                <a href="#inventario" class="text-gray-300 hover:text-white transition">Modelos</a>
-                <a href="#ubicacion" class="text-gray-300 hover:text-white transition">Ubicación</a>
-                <a href="#contacto" class="text-gray-300 hover:text-white transition">Contacto</a>
+                <a href="#inventario" style="color: #d1d5db; text-decoration: none;">Modelos</a>
+                <a href="#ubicacion" style="color: #d1d5db; text-decoration: none;">Ubicación</a>
+                <a href="#contacto" style="color: #d1d5db; text-decoration: none;">Contacto</a>
             </nav>
         </div>
     </header>
 
-    <!-- 2. FRANJA CENTRAL CON CSS NATIVO 100% CENTRADO -->
-    <section class="bg-zinc-900/95 border-b border-zinc-800 py-28 px-6">
-        <div class="forced-center-box">
-            <h1 class="text-4xl md:text-7xl font-light tracking-[0.3em] text-white uppercase" style="text-align: center;">
+    <!-- 2. FRANJA CENTRAL (100% CENTRADA, GRANDE Y CON SU ESPACIO) -->
+    <section style="background-color: rgba(24, 24, 27, 0.95); border-bottom: 1px solid #27272a; padding: 5rem 1.5rem;">
+        <div class="seccion-centrada">
+            <h1 style="font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 300; letter-spacing: 0.25em; color: #ffffff; text-transform: uppercase; margin: 0 0 1.5rem 0; text-align: center;">
                 CRESTMONT MOTORS
             </h1>
-            <div class="w-28 h-1 bg-red-600 my-4"></div>
-            <span class="text-sm md:text-base uppercase tracking-[0.4em] text-red-500 font-bold block" style="text-align: center;">
+            <div style="width: 120px; height: 4px; background-color: #dc2626; margin: 0 auto 1.5rem auto;"></div>
+            <span style="font-size: clamp(0.9rem, 2vw, 1.15rem); text-transform: uppercase; letter-spacing: 0.35em; color: #ef4444; font-weight: bold; display: block; margin-bottom: 1.5rem; text-align: center;">
                 CONCESIONARIO Y DISTRIBUIDOR OFICIAL
             </span>
-            <p class="text-gray-300 text-base md:text-xl font-light tracking-widest uppercase pt-3 max-w-2xl" style="text-align: center;">
+            <p style="color: #d1d5db; font-size: clamp(1rem, 2vw, 1.25rem); font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase; max-width: 800px; margin: 0; text-align: center; line-height: 1.6;">
                 Excelencia, potencia y distinción en cada camino
             </p>
         </div>
     </section>
 
     <!-- 3. BANNER PRINCIPAL / VEHÍCULO DE LA SEMANA -->
-    <section class="relative bg-gradient-to-b from-zinc-950 via-zinc-900 to-black py-32 px-6 border-b border-zinc-900">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+    <section style="background: linear-gradient(to bottom, #09090b, #18181b, #000000); padding: 6rem 1.5rem; border-bottom: 1px solid #18181b;">
+        <div style="max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 4rem; align-items: center;">
             
-            <div class="space-y-6 text-left">
-                <span class="text-xs uppercase tracking-[0.4em] text-red-500 font-bold block">
+            <div style="text-align: left;">
+                <span style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.4em; color: #dc2626; font-weight: bold; display: block; margin-bottom: 1rem;">
                     EXCELLENCE IN MOTION
                 </span>
-                <h2 class="text-4xl md:text-6xl font-extralight tracking-tight text-white uppercase">
-                    Drive Your <span class="font-bold text-red-600">Dream Car</span>
+                <h2 style="font-size: clamp(2.5rem, 4vw, 4rem); font-weight: 200; letter-spacing: -0.02em; color: #ffffff; text-transform: uppercase; margin: 0 0 1.5rem 0; line-height: 1.1;">
+                    Drive Your <span style="font-weight: bold; color: #dc2626;">Dream Car</span>
                 </h2>
-                <p class="text-gray-400 text-base md:text-lg font-light leading-relaxed max-w-xl">
+                <p style="color: #9ca3af; font-size: 1.1rem; font-weight: 300; line-height: 1.8; margin-bottom: 2.5rem; max-width: 600px;">
                     Explora nuestra colección exclusiva de vehículos de alta gama, importados y listos para superar tus expectativas de diseño y rendimiento.
                 </p>
-                <div class="pt-4 flex items-center gap-4">
-                    <a href="#inventario" class="bg-red-600 hover:bg-red-700 text-white font-bold px-8 py-4 rounded-full text-xs tracking-widest uppercase transition shadow-lg shadow-red-900/40 hover:scale-105">
+                <div style="display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;">
+                    <a href="#inventario" style="background-color: #dc2626; color: #ffffff; font-weight: bold; padding: 1rem 2.5rem; border-radius: 9999px; font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; box-shadow: 0 10px 25px rgba(220, 38, 38, 0.4);">
                         Ver Inventario
                     </a>
-                    <a href="#contacto" class="border border-zinc-700 hover:border-white text-gray-300 hover:text-white px-8 py-4 rounded-full text-xs tracking-widest uppercase transition">
+                    <a href="#contacto" style="border: 1px solid #3f3f46; color: #d1d5db; padding: 1rem 2.5rem; border-radius: 9999px; font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none;">
                         Agendar Cita
                     </a>
                 </div>
             </div>
 
-            <div class="relative rounded-3xl overflow-hidden border border-zinc-800 shadow-2xl group">
-                <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1200&q=80" alt="Featured Car" class="w-full h-80 md:h-[420px] object-cover group-hover:scale-105 transition duration-700">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-8">
+            <div style="position: relative; border-radius: 1.5rem; overflow: hidden; border: 1px solid #27272a; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);">
+                <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1200&q=80" alt="Featured Car" style="width: 100%; height: 420px; object-fit: cover;">
+                <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); padding: 2.5rem; display: flex; align-items: flex-end;">
                     <div>
-                        <span class="text-xs text-red-500 font-mono tracking-widest uppercase">Destacado de la Semana</span>
-                        <h3 class="text-2xl font-bold text-white">Mercedes-Benz C-Class 2024</h3>
+                        <span style="font-size: 11px; color: #dc2626; font-family: monospace; letter-spacing: 0.2em; text-transform: uppercase; display: block; margin-bottom: 4px;">Destacado de la Semana</span>
+                        <h3 style="font-size: 1.75rem; font-weight: bold; color: #ffffff; margin: 0;">Mercedes-Benz C-Class 2024</h3>
                     </div>
                 </div>
             </div>
@@ -126,35 +136,35 @@
     </section>
 
     <!-- 4. SECCIÓN DE INVENTARIO Y FILTROS -->
-    <main id="inventario" class="flex-grow max-w-7xl w-full mx-auto px-6 py-36">
+    <main id="inventario" style="flex-grow: 1; max-width: 1400px; width: 100%; margin: 0 auto; padding: 6rem 1.5rem;">
         
-        <div class="forced-center-box mb-24">
-            <span class="text-sm uppercase tracking-[0.4em] text-red-500 font-bold block mb-4" style="text-align: center;">
+        <div class="seccion-centrada" style="margin-bottom: 5rem;">
+            <span style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.4em; color: #dc2626; font-weight: bold; display: block; margin-bottom: 1rem;">
                 CATÁLOGO OFICIAL
             </span>
-            <h2 class="text-5xl md:text-7xl font-extralight tracking-tight text-white mb-4" style="text-align: center;">
+            <h2 style="font-size: clamp(2.5rem, 4vw, 4.5rem); font-weight: 200; letter-spacing: -0.02em; color: #ffffff; margin: 0 0 1.5rem 0;">
                 Inventario Disponible
             </h2>
-            <p class="text-gray-400 text-lg md:text-xl font-light max-w-2xl pt-2 leading-relaxed" style="text-align: center;">
+            <p style="color: #9ca3af; font-size: 1.15rem; font-weight: 300; max-width: 700px; line-height: 1.7; margin: 0;">
                 Selecciona tus preferencias y encuentra el vehículo perfecto que se adapte a tu estilo de vida.
             </p>
         </div>
 
         <!-- Panel de Filtros -->
-        <div class="bg-zinc-900/80 border border-zinc-800 rounded-3xl p-10 mb-28 shadow-2xl max-w-5xl mx-auto space-y-6">
-            <div class="flex flex-col md:flex-row gap-4 items-center">
-                <div class="relative w-full">
-                    <input type="text" id="input-busqueda" placeholder="Buscar por marca o modelo..." class="w-full bg-black border border-zinc-700 rounded-2xl px-6 py-4 text-base text-white placeholder-gray-500 focus:outline-none focus:border-red-600 transition">
+        <div style="background-color: rgba(24, 24, 27, 0.8); border: 1px solid #27272a; border-radius: 1.5rem; padding: 2.5rem; margin-bottom: 5rem; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); max-width: 1100px; margin-left: auto; margin-right: auto;">
+            <div style="display: flex; flex-direction: column; md-flex-direction: row; gap: 1rem; align-items: center; margin-bottom: 1.5rem;">
+                <div style="position: relative; width: 100%;">
+                    <input type="text" id="input-busqueda" placeholder="Buscar por marca o modelo..." style="width: 100%; background-color: #000; border: 1px solid #3f3f46; border-radius: 1rem; padding: 1.2rem 1.5rem; font-size: 1rem; color: #ffffff; outline: none; box-sizing: border-box;">
                 </div>
-                <button type="button" class="w-full md:w-auto bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-2xl font-bold text-sm tracking-wider uppercase transition flex items-center justify-center gap-2 shadow-lg">
-                    <i class="fas fa-search"><span> Buscar</span></i>
+                <button type="button" style="width: 100%; md-width: auto; background-color: #dc2626; color: #ffffff; padding: 1.2rem 2.5rem; border-radius: 1rem; font-weight: bold; font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                    <i class="fas fa-search"></i> <span>Buscar</span>
                 </button>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem;">
                 <div>
-                    <label class="block text-[11px] uppercase tracking-wider text-gray-400 mb-2 font-semibold">Categoría / Tipo</label>
-                    <select id="filtro-categoria" class="w-full bg-black border border-zinc-700 rounded-xl px-4 py-3.5 text-sm text-gray-300 focus:outline-none focus:border-red-600 transition">
+                    <label style="display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: #9ca3af; margin-bottom: 0.5rem; font-weight: 600;">Categoría / Tipo</label>
+                    <select id="filtro-categoria" style="width: 100%; background-color: #000; border: 1px solid #3f3f46; border-radius: 0.75rem; padding: 1rem; font-size: 14px; color: #d1d5db; outline: none;">
                         <option value="todos">Todos los Modelos</option>
                         <option value="sedan">Sedanes</option>
                         <option value="suv">SUVs y Camionetas</option>
@@ -162,8 +172,8 @@
                     </select>
                 </div>
                 <div>
-                    <label class="block text-[11px] uppercase tracking-wider text-gray-400 mb-2 font-semibold">Rango de Precio</label>
-                    <select id="filtro-precio" class="w-full bg-black border border-zinc-700 rounded-xl px-4 py-3.5 text-sm text-gray-300 focus:outline-none focus:border-red-600 transition">
+                    <label style="display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: #9ca3af; margin-bottom: 0.5rem; font-weight: 600;">Rango de Precio</label>
+                    <select id="filtro-precio" style="width: 100%; background-color: #000; border: 1px solid #3f3f46; border-radius: 0.75rem; padding: 1rem; font-size: 14px; color: #d1d5db; outline: none;">
                         <option value="todos">Cualquier Precio</option>
                         <option value="hasta-40k">Hasta $40,000</option>
                         <option value="40k-80k">$40,000 - $80,000</option>
@@ -171,8 +181,8 @@
                     </select>
                 </div>
                 <div>
-                    <label class="block text-[11px] uppercase tracking-wider text-gray-400 mb-2 font-semibold">Año del Vehículo</label>
-                    <select id="filtro-anio" class="w-full bg-black border border-zinc-700 rounded-xl px-4 py-3.5 text-sm text-gray-300 focus:outline-none focus:border-red-600 transition">
+                    <label style="display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: #9ca3af; margin-bottom: 0.5rem; font-weight: 600;">Año del Vehículo</label>
+                    <select id="filtro-anio" style="width: 100%; background-color: #000; border: 1px solid #3f3f46; border-radius: 0.75rem; padding: 1rem; font-size: 14px; color: #d1d5db; outline: none;">
                         <option value="todos">Todos los Años</option>
                         <option value="2024">2024</option>
                         <option value="2023">2023</option>
@@ -182,100 +192,103 @@
             </div>
         </div>
 
-        <!-- Tarjetas de Vehículos -->
-        <div id="contenedor-vehiculos" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14 text-left">
+        <!-- Tarjetas de Vehículos (Dinámicas) -->
+        <div id="contenedor-vehiculos" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 3rem; text-align: left;">
             
-            <div class="bg-zinc-900/50 border border-zinc-800/90 rounded-3xl overflow-hidden shadow-2xl flex flex-col hover:border-zinc-700 transition duration-500 group">
-                <div class="relative h-72 bg-zinc-950 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=800&q=80" alt="Toyota Camry" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
-                    <span class="absolute top-4 left-4 bg-red-600 text-white text-[10px] font-bold tracking-widest uppercase px-3.5 py-1.5 rounded-full shadow-lg">Disponible</span>
-                    <span class="absolute top-4 right-4 bg-black/80 text-gray-200 text-xs font-mono px-3.5 py-1.5 rounded-full border border-white/10">2024</span>
-                    <button onclick="abrirGaleria(['https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=1200&q=80'], 'Toyota Camry Executive')" class="absolute bottom-4 right-4 bg-black/80 hover:bg-white hover:text-black text-white px-4 py-2.5 rounded-xl text-xs backdrop-blur-md transition flex items-center gap-2 border border-white/20">
+            <!-- Vehículo 1 -->
+            <div style="background-color: rgba(24, 24, 27, 0.5); border: 1px solid rgba(39, 39, 42, 0.9); border-radius: 1.5rem; overflow: hidden; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.5); display: flex; flex-direction: column;">
+                <div style="position: relative; height: 280px; background-color: #09090b; overflow: hidden;">
+                    <img src="https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=800&q=80" alt="Toyota Camry" style="width: 100%; height: 100%; object-fit: cover;">
+                    <span style="position: absolute; top: 1rem; left: 1rem; background-color: #dc2626; color: #ffffff; font-size: 10px; font-weight: bold; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 14px; border-radius: 9999px;">Disponible</span>
+                    <span style="position: absolute; top: 1rem; right: 1rem; background-color: rgba(0,0,0,0.8); color: #e5e7eb; font-size: 12px; font-family: monospace; padding: 6px 14px; border-radius: 9999px; border: 1px solid rgba(255,255,255,0.1);">2024</span>
+                    <button onclick="abrirGaleria(['https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=1200&q=80'], 'Toyota Camry Executive')" style="position: absolute; bottom: 1rem; right: 1rem; background-color: rgba(0,0,0,0.8); color: #ffffff; padding: 10px 16px; border-radius: 12px; font-size: 12px; border: 1px solid rgba(255,255,255,0.2); cursor: pointer; display: flex; align-items: center; gap: 8px;">
                         <i class="fas fa-camera"></i> Ver fotos y zoom
                     </button>
                 </div>
-                <div class="p-8 flex-1 flex flex-col justify-between space-y-6">
+                <div style="padding: 2rem; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; gap: 1.5rem;">
                     <div>
-                        <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-red-500 transition">Toyota Camry Executive</h3>
-                        <p class="text-gray-400 text-xs leading-relaxed mb-6">Motor 2.5L 4-Cilindros, transmisión automática de 8 velocidades, interiores en piel y paquete completo de asistencias.</p>
-                        <div class="grid grid-cols-2 gap-4 py-4 border-y border-zinc-800 text-xs text-gray-300">
-                            <div class="flex items-center gap-2.5"><i class="fas fa-car text-red-500"></i> Automático</div>
-                            <div class="flex items-center gap-2.5"><i class="fas fa-gas-pump text-red-500"></i> Gasolina</div>
-                            <div class="flex items-center gap-2.5"><i class="fas fa-tachometer-alt text-red-500"></i> 0 km</div>
-                            <div class="flex items-center gap-2.5"><i class="fas fa-shield-alt text-red-500"></i> Garantía</div>
+                        <h3 style="font-size: 1.5rem; font-weight: bold; color: #ffffff; margin: 0 0 0.5rem 0;">Toyota Camry Executive</h3>
+                        <p style="color: #9ca3af; font-size: 12px; line-height: 1.6; margin: 0 0 1.5rem 0;">Motor 2.5L 4-Cilindros, transmisión automática de 8 velocidades, interiores en piel y paquete completo de asistencias.</p>
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; padding: 1rem 0; border-top: 1px solid #27272a; border-bottom: 1px solid #27272a; font-size: 12px; color: #d1d5db;">
+                            <div style="display: flex; align-items: center; gap: 8px;"><i class="fas fa-car" style="color: #dc2626;"></i> Automático</div>
+                            <div style="display: flex; align-items: center; gap: 8px;"><i class="fas fa-gas-pump" style="color: #dc2626;"></i> Gasolina</div>
+                            <div style="display: flex; align-items: center; gap: 8px;"><i class="fas fa-tachometer-alt" style="color: #dc2626;"></i> 0 km</div>
+                            <div style="display: flex; align-items: center; gap: 8px;"><i class="fas fa-shield-alt" style="color: #dc2626;"></i> Garantía</div>
                         </div>
                     </div>
-                    <div class="flex items-center justify-between pt-2">
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
                         <div>
-                            <span class="text-[10px] uppercase tracking-widest text-gray-500 block mb-1">Precio</span>
-                            <span class="text-2xl font-extrabold text-white tracking-tight">$32,500</span>
+                            <span style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: #6b7280; display: block; margin-bottom: 2px;">Precio</span>
+                            <span style="font-size: 1.5rem; font-weight: 800; color: #ffffff;">$32,500</span>
                         </div>
-                        <a href="https://wa.me/1234567890?text=Hola,%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20el%20Toyota%20Camry%202024" target="_blank" class="bg-green-600 hover:bg-green-500 text-white px-5 py-3 rounded-2xl text-xs font-bold tracking-wider uppercase flex items-center gap-2 shadow-lg transition hover:scale-105">
-                            <i class="fab fa-whatsapp text-sm"></i> WhatsApp
+                        <a href="https://wa.me/1234567890?text=Hola,%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20el%20Toyota%20Camry%202024" target="_blank" style="background-color: #16a34a; color: #ffffff; padding: 12px 20px; border-radius: 1rem; font-size: 12px; font-weight: bold; letter-spacing: 0.05em; text-transform: uppercase; text-decoration: none; display: flex; align-items: center; gap: 8px;">
+                            <i class="fab fa-whatsapp" style="font-size: 14px;"></i> WhatsApp
                         </a>
                     </div>
                 </div>
             </div>
 
-            <div class="bg-zinc-900/50 border border-zinc-800/90 rounded-3xl overflow-hidden shadow-2xl flex flex-col hover:border-zinc-700 transition duration-500 group">
-                <div class="relative h-72 bg-zinc-950 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80" alt="Mercedes Benz C-Class" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
-                    <span class="absolute top-4 left-4 bg-zinc-800 text-gray-200 text-[10px] font-bold tracking-widest uppercase px-3.5 py-1.5 rounded-full shadow-lg">Importación</span>
-                    <span class="absolute top-4 right-4 bg-black/80 text-gray-200 text-xs font-mono px-3.5 py-1.5 rounded-full border border-white/10">2023</span>
-                    <button onclick="abrirGaleria(['https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1200&q=80'], 'Mercedes-Benz C-Class')" class="absolute bottom-4 right-4 bg-black/80 hover:bg-white hover:text-black text-white px-4 py-2.5 rounded-xl text-xs backdrop-blur-md transition flex items-center gap-2 border border-white/20">
+            <!-- Vehículo 2 -->
+            <div style="background-color: rgba(24, 24, 27, 0.5); border: 1px solid rgba(39, 39, 42, 0.9); border-radius: 1.5rem; overflow: hidden; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.5); display: flex; flex-direction: column;">
+                <div style="position: relative; height: 280px; background-color: #09090b; overflow: hidden;">
+                    <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80" alt="Mercedes Benz C-Class" style="width: 100%; height: 100%; object-fit: cover;">
+                    <span style="position: absolute; top: 1rem; left: 1rem; background-color: #27272a; color: #e5e7eb; font-size: 10px; font-weight: bold; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 14px; border-radius: 9999px;">Importación</span>
+                    <span style="position: absolute; top: 1rem; right: 1rem; background-color: rgba(0,0,0,0.8); color: #e5e7eb; font-size: 12px; font-family: monospace; padding: 6px 14px; border-radius: 9999px; border: 1px solid rgba(255,255,255,0.1);">2023</span>
+                    <button onclick="abrirGaleria(['https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1200&q=80'], 'Mercedes-Benz C-Class')" style="position: absolute; bottom: 1rem; right: 1rem; background-color: rgba(0,0,0,0.8); color: #ffffff; padding: 10px 16px; border-radius: 12px; font-size: 12px; border: 1px solid rgba(255,255,255,0.2); cursor: pointer; display: flex; align-items: center; gap: 8px;">
                         <i class="fas fa-camera"></i> Ver fotos y zoom
                     </button>
                 </div>
-                <div class="p-8 flex-1 flex flex-col justify-between space-y-6">
+                <div style="padding: 2rem; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; gap: 1.5rem;">
                     <div>
-                        <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-red-500 transition">Mercedes-Benz C-Class</h3>
-                        <p class="text-gray-400 text-xs leading-relaxed mb-6">Sedán de lujo, acabados premium en madera y aluminio, techo panorámico y sistema MBUX.</p>
-                        <div class="grid grid-cols-2 gap-4 py-4 border-y border-zinc-800 text-xs text-gray-300">
-                            <div class="flex items-center gap-2.5"><i class="fas fa-car text-red-500"></i> Automático</div>
-                            <div class="flex items-center gap-2.5"><i class="fas fa-leaf text-red-500"></i> Híbrido</div>
-                            <div class="flex items-center gap-2.5"><i class="fas fa-tachometer-alt text-red-500"></i> 12,000 km</div>
-                            <div class="flex items-center gap-2.5"><i class="fas fa-check-circle text-red-500"></i> Certificado</div>
+                        <h3 style="font-size: 1.5rem; font-weight: bold; color: #ffffff; margin: 0 0 0.5rem 0;">Mercedes-Benz C-Class</h3>
+                        <p style="color: #9ca3af; font-size: 12px; line-height: 1.6; margin: 0 0 1.5rem 0;">Sedán de lujo, acabados premium en madera y aluminio, techo panorámico y sistema MBUX.</p>
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; padding: 1rem 0; border-top: 1px solid #27272a; border-bottom: 1px solid #27272a; font-size: 12px; color: #d1d5db;">
+                            <div style="display: flex; align-items: center; gap: 8px;"><i class="fas fa-car" style="color: #dc2626;"></i> Automático</div>
+                            <div style="display: flex; align-items: center; gap: 8px;"><i class="fas fa-leaf" style="color: #dc2626;"></i> Híbrido</div>
+                            <div style="display: flex; align-items: center; gap: 8px;"><i class="fas fa-tachometer-alt" style="color: #dc2626;"></i> 12,000 km</div>
+                            <div style="display: flex; align-items: center; gap: 8px;"><i class="fas fa-check-circle" style="color: #dc2626;"></i> Certificado</div>
                         </div>
                     </div>
-                    <div class="flex items-center justify-between pt-2">
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
                         <div>
-                            <span class="text-[10px] uppercase tracking-widest text-gray-500 block mb-1">Precio</span>
-                            <span class="text-2xl font-extrabold text-white tracking-tight">$48,000</span>
+                            <span style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: #6b7280; display: block; margin-bottom: 2px;">Precio</span>
+                            <span style="font-size: 1.5rem; font-weight: 800; color: #ffffff;">$48,000</span>
                         </div>
-                        <a href="https://wa.me/1234567890?text=Hola,%20deseo%20m%C3%A1s%20detalles%20del%20Mercedes-Benz%20C-Class" target="_blank" class="bg-green-600 hover:bg-green-500 text-white px-5 py-3 rounded-2xl text-xs font-bold tracking-wider uppercase flex items-center gap-2 shadow-lg transition hover:scale-105">
-                            <i class="fab fa-whatsapp text-sm"></i> WhatsApp
+                        <a href="https://wa.me/1234567890?text=Hola,%20deseo%20m%C3%A1s%20detalles%20del%20Mercedes-Benz" target="_blank" style="background-color: #16a34a; color: #ffffff; padding: 12px 20px; border-radius: 1rem; font-size: 12px; font-weight: bold; letter-spacing: 0.05em; text-transform: uppercase; text-decoration: none; display: flex; align-items: center; gap: 8px;">
+                            <i class="fab fa-whatsapp" style="font-size: 14px;"></i> WhatsApp
                         </a>
                     </div>
                 </div>
             </div>
 
-            <div class="bg-zinc-900/50 border border-zinc-800/90 rounded-3xl overflow-hidden shadow-2xl flex flex-col hover:border-zinc-700 transition duration-500 group">
-                <div class="relative h-72 bg-zinc-950 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80" alt="Porsche 911" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
-                    <span class="absolute top-4 left-4 bg-red-600 text-white text-[10px] font-bold tracking-widest uppercase px-3.5 py-1.5 rounded-full shadow-lg">Exclusivo</span>
-                    <span class="absolute top-4 right-4 bg-black/80 text-gray-200 text-xs font-mono px-3.5 py-1.5 rounded-full border border-white/10">2024</span>
-                    <button onclick="abrirGaleria(['https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80'], 'Porsche 911 Carrera S')" class="absolute bottom-4 right-4 bg-black/80 hover:bg-white hover:text-black text-white px-4 py-2.5 rounded-xl text-xs backdrop-blur-md transition flex items-center gap-2 border border-white/20">
+            <!-- Vehículo 3 -->
+            <div style="background-color: rgba(24, 24, 27, 0.5); border: 1px solid rgba(39, 39, 42, 0.9); border-radius: 1.5rem; overflow: hidden; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.5); display: flex; flex-direction: column;">
+                <div style="position: relative; height: 280px; background-color: #09090b; overflow: hidden;">
+                    <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80" alt="Porsche 911" style="width: 100%; height: 100%; object-fit: cover;">
+                    <span style="position: absolute; top: 1rem; left: 1rem; background-color: #dc2626; color: #ffffff; font-size: 10px; font-weight: bold; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 14px; border-radius: 9999px;">Exclusivo</span>
+                    <span style="position: absolute; top: 1rem; right: 1rem; background-color: rgba(0,0,0,0.8); color: #e5e7eb; font-size: 12px; font-family: monospace; padding: 6px 14px; border-radius: 9999px; border: 1px solid rgba(255,255,255,0.1);">2024</span>
+                    <button onclick="abrirGaleria(['https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80'], 'Porsche 911 Carrera S')" style="position: absolute; bottom: 1rem; right: 1rem; background-color: rgba(0,0,0,0.8); color: #ffffff; padding: 10px 16px; border-radius: 12px; font-size: 12px; border: 1px solid rgba(255,255,255,0.2); cursor: pointer; display: flex; align-items: center; gap: 8px;">
                         <i class="fas fa-camera"></i> Ver fotos y zoom
                     </button>
                 </div>
-                <div class="p-8 flex-1 flex flex-col justify-between space-y-6">
+                <div style="padding: 2rem; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; gap: 1.5rem;">
                     <div>
-                        <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-red-500 transition">Porsche 911 Carrera S</h3>
-                        <p class="text-gray-400 text-xs leading-relaxed mb-6">Deportivo de alto rendimiento, motor twin-turbo 6 cilindros, aceleración de 0 a 100 km/h en 3.5s.</p>
-                        <div class="grid grid-cols-2 gap-4 py-4 border-y border-zinc-800 text-xs text-gray-300">
-                            <div class="flex items-center gap-2.5"><i class="fas fa-car text-red-500"></i> PDK 8-Vel</div>
-                            <div class="flex items-center gap-2.5"><i class="fas fa-bolt text-red-500"></i> 450 HP</div>
-                            <div class="flex items-center gap-2.5"><i class="fas fa-tachometer-alt text-red-500"></i> 0 km</div>
-                            <div class="flex items-center gap-2.5"><i class="fas fa-star text-red-500"></i> Edición S</div>
+                        <h3 style="font-size: 1.5rem; font-weight: bold; color: #ffffff; margin: 0 0 0.5rem 0;">Porsche 911 Carrera S</h3>
+                        <p style="color: #9ca3af; font-size: 12px; line-height: 1.6; margin: 0 0 1.5rem 0;">Deportivo de alto rendimiento, motor twin-turbo 6 cilindros, aceleración de 0 a 100 km/h en 3.5s.</p>
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; padding: 1rem 0; border-top: 1px solid #27272a; border-bottom: 1px solid #27272a; font-size: 12px; color: #d1d5db;">
+                            <div style="display: flex; align-items: center; gap: 8px;"><i class="fas fa-car" style="color: #dc2626;"></i> PDK 8-Vel</div>
+                            <div style="display: flex; align-items: center; gap: 8px;"><i class="fas fa-bolt" style="color: #dc2626;"></i> 450 HP</div>
+                            <div style="display: flex; align-items: center; gap: 8px;"><i class="fas fa-tachometer-alt" style="color: #dc2626;"></i> 0 km</div>
+                            <div style="display: flex; align-items: center; gap: 8px;"><i class="fas fa-star" style="color: #dc2626;"></i> Edición S</div>
                         </div>
                     </div>
-                    <div class="flex items-center justify-between pt-2">
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
                         <div>
-                            <span class="text-[10px] uppercase tracking-widest text-gray-500 block mb-1">Precio</span>
-                            <span class="text-2xl font-extrabold text-white tracking-tight">$125,000</span>
+                            <span style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: #6b7280; display: block; margin-bottom: 2px;">Precio</span>
+                            <span style="font-size: 1.5rem; font-weight: 800; color: #ffffff;">$125,000</span>
                         </div>
-                        <a href="https://wa.me/1234567890?text=Hola,%20deseo%20m%C3%A1s%20detalles%20del%20Porsche%20911" target="_blank" class="bg-green-600 hover:bg-green-500 text-white px-5 py-3 rounded-2xl text-xs font-bold tracking-wider uppercase flex items-center gap-2 shadow-lg transition hover:scale-105">
-                            <i class="fab fa-whatsapp text-sm"></i> WhatsApp
+                        <a href="https://wa.me/1234567890?text=Hola,%20deseo%20m%C3%A1s%20detalles%20del%20Porsche" target="_blank" style="background-color: #16a34a; color: #ffffff; padding: 12px 20px; border-radius: 1rem; font-size: 12px; font-weight: bold; letter-spacing: 0.05em; text-transform: uppercase; text-decoration: none; display: flex; align-items: center; gap: 8px;">
+                            <i class="fab fa-whatsapp" style="font-size: 14px;"></i> WhatsApp
                         </a>
                     </div>
                 </div>
@@ -284,28 +297,28 @@
         </div>
     </main>
 
-    <!-- 5. SECCIÓN DE UBICACIÓN Y MAPA INTERACTIVO (CABUDARE, LARA, VENEZUELA) -->
-    <section id="ubicacion" class="bg-zinc-950 border-t border-zinc-900 py-36 px-6">
-        <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div class="space-y-6 text-left">
-                <span class="text-xs uppercase tracking-[0.4em] text-red-500 font-bold block">UBICACIÓN OFICIAL</span>
-                <h3 class="text-3xl md:text-5xl font-extralight text-white">Visítanos en Cabudare, Estado Lara</h3>
-                <p class="text-gray-400 text-base font-light leading-relaxed">
-                    Ven a conocer nuestra sede principal en Cabudare, Lara State, Venezuela[cite: 1, 2]. Nuestro equipo de expertos te espera para ofrecerte asesoría personalizada y atención de primera clase.
+    <!-- 5. UBICACIÓN Y MAPA INTERACTIVO (CABUDARE, LARA, VENEZUELA) -->
+    <section id="ubicacion" style="background-color: #09090b; border-top: 1px solid #18181b; padding: 6rem 1.5rem;">
+        <div style="max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 4rem; align-items: center;">
+            <div style="text-align: left;">
+                <span style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.4em; color: #dc2626; font-weight: bold; display: block; margin-bottom: 1rem;">UBICACIÓN OFICIAL</span>
+                <h3 style="font-size: clamp(2rem, 3vw, 3rem); font-weight: 200; color: #ffffff; margin: 0 0 1.5rem 0;">Visítanos en Cabudare, Estado Lara</h3>
+                <p style="color: #9ca3af; font-size: 1.1rem; font-weight: 300; line-height: 1.8; margin-bottom: 2rem;">
+                    Ven a conocer nuestra sede principal en Cabudare, Lara State, Venezuela[cite: 1, 2]. Nuestro equipo de expertos te espera para ofrecerte asesoría personalizada.
                 </p>
-                <div class="space-y-3 pt-2 text-sm text-gray-300">
-                    <div class="flex items-center gap-3">
-                        <i class="fas fa-map-marker-alt text-red-500 text-lg"></i>
+                <div style="display: flex; flex-direction: column; gap: 1rem; font-size: 14px; color: #d1d5db;">
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <i class="fas fa-map-marker-alt" style="color: #dc2626; font-size: 18px;"></i>
                         <span>Av. Principal, Cabudare, Lara, Venezuela[cite: 1, 2]</span>
                     </div>
-                    <div class="flex items-center gap-3">
-                        <i class="fas fa-clock text-red-500 text-lg"></i>
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <i class="fas fa-clock" style="color: #dc2626; font-size: 18px;"></i>
                         <span>Lunes a Sábado: 9:00 AM - 6:00 PM</span>
                     </div>
                 </div>
             </div>
 
-            <div class="rounded-3xl overflow-hidden border border-zinc-800 shadow-2xl h-96 w-full">
+            <div style="border-radius: 1.5rem; overflow: hidden; border: 1px solid #27272a; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.7); height: 400px; width: 100%;">
                 <iframe 
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.8789518889!2d-69.2555!3d10.0567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e8766444b!2sCabudare%2C%20Lara%2C%20Venezuela!5e0!3m2!1ses!2sve!4v1700000000000!5m2!1ses!2sve" 
                     width="100%" 
@@ -320,31 +333,31 @@
     </section>
 
     <!-- 6. FORMULARIO DE ATENCIÓN PERSONALIZADA -->
-    <section id="contacto" class="bg-black border-t border-zinc-900 py-36 px-6">
-        <div class="max-w-3xl mx-auto bg-zinc-900/90 border border-zinc-800 rounded-3xl p-10 md:p-14 shadow-2xl text-center">
-            <div class="mb-12 space-y-3">
-                <span class="text-xs uppercase tracking-[0.35em] text-red-500 font-bold block">ATENCIÓN PERSONALIZADA</span>
-                <h3 class="text-3xl md:text-4xl font-light text-white">¿Tienes alguna duda o solicitud especial?</h3>
-                <p class="text-gray-400 text-sm font-light leading-relaxed max-w-xl mx-auto">Déjanos tus datos y un asesor especializado de Crestmont Motors se comunicará contigo.</p>
+    <section id="contacto" style="background-color: #000000; border-top: 1px solid #18181b; padding: 6rem 1.5rem;">
+        <div style="max-width: 800px; margin: 0 auto; background-color: rgba(24, 24, 27, 0.9); border: 1px solid #27272a; border-radius: 2rem; padding: 3.5rem; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.7); text-align: center;">
+            <div style="margin-bottom: 3rem;">
+                <span style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.35em; color: #dc2626; font-weight: bold; display: block; margin-bottom: 1rem;">ATENCIÓN PERSONALIZADA</span>
+                <h3 style="font-size: clamp(2rem, 3vw, 2.5rem); font-weight: 300; color: #ffffff; margin: 0 0 1rem 0;">¿Tienes alguna duda o solicitud especial?</h3>
+                <p style="color: #9ca3af; font-size: 14px; font-weight: 300; line-height: 1.6; max-width: 500px; margin: 0 auto;">Déjanos tus datos y un asesor especializado de Crestmont Motors se comunicará contigo.</p>
             </div>
 
-            <form id="formulario-contacto" class="space-y-6 text-left">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <form id="formulario-contacto" style="display: flex; flex-direction: column; gap: 1.5rem; text-align: left;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
                     <div>
-                        <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2 font-medium">Nombre Completo</label>
-                        <input type="text" placeholder="Ej. Juan Pérez" required class="w-full bg-black border border-zinc-800 rounded-xl px-5 py-4 text-sm text-white focus:outline-none focus:border-red-600 transition">
+                        <label style="display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: #9ca3af; margin-bottom: 0.5rem; font-weight: 500;">Nombre Completo</label>
+                        <input type="text" placeholder="Ej. Juan Pérez" required style="width: 100%; background-color: #000; border: 1px solid #27272a; border-radius: 1rem; padding: 1.2rem; font-size: 14px; color: #ffffff; outline: none; box-sizing: border-box;">
                     </div>
                     <div>
-                        <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2 font-medium">Teléfono / WhatsApp</label>
-                        <input type="tel" placeholder="+1 (555) 000-0000" required class="w-full bg-black border border-zinc-800 rounded-xl px-5 py-4 text-sm text-white focus:outline-none focus:border-red-600 transition">
+                        <label style="display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: #9ca3af; margin-bottom: 0.5rem; font-weight: 500;">Teléfono / WhatsApp</label>
+                        <input type="tel" placeholder="+1 (555) 000-0000" required style="width: 100%; background-color: #000; border: 1px solid #27272a; border-radius: 1rem; padding: 1.2rem; font-size: 14px; color: #ffffff; outline: none; box-sizing: border-box;">
                     </div>
                 </div>
                 <div>
-                    <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2 font-medium">Mensaje o Vehículo de Interés</label>
-                    <textarea rows="4" placeholder="Cuéntanos qué modelo buscas o qué duda tienes..." required class="w-full bg-black border border-zinc-800 rounded-xl px-5 py-4 text-sm text-white focus:outline-none focus:border-red-600 transition"></textarea>
+                    <label style="display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: #9ca3af; margin-bottom: 0.5rem; font-weight: 500;">Mensaje o Vehículo de Interés</label>
+                    <textarea rows="4" placeholder="Cuéntanos qué modelo buscas o qué duda tienes..." required style="width: 100%; background-color: #000; border: 1px solid #27272a; border-radius: 1rem; padding: 1.2rem; font-size: 14px; color: #ffffff; outline: none; box-sizing: border-box; resize: vertical;"></textarea>
                 </div>
-                <div class="text-center pt-6">
-                    <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-bold px-12 py-4 rounded-full text-xs tracking-widest uppercase shadow-xl transition hover:scale-105">
+                <div style="text-align: center; padding-top: 1rem;">
+                    <button type="submit" style="background-color: #dc2626; color: #ffffff; font-weight: bold; padding: 1.2rem 3rem; border-radius: 9999px; font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; border: none; cursor: pointer; box-shadow: 0 10px 25px rgba(220, 38, 38, 0.4);">
                         ENVIAR CONSULTA
                     </button>
                 </div>
@@ -352,26 +365,26 @@
         </div>
     </section>
 
-    <!-- 7. REDES SOCIALES -->
-    <section class="bg-zinc-950 border-t border-zinc-900 py-24 px-6 text-center">
-        <div class="max-w-4xl mx-auto space-y-6">
-            <span class="text-xs uppercase tracking-[0.3em] text-red-500 font-bold block">REDES OFICIALES</span>
-            <p class="text-gray-300 font-light text-sm max-w-md mx-auto">Conéctate con Crestmont Motors a través de nuestros canales oficiales de atención inmediata.</p>
+    <!-- 7. REDES SOCIALES (CENTRADAS) -->
+    <section style="background-color: #09090b; border-top: 1px solid #18181b; padding: 5rem 1.5rem; text-align: center;">
+        <div class="seccion-centrada">
+            <span style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.3em; color: #dc2626; font-weight: bold; display: block; margin-bottom: 1rem;">REDES OFICIALES</span>
+            <p style="color: #9ca3af; font-size: 14px; font-weight: 300; max-width: 400px; margin: 0 auto 2.5rem auto;">Conéctate con Crestmont Motors a través de nuestros canales oficiales.</p>
 
-            <div class="flex items-center justify-center gap-6 flex-wrap pt-4">
-                <a href="https://wa.me/1234567890" target="_blank" title="WhatsApp" class="w-14 h-14 bg-zinc-900 hover:bg-green-600 border border-zinc-800 rounded-2xl flex items-center justify-center text-white text-xl transition duration-300 hover:scale-110 shadow-lg">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 1.25rem; flex-wrap: wrap;">
+                <a href="https://wa.me/1234567890" target="_blank" title="WhatsApp" style="width: 3.5rem; height: 3.5rem; background-color: #18181b; border: 1px solid #27272a; border-radius: 1rem; display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 1.25rem; text-decoration: none; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);">
                     <i class="fab fa-whatsapp"></i>
                 </a>
-                <a href="mailto:contacto@crestmontmotors.com" title="Correo Electrónico" class="w-14 h-14 bg-zinc-900 hover:bg-red-600 border border-zinc-800 rounded-2xl flex items-center justify-center text-white text-xl transition duration-300 hover:scale-110 shadow-lg">
+                <a href="mailto:contacto@crestmontmotors.com" title="Correo Electrónico" style="width: 3.5rem; height: 3.5rem; background-color: #18181b; border: 1px solid #27272a; border-radius: 1rem; display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 1.25rem; text-decoration: none; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);">
                     <i class="fas fa-envelope"></i>
                 </a>
-                <a href="https://instagram.com" target="_blank" title="Instagram" class="w-14 h-14 bg-zinc-900 hover:bg-pink-600 border border-zinc-800 rounded-2xl flex items-center justify-center text-white text-xl transition duration-300 hover:scale-110 shadow-lg">
+                <a href="https://instagram.com" target="_blank" title="Instagram" style="width: 3.5rem; height: 3.5rem; background-color: #18181b; border: 1px solid #27272a; border-radius: 1rem; display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 1.25rem; text-decoration: none; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);">
                     <i class="fab fa-instagram"></i>
                 </a>
-                <a href="https://facebook.com" target="_blank" title="Facebook" class="w-14 h-14 bg-zinc-900 hover:bg-blue-600 border border-zinc-800 rounded-2xl flex items-center justify-center text-white text-xl transition duration-300 hover:scale-110 shadow-lg">
+                <a href="https://facebook.com" target="_blank" title="Facebook" style="width: 3.5rem; height: 3.5rem; background-color: #18181b; border: 1px solid #27272a; border-radius: 1rem; display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 1.25rem; text-decoration: none; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);">
                     <i class="fab fa-facebook-f"></i>
                 </a>
-                <a href="https://tiktok.com" target="_blank" title="TikTok" class="w-14 h-14 bg-zinc-900 hover:bg-zinc-700 border border-zinc-800 rounded-2xl flex items-center justify-center text-white text-xl transition duration-300 hover:scale-110 shadow-lg">
+                <a href="https://tiktok.com" target="_blank" title="TikTok" style="width: 3.5rem; height: 3.5rem; background-color: #18181b; border: 1px solid #27272a; border-radius: 1rem; display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 1.25rem; text-decoration: none; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);">
                     <i class="fab fa-tiktok"></i>
                 </a>
             </div>
@@ -379,42 +392,42 @@
     </section>
 
     <!-- 8. FOOTER -->
-    <footer class="bg-black border-t border-zinc-900 py-10 px-6 text-center text-xs text-gray-500">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-            <p>&copy; 2026 Crestmont Motors. Todos los derechos reservados.</p>
-            <div class="flex gap-8">
-                <a href="../" class="hover:text-white transition">Portal Principal</a>
-                <a href="#inventario" class="hover:text-white transition">Modelos</a>
-                <a href="#ubicacion" class="hover:text-white transition">Ubicación</a>
-                <a href="#contacto" class="hover:text-white transition">Contacto</a>
+    <footer style="background-color: #000000; border-top: 1px solid #18181b; padding: 2.5rem 1.5rem; text-align: center; font-size: 12px; color: #6b7280;">
+        <div style="max-width: 1400px; margin: 0 auto; display: flex; flex-direction: column; md-flex-direction: row; justify-content: space-between; align-items: center; gap: 1.5rem;">
+            <p style="margin: 0;">&copy; 2026 Crestmont Motors. Todos los derechos reservados.</p>
+            <div style="display: flex; gap: 2rem;">
+                <a href="../" style="color: #6b7280; text-decoration: none;">Portal Principal</a>
+                <a href="#inventario" style="color: #6b7280; text-decoration: none;">Modelos</a>
+                <a href="#ubicacion" style="color: #6b7280; text-decoration: none;">Ubicación</a>
+                <a href="#contacto" style="color: #6b7280; text-decoration: none;">Contacto</a>
             </div>
         </div>
     </footer>
 
     <!-- MODAL DE VISOR CON ZOOM -->
-    <div id="modal-galeria" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl hidden flex-col justify-between p-6">
-        <div class="flex justify-between items-center max-w-6xl w-full mx-auto">
-            <h4 id="modal-titulo" class="text-white text-lg font-light tracking-wide"></h4>
-            <button onclick="cerrarGaleria()" class="text-gray-400 hover:text-white text-2xl px-3 py-1">
+    <div id="modal-galeria" style="position: fixed; inset: 0; z-index: 50; background-color: rgba(0,0,0,0.95); backdrop-filter: blur(12px); display: none; flex-direction: column; justify-content: space-between; padding: 1.5rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; max-width: 1200px; width: 100%; margin: 0 auto;">
+            <h4 id="modal-titulo" style="color: #ffffff; font-size: 1.15rem; font-weight: 300; margin: 0;"></h4>
+            <button onclick="cerrarGaleria()" style="background: none; border: none; color: #9ca3af; font-size: 1.5rem; cursor: pointer; padding: 5px 10px;">
                 <i class="fas fa-times"></i>
             </button>
         </div>
 
-        <div class="relative flex-1 flex items-center justify-center my-4 max-w-5xl mx-auto w-full">
-            <button onclick="cambiarFoto(-1)" class="absolute left-2 z-10 bg-black/60 hover:bg-white hover:text-black text-white p-3 rounded-full backdrop-blur-md transition">
+        <div style="position: relative; flex-grow: 1; display: flex; align-items: center; justify-content: center; margin: 1rem 0; max-width: 1200px; width: 100%; margin-left: auto; margin-right: auto;">
+            <button onclick="cambiarFoto(-1)" style="position: absolute; left: 10px; z-index: 10; background-color: rgba(0,0,0,0.7); border: 1px solid rgba(255,255,255,0.2); color: #ffffff; padding: 1rem; border-radius: 9999px; cursor: pointer;">
                 <i class="fas fa-chevron-left"></i>
             </button>
 
-            <div class="zoom-container rounded-2xl max-h-[70vh] overflow-hidden flex items-center justify-center">
-                <img id="modal-imagen" src="" alt="Vista previa" class="max-h-[70vh] object-contain rounded-2xl">
+            <div class="zoom-container" style="border-radius: 1rem; max-height: 70vh; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+                <img id="modal-imagen" src="" alt="Vista previa" style="max-height: 70vh; object-fit: contain; border-radius: 1rem;">
             </div>
 
-            <button onclick="cambiarFoto(1)" class="absolute right-2 z-10 bg-black/60 hover:bg-white hover:text-black text-white p-3 rounded-full backdrop-blur-md transition">
+            <button onclick="cambiarFoto(1)" style="position: absolute; right: 10px; z-index: 10; background-color: rgba(0,0,0,0.7); border: 1px solid rgba(255,255,255,0.2); color: #ffffff; padding: 1rem; border-radius: 9999px; cursor: pointer;">
                 <i class="fas fa-chevron-right"></i>
             </button>
         </div>
 
-        <p class="text-center text-xs text-gray-400 tracking-wider">Pasa el cursor sobre la imagen para hacer ZOOM</p>
+        <p style="text-align: center; font-size: 12px; color: #9ca3af; letter-spacing: 0.1em; margin: 0;">Pasa el cursor sobre la imagen para hacer ZOOM</p>
     </div>
 
     <!-- SCRIPTS -->
@@ -431,13 +444,12 @@
             indiceActual = 0;
             document.getElementById('modal-titulo').innerText = titulo;
             actualizarFoto();
-            document.getElementById('modal-galeria').classList.remove('hidden');
-            document.getElementById('modal-galeria').classList.add('flex');
+            const modal = document.getElementById('modal-galeria');
+            modal.style.display = 'flex';
         }
 
         function cerrarGaleria() {
-            document.getElementById('modal-galeria').classList.add('hidden');
-            document.getElementById('modal-galeria').classList.remove('flex');
+            document.getElementById('modal-galeria').style.display = 'none';
         }
 
         function cambiarFoto(direccion) {
