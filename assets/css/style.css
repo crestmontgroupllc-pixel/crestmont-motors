@@ -1,4 +1,7 @@
-body { font-family: Arial, sans-serif; background: #000; color: #fff; margin: 0; padding: 0; scroll-behavior: smooth; }
+/* IMPORTAR FUENTES DE LUJO */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap');
+
+body { font-family: 'Montserrat', sans-serif; background: #000; color: #fff; margin: 0; padding: 0; scroll-behavior: smooth; }
 
 /* ENCABEZADO SUPERIOR */
 header { background: #111; border-bottom: 2px solid #222; position: sticky; top: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; flex-wrap: wrap; gap: 15px; }
@@ -9,48 +12,63 @@ nav { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
 nav a { color: #ddd; text-decoration: none; font-size: 14px; font-weight: bold; transition: color 0.3s; }
 nav a:hover { color: #ff0000; }
 
-/* ESTILOS DEL LOGO CENTRAL Y ESLOGAN */
+/* BLOQUE CENTRAL DE LUJO (ROJO, NEGRO Y PLATEADO) */
 .main-brand-banner {
-  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
-  border-bottom: 2px solid #ff0000;
-  padding: 70px 20px;
+  background: radial-gradient(circle at center, #1c1c1c 0%, #080808 70%, #000000 100%);
+  border-bottom: 3px solid #ff0000;
+  padding: 80px 20px;
   text-align: center;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.9);
 }
 
 .brand-logo-container {
-  max-width: 900px;
+  max-width: 950px;
   margin: 0 auto;
 }
 
+.central-logo-img {
+  max-height: 90px;
+  width: auto;
+  object-fit: contain;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 4px 10px rgba(255, 0, 0, 0.4));
+}
+
 .brand-title {
-  color: #fff;
-  font-size: 45px;
+  font-family: 'Playfair Display', serif;
+  color: #ffffff;
+  font-size: 50px;
   font-weight: 900;
-  letter-spacing: 5px;
+  letter-spacing: 6px;
   margin: 0 0 15px 0;
   text-transform: uppercase;
+  text-shadow: 0 2px 10px rgba(255, 255, 255, 0.15);
+}
+
+.brand-title span {
+  color: #ff0000;
 }
 
 .brand-divider {
-  width: 90px;
+  width: 100px;
   height: 3px;
-  background-color: #ff0000;
-  margin: 0 auto 15px auto;
+  background: linear-gradient(90deg, transparent, #ff0000, transparent);
+  margin: 0 auto 20px auto;
 }
 
 .brand-slogan {
-  color: #ccc;
-  font-size: 16px;
+  font-family: 'Montserrat', sans-serif;
+  color: #c0c0c0; /* Tono plateado elegante */
+  font-size: 17px;
   font-weight: 600;
-  letter-spacing: 4px;
+  letter-spacing: 5px;
   margin: 0;
   text-transform: uppercase;
 }
 
 /* CONTENEDOR Y FILTROS */
 .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
-.section-title { font-size: 24px; color: #fff; margin-bottom: 20px; border-left: 4px solid #ff0000; padding-left: 12px; }
+.section-title { font-size: 24px; color: #fff; margin-bottom: 20px; border-left: 4px solid #ff0000; padding-left: 12px; font-weight: 700; }
 
 .filters-bar { background: #111; border: 1px solid #333; padding: 20px; border-radius: 8px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 30px; }
 .filter-group { display: flex; flex-direction: column; gap: 6px; }
@@ -59,15 +77,26 @@ nav a:hover { color: #ff0000; }
 
 .grid-vehiculos { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
 
-/* TARJETAS DE VEHÍCULOS */
-.car-card { background: #111; border: 1px solid #333; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.5); transition: transform 0.3s; }
-.car-card:hover { transform: translateY(-5px); border-color: #ff0000; }
+/* TARJETAS INTERACTIVAS CON BRILLO LÁSER ROJO */
+.car-card { 
+  background: #111; 
+  border: 1px solid #333; 
+  border-radius: 10px; 
+  overflow: hidden; 
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5); 
+  transition: all 0.4s ease; 
+}
+.car-card:hover { 
+  transform: translateY(-6px); 
+  border-color: #ff0000; 
+  box-shadow: 0 0 25px rgba(255, 0, 0, 0.4), 0 8px 25px rgba(0,0,0,0.8); 
+}
 
 .car-thumb-container { position: relative; width: 100%; height: 220px; background: #0a0a0a; cursor: pointer; display: flex; align-items: center; justify-content: center; overflow: hidden; border-bottom: 1px solid #222; }
-.car-thumb-container img { max-width: 100%; max-height: 100%; object-fit: contain; transition: transform 0.3s; }
-.car-thumb-container:hover img { transform: scale(1.03); }
+.car-thumb-container img { max-width: 100%; max-height: 100%; object-fit: contain; transition: transform 0.4s; }
+.car-thumb-container:hover img { transform: scale(1.05); }
 
-.photo-badge { position: absolute; bottom: 10px; right: 10px; background: rgba(0,0,0,0.8); color: #fff; padding: 4px 10px; font-size: 12px; border-radius: 4px; border: 1px solid #444; font-weight: bold; }
+.photo-badge { position: absolute; bottom: 10px; right: 10px; background: rgba(0,0,0,0.85); color: #fff; padding: 4px 10px; font-size: 12px; border-radius: 4px; border: 1px solid #444; font-weight: bold; }
 
 .car-details { padding: 20px; }
 .car-title { font-size: 18px; font-weight: bold; color: #fff; margin: 0 0 10px 0; }
@@ -83,11 +112,40 @@ nav a:hover { color: #ff0000; }
 .contact-box h4 { margin: 0 0 12px 0; color: #fff; font-size: 16px; border-bottom: 1px solid #333; padding-bottom: 8px; }
 .contact-box p { margin: 8px 0; color: #ccc; font-size: 14px; }
 
-.btn-whatsapp { display: inline-block; background: #25d366; color: #fff; padding: 10px 18px; border-radius: 6px; text-decoration: none; font-weight: bold; margin-top: 10px; font-size: 14px; }
-.btn-whatsapp:hover { background: #1ebe5d; }
+/* BOTÓN WHATSAPP GRANDE */
+.btn-whatsapp-grande {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: #25d366;
+  color: #fff;
+  padding: 14px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  transition: all 0.3s;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+}
+.btn-whatsapp-grande:hover {
+  background: #1ebe5d;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.5);
+}
+.whatsapp-icon-svg { width: 26px; height: 26px; fill: currentColor; }
+
+/* REDES SOCIALES */
+.social-links-grid { display: flex; flex-direction: column; gap: 10px; }
+.social-btn { display: block; text-align: center; padding: 10px; border-radius: 6px; color: #fff; text-decoration: none; font-weight: bold; font-size: 14px; transition: all 0.3s; }
+.social-btn:hover { opacity: 0.9; transform: translateY(-2px); }
+.social-btn.instagram { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+.social-btn.facebook { background: #1877f2; }
+.social-btn.tiktok { background: #010101; border: 1px solid #444; }
+
 .map-box { background: #1a1a1a; border: 1px solid #333; height: 160px; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: #777; font-size: 14px; text-align: center; padding: 10px; }
 
-/* MODAL DE GALERÍA DE FOTOS */
+/* MODAL DE GALERÍA */
 #modal-galeria { display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); justify-content: center; align-items: center; flex-direction: column; }
 .modal-content { position: relative; max-width: 90%; max-height: 80vh; display: flex; align-items: center; justify-content: center; }
 .modal-content img { max-width: 100%; max-height: 75vh; object-fit: contain; border-radius: 6px; border: 1px solid #333; }
