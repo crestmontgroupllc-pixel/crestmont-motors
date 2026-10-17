@@ -27,9 +27,12 @@
     .btn-save { background: #ff0000; color: #fff; padding: 15px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 16px; width: 100%; }
     .btn-save:hover { background: #cc0000; }
 
-    /* VISTA PREVIA DE FOTOS EN MINIATURA */
-    .preview-container { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
-    .preview-thumb { width: 70px; height: 70px; object-fit: cover; border-radius: 6px; border: 2px solid #ff0000; }
+    /* ESTILOS PARA LA VISTA PREVIA Y EL BOTÓN DE ELIMINAR (X) */
+    .preview-container { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 12px; }
+    .thumb-wrapper { position: relative; width: 75px; height: 75px; }
+    .preview-thumb { width: 100%; height: 100%; object-fit: cover; border-radius: 6px; border: 2px solid #ff0000; }
+    .btn-remove { position: absolute; top: -6px; right: -6px; background: #ff0000; color: #fff; border: 2px solid #000; border-radius: 50%; width: 22px; height: 22px; font-size: 12px; font-weight: bold; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.5); }
+    .btn-remove:hover { background: #cc0000; }
     .preview-info { font-size: 13px; color: #aaa; margin-top: 5px; }
   </style>
 </head>
@@ -75,7 +78,6 @@
     
     <div class="form-group">
       <label>Fotos del Vehículo (Selecciona varias fotos a la vez):</label>
-      <!-- Input con propiedad multiple asegurada por JS y HTML -->
       <input type="file" id="foto-auto" accept="image/*" multiple onchange="manejarSeleccionFotos(event)">
       <div class="preview-info" id="preview-info">Ninguna foto seleccionada</div>
       <div class="preview-container" id="preview-container"></div>
@@ -91,7 +93,6 @@
       if (sessionStorage.getItem("admin_autorizado") === "true") {
         mostrarPanel();
       }
-      // Forzar atributo multiple desde el código por seguridad de navegadores
       document.getElementById("foto-auto").setAttribute("multiple", "true");
     });
 
@@ -121,29 +122,58 @@
 
     function manejarSeleccionFotos(event) {
       const files = event.target.files;
-      const container = document.getElementById("preview-container");
-      const info = document.getElementById("preview-info");
-      
       if (!files || files.length === 0) return;
 
-      info.innerText = `Cargando ${files.length} foto(s)...`;
-
-      // Leemos cada archivo seleccionado y lo acumulamos en el arreglo global
       Array.from(files).forEach((file) => {
         const reader = new FileReader();
         reader.onload = function(e) {
           imagenesArrayGlobal.push(e.target.result);
-          
-          // Crear miniatura visual
-          const thumb = document.createElement("img");
-          thumb.src = e.target.result;
-          thumb.className = "preview-thumb";
-          container.appendChild(thumb);
-
-          info.innerText = `✅ ${imagenesArrayGlobal.length} foto(s) seleccionada(s) en total`;
+          actualizarVistaPrevia();
         };
         reader.readAsDataURL(file);
       });
+      
+      // Limpiar input para permitir seleccionar más fotos si se desea después
+      event.target.value = "";
+    }
+
+    function actualizarVistaPrevia() {
+      const container = document.getElementById("preview-container");
+      const info = document.getElementById("preview-info");
+      container.innerHTML = "";
+
+      if (imagenesArrayGlobal.length === 0) {
+        info.innerText = "Ninguna foto seleccionada";
+        return;
+      }
+
+      info.innerText = `✅ ${imagenesArrayGlobal.length} foto(s) seleccionada(s) en total`;
+
+      imagenesArrayGlobal.forEach((imgSrc, index) => {
+        const wrapper = document.createElement("div");
+        wrapper.className = "thumb-wrapper";
+
+        const thumb = document.createElement("img");
+        thumb.src = imgSrc;
+        thumb.className = "preview-thumb";
+
+        const btnRemove = document.createElement("button");
+        btnRemove.className = "btn-remove";
+        btnRemove.innerHTML = "×";
+        btnRemove.title = "Eliminar foto";
+        btnRemove.onclick = function() {
+          eliminarFoto(index);
+        };
+
+        wrapper.appendChild(thumb);
+        wrapper.appendChild(btnRemove);
+        container.appendChild(wrapper);
+      });
+    }
+
+    function eliminarFoto(index) {
+      imagenesArrayGlobal.splice(index, 1);
+      actualizarVistaPrevia();
     }
 
     function guardarVehiculo() {
@@ -182,9 +212,8 @@
       document.getElementById("precio-auto").value = "";
       document.getElementById("desc-auto").value = "";
       document.getElementById("foto-auto").value = "";
-      document.getElementById("preview-container").innerHTML = "";
-      document.getElementById("preview-info").innerText = "Ninguna foto seleccionada";
       imagenesArrayGlobal = [];
+      actualizarVistaPrevia();
     }
   </script>
 
