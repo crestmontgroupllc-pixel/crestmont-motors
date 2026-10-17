@@ -1,4 +1,3 @@
-// Variable global para almacenar los vehículos cargados y control de galería modal
 let vehiculosGlobal = [];
 let fotosVehiculoActual = [];
 let indiceFotoActual = 0;
@@ -8,14 +7,12 @@ document.addEventListener("DOMContentLoaded", function () {
   aplicarTextosConfig();
 });
 
-// Cargar inventario desde localStorage (o datos por defecto si está vacío)
 function cargarInventarioPublico() {
   const guardados = localStorage.getItem("crestmont_inventario");
   
   if (guardados) {
     vehiculosGlobal = JSON.parse(guardados);
   } else {
-    // Vehículos de demostración iniciales
     vehiculosGlobal = [
       {
         id: 1,
@@ -26,7 +23,7 @@ function cargarInventarioPublico() {
         km: "5,000 km",
         motor: "2.8L Turbo Diesel",
         transmision: "Automática",
-        descripcion: "Vehículo en estado impecable, rigorosa inspección de 150 puntos superada.",
+        descripcion: "Vehículo en estado impecable, rigurosa inspección superada.",
         fotos: ["https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80"]
       },
       {
@@ -38,7 +35,7 @@ function cargarInventarioPublico() {
         km: "12,000 km",
         motor: "5.0L V8",
         transmision: "Automática",
-        descripcion: "Exclusiva potencia americana, diseño deportivo y acabados de máxima categoría.",
+        descripcion: "Exclusiva potencia americana y acabados de máxima categoría.",
         fotos: ["https://images.unsplash.com/photo-1584345604476-8ec5e12e42dd?auto=format&fit=crop&w=800&q=80"]
       }
     ];
@@ -48,13 +45,13 @@ function cargarInventarioPublico() {
   mostrarVehiculos(vehiculosGlobal);
 }
 
-// Renderizar vehículos en la grilla pública
 function mostrarVehiculos(lista) {
   const contenedor = document.getElementById("catalogo-publico");
+  if (!contenedor) return;
   contenedor.innerHTML = "";
 
   if (lista.length === 0) {
-    contenedor.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: #888; padding: 40px;">No se encontraron vehículos disponibles con los filtros seleccionados.</p>`;
+    contenedor.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: #888; padding: 40px;">No se encontraron vehículos disponibles.</p>`;
     return;
   }
 
@@ -67,7 +64,7 @@ function mostrarVehiculos(lista) {
     card.innerHTML = `
       <div class="car-thumb-container" onclick="abrirModalGaleria(${index})">
         <img src="${fotoPrincipal}" alt="${car.marca} ${car.modelo}">
-        <div class="photo-badge">📷 ${totalFotos} ${totalFotos === 1 ? 'Foto' : 'Fotos'}</div>
+        <div class="photo-badge">📷 ${totalFotos}</div>
       </div>
       <div class="car-details">
         <div class="car-title">${car.marca} ${car.modelo} (${car.ano})</div>
@@ -82,7 +79,6 @@ function mostrarVehiculos(lista) {
   });
 }
 
-// Aplicar filtros de búsqueda interactivos
 function aplicarFiltros() {
   const texto = document.getElementById("filtro-texto").value.toLowerCase();
   const ano = document.getElementById("filtro-ano").value;
@@ -92,28 +88,24 @@ function aplicarFiltros() {
     const textoMatch = `${car.marca} ${car.modelo} ${car.descripcion}`.toLowerCase().includes(texto);
     const anoMatch = ano === "" || String(car.ano) === ano;
     const precioMatch = Number(car.precio) <= precioMax;
-
     return textoMatch && anoMatch && precioMatch;
   });
 
   mostrarVehiculos(filtrados);
 }
 
-// Aplicar datos del archivo config.js a la interfaz
 function aplicarTextosConfig() {
   if (typeof CONFIG_EMPRESA !== "undefined") {
     document.getElementById("txt-tel").innerText = CONFIG_EMPRESA.telefono;
     document.getElementById("txt-correo").innerText = CONFIG_EMPRESA.correoCorporativo;
     document.getElementById("txt-ubicacion").innerText = CONFIG_EMPRESA.ubicacion;
     
-    // Enlaces dinámicos a WhatsApp
-    const urlWp = `https://wa.me/${CONFIG_EMPRESA.whatsappNumero}?text=Hola,%20estoy%20interesado%20en%20los%20vehículos%20de%20Crestmont%20Motors`;
+    const urlWp = `https://wa.me/${CONFIG_EMPRESA.whatsappNumero}?text=Hola,%20estoy%20interesado%20en%20Crestmont%20Motors`;
     document.getElementById("btn-whatsapp-link").href = urlWp;
     document.getElementById("link-tel-directo").href = urlWp;
   }
 }
 
-// Funciones para la Galería Modal Independiente
 function abrirModalGaleria(indexVehiculo) {
   const vehiculo = vehiculosGlobal[indexVehiculo];
   if (!vehiculo || !vehiculo.fotos || vehiculo.fotos.length === 0) return;
@@ -144,7 +136,6 @@ function cerrarModal() {
   document.getElementById("modal-galeria").style.display = "none";
 }
 
-// Manejador del formulario de asesoría que redirige ordenado a WhatsApp
 function enviarAsesoria(event) {
   event.preventDefault();
   const nombre = document.getElementById("asesoria-nombre").value;
