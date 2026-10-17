@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crestmont Motors - Portal Oficial</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        /* Capas de imágenes para transición ultrasuave (Fade) */
+        .slide-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.8s ease-in-out;
+        }
+        .slide-bg.active {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-black text-white h-screen overflow-hidden flex flex-col justify-between relative">
+
+    <!-- Carrusel de Fondos en Capas -->
+    <div id="slider-container" class="absolute inset-0 z-0">
+        <div class="slide-bg active" style="background-image: url('https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1920&q=80');"></div>
+        <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1920&q=80');"></div>
+        <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=1920&q=80');"></div>
+    </div>
+
+    <!-- Superposición oscura para dar legibilidad al texto -->
+    <div class="absolute inset-0 bg-black/50 z-0 backdrop-brightness-90"></div>
+
+    <!-- Contenido Principal Centrado -->
+    <div class="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 max-w-4xl mx-auto">
+        
+        <!-- Nombre de la marca / Título estilo video -->
+        <h1 class="text-3xl md:text-5xl lg:text-6xl font-light tracking-wide mb-3 drop-shadow-md">
+            The Crestmont Family of Dealerships
+        </h1>
+        
+        <p class="text-sm md:text-lg font-light text-gray-200 mb-8 max-w-2xl drop-shadow">
+            Selecciona la línea o división a la que deseas acceder:
+        </p>
+
+        <!-- Botones Translúcidos estilo "Pill" -->
+        <div class="flex flex-col sm:flex-row gap-4 w-full justify-center items-center">
+            <a href="catalogo/" class="w-full sm:w-auto min-w-[220px] text-center border border-white/70 bg-white/10 hover:bg-white hover:text-black transition-all duration-300 py-3 px-6 rounded-full text-sm font-medium tracking-wider backdrop-blur-md shadow-lg">
+                Catálogo de Vehículos
+            </a>
+            <a href="admin/" class="w-full sm:w-auto min-w-[220px] text-center border border-white/70 bg-white/10 hover:bg-white hover:text-black transition-all duration-300 py-3 px-6 rounded-full text-sm font-medium tracking-wider backdrop-blur-md shadow-lg">
+                Panel de Administración
+            </a>
+        </div>
+
+    </div>
+
+    <!-- Script del Carrusel Automático -->
+    <script>
+        const slides = document.querySelectorAll('.slide-bg');
+        let currentSlide = 0;
+
+        setInterval(() => {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }, 5000); // Cambia cada 5 segundos con efecto suave
+    </script>
+</body>
+</html>
