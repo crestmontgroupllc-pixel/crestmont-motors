@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Control de Inventario - Crestmont Motors</title>
+  <link rel="stylesheet" href="../css/admin.css">
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f6f9; margin: 0; padding: 20px; }
+    .container { max-width: 1000px; margin: 0 auto; background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    h1 { color: #111; margin-bottom: 20px; }
+    .form-group { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+    .form-group input, .form-group select { padding: 10px; border: 1px solid #ccc; border-radius: 4px; flex: 1; min-width: 150px; }
+    .btn-add { background: #000; color: #fff; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+    .btn-add:hover { background: #333; }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+    th { background: #111; color: #fff; }
+    tr:nth-child(even) { background: #f9f9f9; }
+    .status-disponible { color: green; font-weight: bold; }
+    .status-vendido { color: red; font-weight: bold; }
+    .btn-delete { background: #d9534f; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>📋 Gestor de Inventario - Crestmont Motors</h1>
+
+    <!-- Formulario para agregar vehículo -->
+    <div class="form-group">
+      <input type="text" id="vin" placeholder="VIN / Chasis">
+      <input type="text" id="vehiculo" placeholder="Vehículo (Ej: Ford Mustang)">
+      <input type="number" id="ano" placeholder="Año">
+      <input type="number" id="precio" placeholder="Precio ($)">
+      <select id="estado">
+        <option value="Disponible">Disponible</option>
+        <option value="Reservado">Reservado</option>
+        <option value="Vendido">Vendido</option>
+      </select>
+      <button class="btn-add" onclick="agregarVehiculo()">+ Agregar</button>
+    </div>
+
+    <!-- Tabla de registro de inventario -->
+    <table>
+      <thead>
+        <tr>
+          <th>VIN</th>
+          <th>Vehículo</th>
+          <th>Año</th>
+          <th>Precio</th>
+          <th>Estado</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody id="lista-inventario">
+        <!-- Los datos agregados se mostrarán aquí automáticamente -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    // Cargar inventario guardado al abrir
+    document.addEventListener("DOMContentLoaded", cargarInventario);
+
+    function agregarVehiculo() {
+      const vin = document.getElementById("vin").value;
+      const vehiculo = document.getElementById("vehiculo").value;
+      const ano = document.getElementById("ano").value;
+      const precio = document.getElementById("precio").value;
+      const estado = document.getElementById("estado").value;
+
+      if (!vin || !vehiculo || !precio) {
+        alert("Por favor completa los campos principales (VIN, Vehículo, Precio).");
+        return;
+      }
+
+      const nuevoItem = { vin, vehiculo, ano, precio, estado };
+      let inventario = JSON.parse(localStorage.getItem("inventario_crestmont")) || [];
+      inventario.push(nuevoItem);
+      localStorage.setItem("inventario_crestmont", JSON.stringify(inventario));
+
+      // Limpiar campos
+      document.getElementById("vin").value = "";
+      document.getElementById("vehiculo").value = "";
+      document.getElementById("ano").value = "";
+      document.getElementById("precio").value = "";
+
+      cargarInventario();
+    }
+
+    function cargarInventario() {
+      const lista = document.getElementById("lista-inventario");
+      lista.innerHTML = "";
+      const inventario = JSON.parse(localStorage.getItem("inventario_crestmont")) || [];
+
+      inventario.forEach((item, index) => {
+        const claseEstado = item.estado === "Vendido" ? "status-vendido" : "status-disponible";
+        lista.innerHTML += `
+          <tr>
+            <td>${item.vin}</td>
+            <td>${item.vehiculo}</td>
+            <td>${item.ano}</td>
+            <td>$${Number(item.precio).toLocaleString()}</td>
+            <td class="${claseEstado}">${item.estado}</td>
+            <td><button class="btn-delete" onclick="eliminarItem(${index})">Eliminar</button></td>
+          </tr>
+        `;
+      });
+    }
+
+    function eliminarItem(index) {
+      let inventario = JSON.parse(localStorage.getItem("inventario_crestmont")) || [];
+      inventario.splice(index, 1);
+      localStorage.setItem("inventario_crestmont", JSON.stringify(inventario));
+      cargarInventario();
+    }
+  </script>
+
+</body>
+</html>
