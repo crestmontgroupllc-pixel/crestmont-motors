@@ -1,133 +1,173 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crestmont Motors | Concesionario de Vehículos</title>
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crestmont Motors - Catálogo de Vehículos</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #000; color: #fff; margin: 0; padding: 0; }
+    
+    /* ENCABEZADO PRINCIPAL */
+    header { background: #111; border-bottom: 2px solid #222; padding: 25px 20px; text-align: center; }
+    header h1 { color: #ff0000; margin: 0; font-size: 32px; letter-spacing: 2px; font-weight: bold; }
+    header p { color: #aaa; font-size: 14px; margin: 5px 0 0 0; }
+
+    /* CONTENEDOR DE VEHÍCULOS */
+    .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+    .section-title { font-size: 22px; color: #fff; margin-bottom: 25px; border-left: 4px solid #ff0000; padding-left: 10px; }
+    
+    .grid-vehiculos { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
+    
+    /* TARJETA DE CADA AUTO */
+    .car-card { background: #111; border: 1px solid #333; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.5); transition: transform 0.3s; }
+    .car-card:hover { transform: translateY(-5px); border-color: #ff0000; }
+    
+    /* CONTENEDOR DE FOTO PRINCIPAL (FOTO COMPLETA Y CLICLABLE) */
+    .car-thumb-container { position: relative; width: 100%; height: 220px; background: #0a0a0a; cursor: pointer; display: flex; align-items: center; justify-content: center; overflow: hidden; border-bottom: 1px solid #222; }
+    .car-thumb-container img { max-width: 100%; max-height: 100%; object-fit: contain; transition: transform 0.3s; }
+    .car-thumb-container:hover img { transform: scale(1.03); }
+    
+    .photo-badge { position: absolute; bottom: 10px; right: 10px; background: rgba(0,0,0,0.8); color: #fff; padding: 4px 10px; font-size: 12px; border-radius: 4px; border: 1px solid #444; font-weight: bold; }
+
+    /* DETALLES DEL AUTO */
+    .car-details { padding: 20px; }
+    .car-title { font-size: 18px; font-weight: bold; color: #fff; margin: 0 0 10px 0; }
+    .car-price { font-size: 22px; font-weight: bold; color: #ff0000; margin-bottom: 12px; }
+    .car-info { font-size: 14px; color: #aaa; margin-bottom: 8px; }
+    .car-desc { font-size: 13px; color: #888; border-top: 1px solid #222; padding-top: 10px; margin-top: 10px; line-height: 1.4; }
+
+    .no-cars { text-align: center; color: #777; grid-column: 1 / -1; padding: 50px; font-size: 16px; }
+
+    /* VENTANA MODAL (GALERÍA TIPO PANTALLA COMPLETA AL TOCAR LA FOTO) */
+    #modal-galeria { display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); justify-content: center; align-items: center; flex-direction: column; }
+    .modal-content { position: relative; max-width: 90%; max-height: 80vh; display: flex; align-items: center; justify-content: center; }
+    .modal-content img { max-width: 100%; max-height: 75vh; object-fit: contain; border-radius: 6px; border: 1px solid #333; }
+    
+    .modal-close { position: absolute; top: 20px; right: 30px; background: #ff0000; color: #fff; border: none; font-size: 24px; font-weight: bold; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; z-index: 10000; display: flex; align-items: center; justify-content: center; }
+    .modal-close:hover { background: #cc0000; }
+
+    .modal-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,0,0,0.8); color: #fff; border: none; font-size: 24px; padding: 12px 18px; cursor: pointer; border-radius: 6px; font-weight: bold; z-index: 10000; }
+    .modal-btn:hover { background: #ff0000; }
+    .modal-prev { left: 20px; }
+    .modal-next { right: 20px; }
+    
+    .modal-counter { color: #fff; margin-top: 15px; font-size: 16px; font-weight: bold; letter-spacing: 1px; }
+
+    /* PIE DE PÁGINA */
+    footer { text-align: center; padding: 30px; color: #666; font-size: 13px; border-top: 1px solid #222; margin-top: 60px; }
+  </style>
 </head>
 <body>
 
-    <!-- Navegación Pública -->
-    <nav class="navbar">
-        <div class="container nav-container">
-            <a href="#" class="logo">
-                <img src="assets/img/logo.png" alt="Logo Crestmont Motors" onerror="this.style.display='none'">
-                <span>CRESTMONT</span> MOTORS
-            </a>
-            <ul class="nav-links">
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#catalogo">Catálogo</a></li>
-                <li><a href="#empresa">Empresa</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
-        </div>
-    </nav>
+  <header>
+    <h1>CRESTMONT MOTORS</h1>
+    <p>Exclusividad, Potencia y Elegancia</p>
+  </header>
 
-    <!-- Banner Principal -->
-    <header id="inicio" class="hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-content container">
-            <h1>Exclusividad y Confianza sobre Ruedas</h1>
-            <p>Vehículos seleccionados, inspeccionados y listos para llevarte a tu próximo destino.</p>
-            <a href="#catalogo" class="btn-primary"><i class="fa-solid fa-car"></i> Ver Inventario</a>
-        </div>
-    </header>
+  <div class="container">
+    <div class="section-title">Vehículos Disponibles</div>
+    <div class="grid-vehiculos" id="catalogo-publico">
+      <!-- Los vehículos se cargan automáticamente aquí -->
+    </div>
+  </div>
 
-    <!-- Catálogo de Vehículos -->
-    <section id="catalogo" class="section container">
-        <div class="section-header">
-            <h2>Inventario de Vehículos</h2>
-            <p>Explora nuestras unidades disponibles, reservadas y vendidas en tiempo real</p>
-        </div>
+  <!-- VENTANA MODAL PARA VER TODAS LAS FOTOS DE LA CAMIONETA EN GRANDE -->
+  <div id="modal-galeria">
+    <button class="modal-close" onclick="cerrarModal()">&times;</button>
+    <button class="modal-btn modal-prev" onclick="cambiarFotoModal(-1)">&#10094;</button>
+    <div class="modal-content">
+      <img id="modal-img" src="" alt="Foto del vehículo">
+    </div>
+    <button class="modal-btn modal-next" onclick="cambiarFotoModal(1)">&#10095;</button>
+    <div class="modal-counter" id="modal-counter">1 / 1</div>
+  </div>
 
-        <!-- Filtros de Estado -->
-        <div class="filter-bar">
-            <button class="filter-btn active" data-filter="todos">Todos</button>
-            <button class="filter-btn" data-filter="disponible">Disponibles</button>
-            <button class="filter-btn" data-filter="reservado">Reservados</button>
-            <button class="filter-btn" data-filter="vendido">Vendidos</button>
-        </div>
+  <footer>
+    &copy; 2026 Crestmont Motors. Todos los derechos reservados.
+  </footer>
 
-        <!-- Contenedor del Catálogo -->
-        <div id="vehicle-grid" class="vehicle-grid">
-            <!-- Las tarjetas se generan dinámicamente -->
-        </div>
-    </section>
+  <script>
+    let fotosActualesModal = [];
+    let indiceActualModal = 0;
 
-    <!-- Sección de Información de Empresa -->
-    <section id="empresa" class="section bg-card">
-        <div class="container features-grid">
-            <div class="feature-box">
-                <i class="fa-solid fa-shield-halved feature-icon"></i>
-                <h3>Garantía de Calidad</h3>
-                <p>Revisiones mecánicas minuciosas e historial verificado de cada unidad.</p>
+    document.addEventListener("DOMContentLoaded", function() {
+      cargarCatalogoPublico();
+    });
+
+    function cargarCatalogoPublico() {
+      const contenedor = document.getElementById("catalogo-publico");
+      contenedor.innerHTML = "";
+      
+      let inventario = JSON.parse(localStorage.getItem("inventario_crestmont")) || [];
+      let disponibles = inventario.filter(item => item.estado === "Disponible");
+
+      if (disponibles.length === 0) {
+        contenedor.innerHTML = `<div class="no-cars">No hay vehículos disponibles en este momento. Vuelve pronto.</div>`;
+        return;
+      }
+
+      disponibles.forEach((auto) => {
+        let fotos = auto.imagenes || (auto.imagen ? [auto.imagen] : []);
+        let fotoPortada = fotos.length > 0 ? fotos[0] : "";
+        
+        let thumbHtml = fotoPortada 
+          ? `<img src="${fotoPortada}" alt="${auto.vehiculo}">` 
+          : `<span style="color:#555;">Sin fotos</span>`;
+
+        let badgeHtml = fotos.length > 1 ? `<div class="photo-badge">📷 ${fotos.length} fotos</div>` : "";
+
+        let fotosJson = encodeURIComponent(JSON.stringify(fotos));
+
+        contenedor.innerHTML += `
+          <div class="car-card">
+            <div class="car-thumb-container" onclick='abrirModal("${fotosJson}")'>
+              ${thumbHtml}
+              ${badgeHtml}
             </div>
-            <div class="feature-box">
-                <i class="fa-solid fa-file-signature feature-icon"></i>
-                <h3>Gestión Documental</h3>
-                <p>Asesoría integral y traspasos de propiedad inmediatos sin complicaciones.</p>
+            <div class="car-details">
+              <div class="car-title">${auto.vehiculo} (${auto.ano})</div>
+              <div class="car-price">$${Number(auto.precio).toLocaleString()}</div>
+              <div class="car-info"><strong>VIN / Chasis:</strong> ${auto.vin}</div>
+              <div class="car-desc">${auto.descripcion || "Sin descripción detallada."}</div>
             </div>
-            <div class="feature-box">
-                <i class="fa-solid fa-handshake-simple feature-icon"></i>
-                <h3>Consignaciones</h3>
-                <p>Publicamos y gestionamos la venta de tu vehículo con la mayor efectividad.</p>
-            </div>
-        </div>
-    </section>
+          </div>
+        `;
+      });
+    }
 
-    <!-- Ubicación y Contacto -->
-    <section id="contacto" class="section container">
-        <div class="section-header">
-            <h2>Ubicación y Contacto Directo</h2>
-            <p>Visítanos en nuestra sede o agenda tu prueba de manejo por WhatsApp</p>
-        </div>
+    function abrirModal(fotosCodificadas) {
+      try {
+        fotosActualesModal = JSON.parse(decodeURIComponent(fotosCodificadas));
+      } catch (e) {
+        fotosActualesModal = [];
+      }
 
-        <div class="contact-grid">
-            <div class="contact-info">
-                <div class="contact-item">
-                    <i class="fa-solid fa-location-dot"></i>
-                    <div>
-                        <h4>Ubicación</h4>
-                        <p>Sede Comercial, Cabudare / Barquisimeto, Lara</p>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <i class="fa-solid fa-envelope"></i>
-                    <div>
-                        <h4>Correo Electrónico</h4>
-                        <p>contacto@crestmontmotors.com</p>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <i class="fa-brands fa-whatsapp"></i>
-                    <div>
-                        <h4>WhatsApp Directo</h4>
-                        <p>+58 412-0000000</p>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <i class="fa-solid fa-clock"></i>
-                    <div>
-                        <h4>Horario de Atención</h4>
-                        <p>Lunes a Sábado: 8:00 AM - 5:00 PM</p>
-                    </div>
-                </div>
-            </div>
+      if (fotosActualesModal.length === 0) return;
 
-            <div class="map-box">
-                <iframe src="https://maps.google.com/maps?q=Cabudare&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="280" style="border:0; border-radius:12px;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-        </div>
-    </section>
+      indiceActualModal = 0;
+      actualizarModalImagen();
+      document.getElementById("modal-galeria").style.display = "flex";
+    }
 
-    <footer class="footer">
-        <div class="container footer-content">
-            <p>&copy; 2026 Crestmont Motors. Todos los derechos reservados.</p>
-        </div>
-    </footer>
+    function cerrarModal() {
+      document.getElementById("modal-galeria").style.display = "none";
+    }
 
-    <script src="js/app.js"></script>
+    function cambiarFotoModal(direccion) {
+      indiceActualModal += direccion;
+      if (indiceActualModal < 0) indiceActualModal = fotosActualesModal.length - 1;
+      if (indiceActualModal >= fotosActualesModal.length) indiceActualModal = 0;
+      actualizarModalImagen();
+    }
+
+    function actualizarModalImagen() {
+      const imgTag = document.getElementById("modal-img");
+      const counterTag = document.getElementById("modal-counter");
+
+      imgTag.src = fotosActualesModal[indiceActualModal];
+      counterTag.innerText = `${indiceActualModal + 1} / ${fotosActualesModal.length}`;
+    }
+  </script>
+
 </body>
 </html>
