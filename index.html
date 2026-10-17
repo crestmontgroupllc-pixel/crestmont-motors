@@ -40,7 +40,7 @@
     <div class="filters-bar">
       <div class="filter-group">
         <label>Buscar por Marca / Modelo:</label>
-        <input type="text" id="filtro-texto" placeholder="Ej: Toyota, Hilux..." oninput="aplicarFiltros()">
+        <input type="text" id="filtro-texto" placeholder="Buscar vehículo..." oninput="aplicarFiltros()">
       </div>
       <div class="filter-group">
         <label>Año:</label>
@@ -54,7 +54,7 @@
       </div>
       <div class="filter-group">
         <label>Precio Máximo ($):</label>
-        <input type="number" id="filtro-precio" placeholder="Ej: 50000" oninput="aplicarFiltros()">
+        <input type="number" id="filtro-precio" placeholder="Precio máximo" oninput="aplicarFiltros()">
       </div>
     </div>
 
@@ -74,7 +74,7 @@
           <div class="contact-card-box">
             <h4>💬 WhatsApp y Teléfono Directo</h4>
             <p><strong>Línea Comercial:</strong> <a href="#" id="link-tel-directo" class="contact-link"><span id="txt-tel">+1 (317) 000-0000</span></a></p>
-            <p style="font-size: 13px; color: #aaa; margin-top: 5px;">Chatea con un asesor de inmediato:</p>
+            <p style="font-size: 13px; color: #aaa; margin-top: 4px;">Chatea con un asesor de inmediato:</p>
             <a href="#" id="btn-whatsapp-link" target="_blank" class="btn-whatsapp-elegante">
               <svg class="whatsapp-icon-sm" viewBox="0 0 24 24"><path fill="currentColor" d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.9-4.44 9.9-9.9 0-2.65-1.03-5.14-2.9-7.01C17.18 3.03 14.69 2 12.04 2M12.04 3.65c2.2 0 4.27.86 5.82 2.42 1.56 1.55 2.42 3.63 2.42 5.83 0 4.55-3.7 8.25-8.25 8.25-1.49 0-2.95-.4-4.22-1.17l-.3-.18-3.11.82.83-3.03-.2-.31c-.81-1.28-1.24-2.77-1.24-4.3 0-4.55 3.7-8.25 8.25-8.25m4.74 10.35c-.26-.13-1.52-.75-1.75-.84-.23-.09-.4-.13-.57.13-.18.26-.66.84-.81 1.01-.15.17-.3.19-.56.06-.26-.13-1.1-.4-2.1-1.3-.78-.7-1.3-1.56-1.45-1.82-.15-.26-.02-.4.11-.53.11-.11.26-.3.39-.45.13-.15.17-.26.26-.43.09-.17.04-.32-.02-.45-.06-.13-.57-1.38-.78-1.89-.2-.48-.41-.42-.57-.43h-.49c-.17 0-.45.06-.69.32-.24.26-.92.9-.92 2.19 0 1.29.94 2.53 1.07 2.71.13.18 1.85 2.82 4.48 3.96.63.27 1.12.43 1.5.55.63.2 1.21.17 1.66.1.51-.08 1.52-.62 1.74-1.22.22-.6.22-1.12.15-1.22-.07-.1-.23-.16-.49-.29z"/></svg>
               Abrir WhatsApp
@@ -85,13 +85,13 @@
           <div class="contact-card-box">
             <h4>✉️ Correo Electrónico</h4>
             <p>Para cotizaciones y consultas formales:</p>
-            <p style="margin-top: 8px;"><a href="mailto:contact@crestmontmotors.com" class="contact-link" style="color: #ff0000; font-weight: bold;" id="txt-correo">contact@crestmontmotors.com</a></p>
+            <p style="margin-top: 6px;"><a href="mailto:contact@crestmontmotors.com" class="contact-link" style="color: #ff0000; font-weight: bold;" id="txt-correo">contact@crestmontmotors.com</a></p>
           </div>
 
           <!-- Redes Sociales -->
           <div class="contact-card-box">
             <h4>🌐 Redes Sociales Oficiales</h4>
-            <p style="font-size: 13px; color: #aaa; margin-bottom: 8px;">Visita nuestros perfiles:</p>
+            <p style="font-size: 13px; color: #aaa; margin-bottom: 6px;">Visita nuestros perfiles:</p>
             <div class="social-buttons-row">
               <a href="https://instagram.com" target="_blank" class="social-icon-btn">Instagram</a>
               <a href="https://facebook.com" target="_blank" class="social-icon-btn">Facebook</a>
@@ -104,13 +104,13 @@
             <h4>📍 Ubicación del Showroom</h4>
             <p id="txt-ubicacion" style="font-weight: bold; color: #fff;">Barquisimeto, Estado Lara</p>
             <div class="map-box" style="margin-top: 10px;">
-              🗺️ [ Showroom Barquisimeto ]
+              Showroom Principal — Barquisimeto, Estado Lara
             </div>
           </div>
 
         </div>
 
-        <!-- COLUMNA DERECHA: FORMULARIO DE ASESORÍA -->
+        <!-- COLUMNA DERECHA: FORMULARIO DE ASESORÍA (SIN EJEMPLOS) -->
         <div class="form-asesoria">
           <h4>Solicitar Asesoría Personalizada</h4>
           <p style="font-size: 13px; color: #aaa; margin-bottom: 20px;">Déjanos tus datos y un especialista se pondrá en contacto contigo.</p>
@@ -118,22 +118,22 @@
           <form onsubmit="enviarAsesoria(event)">
             <div class="form-group-asesoria">
               <label>Nombre y Apellido:</label>
-              <input type="text" id="asesoria-nombre" placeholder="Ej: Carlos Mendoza" required>
+              <input type="text" id="asesoria-nombre" required>
             </div>
             
             <div class="form-group-asesoria">
               <label>Teléfono / WhatsApp:</label>
-              <input type="tel" id="asesoria-tel" placeholder="Ej: +58 412..." required>
+              <input type="tel" id="asesoria-tel" required>
             </div>
 
             <div class="form-group-asesoria">
               <label>Vehículo de Interés:</label>
-              <input type="text" id="asesoria-vehiculo" placeholder="Ej: Toyota Hilux 2024">
+              <input type="text" id="asesoria-vehiculo">
             </div>
 
             <div class="form-group-asesoria">
               <label>Mensaje o Consulta:</label>
-              <textarea id="asesoria-mensaje" rows="4" placeholder="Escribe aquí tus dudas o requerimientos específicos..."></textarea>
+              <textarea id="asesoria-mensaje" rows="4"></textarea>
             </div>
 
             <button type="submit" class="btn-enviar-asesoria">Enviar Solicitud de Asesoría</button>
@@ -165,4 +165,3 @@
 
 </body>
 </html>
-
