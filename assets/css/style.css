@@ -1,6 +1,6 @@
 body { font-family: Arial, sans-serif; background: #000; color: #fff; margin: 0; padding: 0; scroll-behavior: smooth; }
 
-/* ENCABEZADO */
+/* ENCABEZADO SUPERIOR */
 header { background: #111; border-bottom: 2px solid #222; position: sticky; top: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; flex-wrap: wrap; gap: 15px; }
 .logo-area h1 { color: #ff0000; margin: 0; font-size: 24px; letter-spacing: 2px; font-weight: bold; }
 .logo-area p { color: #888; font-size: 11px; margin: 2px 0 0 0; text-transform: uppercase; letter-spacing: 1px; }
@@ -8,16 +8,45 @@ header { background: #111; border-bottom: 2px solid #222; position: sticky; top:
 nav { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
 nav a { color: #ddd; text-decoration: none; font-size: 14px; font-weight: bold; transition: color 0.3s; }
 nav a:hover { color: #ff0000; }
-.btn-admin { background: #222; border: 1px solid #ff0000; padding: 8px 12px; border-radius: 4px; }
-.btn-admin:hover { background: #ff0000; color: #fff; }
 
-/* HERO BANNER */
-.hero-section { background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.95)), #111; border-bottom: 1px solid #333; padding: 100px 20px; text-align: center; }
-.hero-section h2 { font-size: 40px; color: #fff; margin-bottom: 15px; letter-spacing: 1px; text-transform: uppercase; }
-.hero-section h2 span { color: #ff0000; display: block; font-size: 24px; margin-top: 10px; letter-spacing: 2px; }
-.hero-section p { font-size: 16px; color: #aaa; max-width: 750px; margin: 0 auto 30px auto; line-height: 1.6; }
-.btn-explore { background: #ff0000; color: #fff; padding: 14px 28px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 16px; display: inline-block; transition: background 0.3s; }
-.btn-explore:hover { background: #cc0000; }
+/* ESTILOS DEL LOGO CENTRAL Y ESLOGAN */
+.main-brand-banner {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  border-bottom: 2px solid #ff0000;
+  padding: 70px 20px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+}
+
+.brand-logo-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.brand-title {
+  color: #fff;
+  font-size: 45px;
+  font-weight: 900;
+  letter-spacing: 5px;
+  margin: 0 0 15px 0;
+  text-transform: uppercase;
+}
+
+.brand-divider {
+  width: 90px;
+  height: 3px;
+  background-color: #ff0000;
+  margin: 0 auto 15px auto;
+}
+
+.brand-slogan {
+  color: #ccc;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  margin: 0;
+  text-transform: uppercase;
+}
 
 /* CONTENEDOR Y FILTROS */
 .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
@@ -30,7 +59,7 @@ nav a:hover { color: #ff0000; }
 
 .grid-vehiculos { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
 
-/* TARJETAS */
+/* TARJETAS DE VEHÍCULOS */
 .car-card { background: #111; border: 1px solid #333; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.5); transition: transform 0.3s; }
 .car-card:hover { transform: translateY(-5px); border-color: #ff0000; }
 
@@ -46,7 +75,7 @@ nav a:hover { color: #ff0000; }
 .car-info { font-size: 14px; color: #aaa; margin-bottom: 8px; }
 .car-desc { font-size: 13px; color: #888; border-top: 1px solid #222; padding-top: 10px; margin-top: 10px; line-height: 1.4; }
 
-/* CONTACTO */
+/* SECCIÓN DE CONTACTO */
 .contact-section { background: #111; border: 1px solid #333; border-radius: 10px; padding: 40px; margin-top: 60px; }
 .contact-section h3 { color: #ff0000; font-size: 24px; margin-top: 0; text-align: center; }
 .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 30px; }
@@ -58,7 +87,7 @@ nav a:hover { color: #ff0000; }
 .btn-whatsapp:hover { background: #1ebe5d; }
 .map-box { background: #1a1a1a; border: 1px solid #333; height: 160px; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: #777; font-size: 14px; text-align: center; padding: 10px; }
 
-/* MODAL DE GALERÍA */
+/* MODAL DE GALERÍA DE FOTOS */
 #modal-galeria { display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); justify-content: center; align-items: center; flex-direction: column; }
 .modal-content { position: relative; max-width: 90%; max-height: 80vh; display: flex; align-items: center; justify-content: center; }
 .modal-content img { max-width: 100%; max-height: 75vh; object-fit: contain; border-radius: 6px; border: 1px solid #333; }
