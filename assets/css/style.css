@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap');
 
-body { font-family: 'Montserrat', sans-serif; background: #000; color: #fff; margin: 0; padding: 0; scroll-behavior: smooth; }
+body { font-family: 'Montserrat', sans-serif; background: #000000; color: #ffffff; margin: 0; padding: 0; scroll-behavior: smooth; }
 
 /* ENCABEZADO SUPERIOR */
-header { background: #111; border-bottom: 2px solid #222; position: sticky; top: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; flex-wrap: wrap; gap: 15px; }
-.logo-area h1 { color: #ff0000; margin: 0; font-size: 24px; letter-spacing: 2px; font-weight: bold; }
+header { background: #0a0a0a; border-bottom: 2px solid #1a1a1a; position: sticky; top: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; flex-wrap: wrap; gap: 15px; }
+.logo-area h1 { color: #ff0000; margin: 0; font-size: 22px; letter-spacing: 2px; font-weight: bold; }
 .logo-area p { color: #888; font-size: 11px; margin: 2px 0 0 0; text-transform: uppercase; letter-spacing: 1px; }
 
 nav { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
@@ -13,40 +13,41 @@ nav a:hover { color: #ff0000; }
 
 /* BLOQUE CENTRAL DE LUJO */
 .main-brand-banner {
-  background: radial-gradient(circle at center, #1c1c1c 0%, #080808 70%, #000000 100%);
+  background: radial-gradient(circle at center, #141414 0%, #050505 70%, #000000 100%);
   border-bottom: 3px solid #ff0000;
-  padding: 70px 20px;
+  padding: 60px 20px;
   text-align: center;
   box-shadow: 0 15px 40px rgba(0,0,0,0.9);
 }
 
 .brand-logo-container {
-  max-width: 950px;
+  max-width: 800px;
   margin: 0 auto;
 }
 
+/* TAMAÑO CONTROLADO PARA QUE NO OCUPE MEDIA PÁGINA */
 .central-logo-img {
-  max-height: 85px;
+  max-height: 70px;
   width: auto;
   object-fit: contain;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   filter: drop-shadow(0 4px 10px rgba(255, 0, 0, 0.4));
 }
 
 .brand-title {
   font-family: 'Playfair Display', serif;
   color: #ffffff;
-  font-size: 45px;
+  font-size: 42px;
   font-weight: 900;
-  letter-spacing: 6px;
-  margin: 0 0 15px 0;
+  letter-spacing: 5px;
+  margin: 0 0 10px 0;
   text-transform: uppercase;
 }
 
 .brand-title span { color: #ff0000; }
 
 .brand-divider {
-  width: 90px;
+  width: 80px;
   height: 3px;
   background: linear-gradient(90deg, transparent, #ff0000, transparent);
   margin: 0 auto 15px auto;
@@ -55,7 +56,7 @@ nav a:hover { color: #ff0000; }
 .brand-slogan {
   font-family: 'Montserrat', sans-serif;
   color: #c0c0c0;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   letter-spacing: 4px;
   margin: 0;
@@ -66,17 +67,17 @@ nav a:hover { color: #ff0000; }
 .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
 .section-title { font-size: 24px; color: #fff; margin-bottom: 20px; border-left: 4px solid #ff0000; padding-left: 12px; font-weight: 700; }
 
-.filters-bar { background: #111; border: 1px solid #333; padding: 20px; border-radius: 8px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 30px; }
+.filters-bar { background: #0f0f0f; border: 1px solid #222; padding: 20px; border-radius: 8px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 30px; }
 .filter-group { display: flex; flex-direction: column; gap: 6px; }
 .filter-group label { font-size: 13px; color: #aaa; font-weight: bold; }
-.filter-group input, .filter-group select { padding: 10px; background: #1a1a1a; border: 1px solid #444; color: #fff; border-radius: 6px; font-size: 14px; }
+.filter-group input, .filter-group select { padding: 10px; background: #151515; border: 1px solid #333; color: #fff; border-radius: 6px; font-size: 14px; }
 
 .grid-vehiculos { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
 
 /* TARJETAS CON BRILLO LÁSER ROJO */
 .car-card { 
-  background: #111; 
-  border: 1px solid #333; 
+  background: #0f0f0f; 
+  border: 1px solid #222; 
   border-radius: 10px; 
   overflow: hidden; 
   box-shadow: 0 4px 15px rgba(0,0,0,0.5); 
@@ -85,23 +86,23 @@ nav a:hover { color: #ff0000; }
 .car-card:hover { 
   transform: translateY(-6px); 
   border-color: #ff0000; 
-  box-shadow: 0 0 25px rgba(255, 0, 0, 0.4), 0 8px 25px rgba(0,0,0,0.8); 
+  box-shadow: 0 0 25px rgba(255, 0, 0, 0.35), 0 8px 25px rgba(0,0,0,0.8); 
 }
 
-.car-thumb-container { position: relative; width: 100%; height: 220px; background: #0a0a0a; cursor: pointer; display: flex; align-items: center; justify-content: center; overflow: hidden; border-bottom: 1px solid #222; }
+.car-thumb-container { position: relative; width: 100%; height: 220px; background: #050505; cursor: pointer; display: flex; align-items: center; justify-content: center; overflow: hidden; border-bottom: 1px solid #1a1a1a; }
 .car-thumb-container img { max-width: 100%; max-height: 100%; object-fit: contain; transition: transform 0.4s; }
 .car-thumb-container:hover img { transform: scale(1.05); }
 
-.photo-badge { position: absolute; bottom: 10px; right: 10px; background: rgba(0,0,0,0.85); color: #fff; padding: 4px 10px; font-size: 12px; border-radius: 4px; border: 1px solid #444; font-weight: bold; }
+.photo-badge { position: absolute; bottom: 10px; right: 10px; background: rgba(0,0,0,0.85); color: #fff; padding: 4px 10px; font-size: 12px; border-radius: 4px; border: 1px solid #333; font-weight: bold; }
 
 .car-details { padding: 20px; }
 .car-title { font-size: 18px; font-weight: bold; color: #fff; margin: 0 0 10px 0; }
 .car-price { font-size: 22px; font-weight: bold; color: #ff0000; margin-bottom: 12px; }
 .car-info { font-size: 14px; color: #aaa; margin-bottom: 8px; }
-.car-desc { font-size: 13px; color: #888; border-top: 1px solid #222; padding-top: 10px; margin-top: 10px; line-height: 1.4; }
+.car-desc { font-size: 13px; color: #777; border-top: 1px solid #1a1a1a; padding-top: 10px; margin-top: 10px; line-height: 1.4; }
 
 /* SECCIÓN DE CONTACTO Y ASESORÍA */
-.contact-section { background: #111; border: 1px solid #333; border-radius: 10px; padding: 40px; margin-top: 60px; }
+.contact-section { background: #0f0f0f; border: 1px solid #222; border-radius: 10px; padding: 40px; margin-top: 60px; }
 .contact-section h3 { color: #ff0000; font-size: 24px; margin-top: 0; text-align: center; }
 
 .contact-grid-modern {
@@ -117,44 +118,44 @@ nav a:hover { color: #ff0000; }
 .contact-info-col { display: flex; flex-direction: column; gap: 20px; }
 
 .contact-card-box {
-  background: #161616;
-  border: 1px solid #282828;
-  padding: 25px;
+  background: #141414;
+  border: 1px solid #222;
+  padding: 22px;
   border-radius: 8px;
   transition: border-color 0.3s;
 }
 .contact-card-box:hover { border-color: #ff0000; }
 .contact-card-box h4 {
-  margin: 0 0 12px 0;
+  margin: 0 0 10px 0;
   color: #fff;
-  font-size: 16px;
-  border-bottom: 1px solid #262626;
+  font-size: 15px;
+  border-bottom: 1px solid #222;
   padding-bottom: 8px;
 }
-.contact-card-box p { margin: 8px 0; color: #ccc; font-size: 14px; }
+.contact-card-box p { margin: 6px 0; color: #ccc; font-size: 14px; }
 
 .contact-link { color: #fff; text-decoration: none; transition: color 0.3s; }
 .contact-link:hover { color: #ff0000; }
 
-/* BOTÓN DE WHATSAPP ELEGANTE (Tamaño normal, limpio y profesional) */
+/* BOTÓN WHATSAPP */
 .btn-whatsapp-elegante {
   display: inline-flex;
   align-items: center;
   gap: 10px;
   background: #25d366;
   color: #fff;
-  padding: 10px 18px;
+  padding: 10px 16px;
   border-radius: 6px;
   text-decoration: none;
   font-weight: bold;
-  font-size: 14px;
-  margin-top: 10px;
+  font-size: 13px;
+  margin-top: 8px;
   transition: all 0.3s;
 }
 .btn-whatsapp-elegante:hover { background: #1ebe5d; transform: translateY(-2px); }
 .whatsapp-icon-sm { width: 18px; height: 18px; fill: currentColor; }
 
-/* REDES SOCIALES DISTRIBUIDAS Y SOBRIAS (NEGRO, ROJO Y GRIS) */
+/* REDES SOCIALES (ESTILO ELEGANTE NEGRO, ROJO Y GRIS, SIN MORADO NI AZUL CHILLÓN) */
 .social-buttons-row {
   display: flex;
   gap: 10px;
@@ -181,10 +182,10 @@ nav a:hover { color: #ff0000; }
   transform: translateY(-2px);
 }
 
-/* FORMULARIO DE ASESORÍA */
+/* FORMULARIO DE ASESORÍA (SIN EJEMPLOS EN LOS PLACEHOLDERS) */
 .form-asesoria {
-  background: #161616;
-  border: 1px solid #282828;
+  background: #141414;
+  border: 1px solid #222;
   padding: 30px;
   border-radius: 8px;
 }
@@ -193,8 +194,8 @@ nav a:hover { color: #ff0000; }
 .form-group-asesoria label { font-size: 13px; color: #aaa; font-weight: bold; }
 .form-group-asesoria input, .form-group-asesoria textarea {
   padding: 10px 12px;
-  background: #101010;
-  border: 1px solid #333;
+  background: #0a0a0a;
+  border: 1px solid #282828;
   color: #fff;
   border-radius: 6px;
   font-size: 14px;
@@ -216,7 +217,8 @@ nav a:hover { color: #ff0000; }
 }
 .btn-enviar-asesoria:hover { background: #cc0000; transform: translateY(-2px); }
 
-.map-box { background: #101010; border: 1px solid #333; height: 140px; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: #777; font-size: 14px; text-align: center; }
+/* MAPA SHOWROOM BARQUISIMETO */
+.map-box { background: #0a0a0a; border: 1px solid #222; height: 140px; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: #888; font-size: 13px; text-align: center; font-weight: 500; }
 
 /* MODAL Y FOOTER */
 #modal-galeria { display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); justify-content: center; align-items: center; flex-direction: column; }
@@ -227,4 +229,4 @@ nav a:hover { color: #ff0000; }
 .modal-prev { left: 20px; }
 .modal-next { right: 20px; }
 .modal-counter { color: #fff; margin-top: 15px; font-size: 16px; font-weight: bold; }
-footer { text-align: center; padding: 30px; color: #666; font-size: 13px; border-top: 1px solid #222; margin-top: 60px; }
+footer { text-align: center; padding: 30px; color: #666; font-size: 13px; border-top: 1px solid #1a1a1a; margin-top: 60px; }
