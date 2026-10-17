@@ -7,7 +7,10 @@
   <style>
     body { font-family: Arial, sans-serif; background: #f4f6f9; margin: 0; padding: 20px; }
     .container { max-width: 900px; margin: 0 auto; background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); display: none; }
-    h1, h2 { color: #111; }
+    .header-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    h1, h2 { color: #111; margin: 0; }
+    .btn-logout { background: #d9534f; color: #fff; padding: 8px 15px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+    .btn-logout:hover { background: #c9302c; }
     .section { margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid #eee; }
     .form-group { display: flex; flex-direction: column; gap: 10px; max-width: 400px; margin-bottom: 15px; }
     .form-group input, .form-group select { padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; }
@@ -24,7 +27,10 @@
 <body>
 
   <div class="container" id="panel-usuarios">
-    <h1>⚙️ Control de Usuarios y Claves - Crestmont Motors</h1>
+    <div class="header-bar">
+      <h1>⚙️ Control de Usuarios y Claves</h1>
+      <button class="btn-logout" onclick="cerrarSesion()">🔒 Cerrar Sesión</button>
+    </div>
 
     <!-- SECCIÓN 1: CAMBIAR MI CONTRASEÑA -->
     <div class="section">
@@ -105,6 +111,12 @@
       cargarTablaUsuarios();
     }
 
+    function cerrarSesion() {
+      sessionStorage.removeItem("usuarios_autorizado");
+      alert("🔒 Sesión cerrada correctamente.");
+      window.location.href = "../";
+    }
+
     function cargarTablaUsuarios() {
       const tabla = document.getElementById("tabla-usuarios");
       tabla.innerHTML = "";
@@ -144,7 +156,7 @@
         document.getElementById("pass-actual").value = "";
         document.getElementById("pass-nueva").value = "";
       } else {
-        alert("❌ Usuario o contraseña actual incorrectos.");
+        alert("❌ Usuario ou contraseña actual incorrectos.");
       }
     }
 
