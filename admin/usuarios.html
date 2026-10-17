@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestión de Usuarios y Claves - Crestmont Motors</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f6f9; margin: 0; padding: 20px; }
+    .container { max-width: 900px; margin: 0 auto; background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    h1, h2 { color: #111; }
+    .section { margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid #eee; }
+    .form-group { display: flex; flex-direction: column; gap: 10px; max-width: 400px; margin-bottom: 15px; }
+    .form-group input, .form-group select { padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; }
+    .btn { background: #000; color: #fff; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; width: fit-content; }
+    .btn:hover { background: #333; }
+    .btn-danger { background: #d9534f; }
+    table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+    th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+    th { background: #111; color: #fff; }
+    .badge-admin { background: #007bff; color: white; padding: 3px 8px; border-radius: 4px; font-size: 12px; }
+    .badge-vendedor { background: #6c757d; color: white; padding: 3px 8px; border-radius: 4px; font-size: 12px; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>⚙️ Control de Usuarios y Claves - Crestmont Motors</h1>
+
+    <!-- SECCIÓN 1: CAMBIAR MI CONTRASEÑA -->
+    <div class="section">
+      <h2>🔑 Cambiar mi contraseña</h2>
+      <div class="form-group">
+        <input type="text" id="mi-usuario" placeholder="Tu usuario (Ej: admin)">
+        <input type="password" id="pass-actual" placeholder="Contraseña actual">
+        <input type="password" id="pass-nueva" placeholder="Nueva contraseña">
+        <button class="btn" onclick="cambiarMiPassword()">Actualizar Contraseña</button>
+      </div>
+    </div>
+
+    <!-- SECCIÓN 2: CREAR NUEVO USUARIO -->
+    <div class="section">
+      <h2>👤 Crear nuevo usuario o administrador</h2>
+      <div class="form-group">
+        <input type="text" id="nuevo-user" placeholder="Nombre de usuario (ej: vendedor1)">
+        <input type="password" id="nuevo-pass" placeholder="Contraseña para este usuario">
+        <select id="nuevo-rol">
+          <option value="Vendedor">Vendedor / Gestor (Solo lectura y estado)</option>
+          <option value="Administrador">Administrador (Acceso total)</option>
+        </select>
+        <button class="btn" onclick="crearUsuario()">+ Crear Usuario</button>
+      </div>
+    </div>
+
+    <!-- SECCIÓN 3: LISTA DE USUARIOS ACTIVOS -->
+    <div class="section">
+      <h2>📋 Usuarios Registrados</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Usuario</th>
+            <th>Rol / Permiso</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody id="tabla-usuarios">
+          <!-- Se cargan automáticamente -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    // Inicializar usuarios predeterminados si no existen
+    document.addEventListener("DOMContentLoaded", function() {
+      if (!localStorage.getItem("usuarios_crestmont")) {
+        const usuariosIniciales = [
+          { usuario: "admin", pass: "admin123", rol: "Administrador" }
+        ];
+        localStorage.setItem("usuarios_crestmont", JSON.stringify(usuariosIniciales));
+      }
+      cargarTablaUsuarios();
+    });
+
+    function cargarTablaUsuarios() {
+      const tabla = document.getElementById("tabla-usuarios");
+      tabla.innerHTML = "";
+      const usuarios = JSON.parse(localStorage.getItem("usuarios_crestmont")) || [];
+
+      usuarios.forEach((u, index) => {
+        const badge = u.rol === "Administrador" ? "badge-admin" : "badge-vendedor";
+        tabla.innerHTML += `
+          <tr>
+            <td><strong>${u.usuario}</strong></td>
+            <td><span class="${badge}">${u.rol}</span></td>
+            <td>
+              ${u.usuario !== 'admin' ? `<button class="btn btn-danger" onclick="eliminarUsuario(${index})">Eliminar</button>` : '<em>Principal (No eliminable)</em>'}
+            </td>
+          </tr>
+        `;
+      });
+    }
+
+    function cambiarMiPassword() {
+      const user = document.getElementById("mi-usuario").value.trim();
+      const passActual = document.getElementById("pass-actual").value;
+      const passNueva = document.getElementById("pass-nueva").value;
+
+      if (!user || !passActual || !passNueva) {
+        alert("Por favor completa todos los campos.");
+        return;
+      }
+
+      let usuarios = JSON.parse(localStorage.getItem("usuarios_crestmont")) || [];
+      const index = usuarios.findIndex(u => u.usuario === user && u.pass === passActual);
+
+      if (index !== -1) {
+        usuarios[index].pass = passNueva;
+        localStorage.setItem("usuarios_crestmont", JSON.stringify(usuarios));
+        alert("✅ Contraseña actualizada con éxito.");
+        document.getElementById("pass-actual").value = "";
+        document.getElementById("pass-nueva").value = "";
+      } else {
+        alert("❌ Usuario o contraseña actual incorrectos.");
+      }
+    }
+
+    function crearUsuario() {
+      const nuevoUser = document.getElementById("nuevo-user").value.trim();
+      const nuevoPass = document.getElementById("nuevo-pass").value;
+      const nuevoRol = document.getElementById("nuevo-rol").value;
+
+      if (!nuevoUser || !nuevoPass) {
+        alert("Ingresa un nombre de usuario y contraseña válida.");
+        return;
+      }
+
+      let usuarios = JSON.parse(localStorage.getItem("usuarios_crestmont")) || [];
+
+      if (usuarios.some(u => u.usuario === nuevoUser)) {
+        alert("❌ Ese nombre de usuario ya existe.");
+        return;
+      }
+
+      usuarios.push({ usuario: nuevoUser, pass: nuevoPass, rol: nuevoRol });
+      localStorage.setItem("usuarios_crestmont", JSON.stringify(usuarios));
+
+      alert("✅ Usuario registrado exitosamente.");
+      document.getElementById("nuevo-user").value = "";
+      document.getElementById("nuevo-pass").value = "";
+      cargarTablaUsuarios();
+    }
+
+    function eliminarUsuario(index) {
+      if (confirm("¿Estás segura de eliminar este usuario?")) {
+        let usuarios = JSON.parse(localStorage.getItem("usuarios_crestmont")) || [];
+        usuarios.splice(index, 1);
+        localStorage.setItem("usuarios_crestmont", JSON.stringify(usuarios));
+        cargarTablaUsuarios();
+      }
+    }
+  </script>
+
+</body>
+</html>
