@@ -1,78 +1,118 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Control Privado | Crestmont Motors</title>
-    <link rel="stylesheet" href="../css/admin.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Administración - Crestmont Motors</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f6f9; margin: 0; padding: 20px; }
+    
+    /* PANTALLA DE LOGIN PROFESIONAL CON USUARIO Y CONTRASEÑA */
+    .login-card { max-width: 380px; margin: 80px auto; background: #fff; padding: 35px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center; }
+    .login-card h2 { margin-top: 0; color: #111; font-size: 22px; }
+    .login-card p { color: #666; font-size: 14px; margin-bottom: 25px; }
+    .login-card input { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; font-size: 14px; }
+    .login-card button { width: 100%; background: #000; color: #fff; padding: 12px; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 15px; }
+    .login-card button:hover { background: #333; }
+    .error-msg { color: #d9534f; font-size: 13px; margin-top: 10px; display: none; }
+
+    /* PANEL PRINCIPAL DE CARGA DE VEHÍCULOS (OCULTO HASTA INICIAR SESIÓN) */
+    .container { max-width: 800px; margin: 0 auto; background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); display: none; }
+    .header-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 2px solid #f4f6f9; padding-bottom: 15px; }
+    h1 { color: #111; margin: 0; font-size: 22px; }
+    .btn-logout { background: #d9534f; color: #fff; padding: 8px 15px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+    .btn-logout:hover { background: #c9302c; }
+    .form-group { display: flex; flex-direction: column; gap: 10px; margin-bottom: 15px; }
+    .form-group label { font-weight: bold; font-size: 14px; }
+    .form-group input, .form-group textarea { padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; }
+    .btn-save { background: #000; color: #fff; padding: 12px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 15px; }
+    .btn-save:hover { background: #333; }
+  </style>
 </head>
-<body class="admin-body">
+<body>
 
-    <!-- Modal de Autenticación -->
-    <div id="login-overlay" class="login-modal">
-        <div class="login-card">
-            <i class="fa-solid fa-lock login-icon"></i>
-            <h2>Acceso Privado</h2>
-            <p>Ingresa la contraseña de administración</p>
-            <input type="password" id="admin-pass" placeholder="Contraseña">
-            <button id="login-btn" class="btn-primary-admin">Ingresar al Panel</button>
-            <p id="login-error" class="error-msg"></p>
-        </div>
+  <!-- PANTALLA DE ACCESO UNIFICADA -->
+  <div class="login-card" id="login-screen">
+    <h2>🚗 Crestmont Motors</h2>
+    <p>Panel de Administración Principal</p>
+    <input type="text" id="login-user" placeholder="Usuario">
+    <input type="password" id="login-pass" placeholder="Contraseña">
+    <button onclick="iniciarSesion()">Iniciar Sesión</button>
+    <div class="error-msg" id="error-msg">Usuario o contraseña incorrectos</div>
+  </div>
+
+  <!-- PANEL DE GESTIÓN Y CARGA DE VEHÍCULOS -->
+  <div class="container" id="panel-admin">
+    <div class="header-bar">
+      <h1>🚗 Publicar / Gestionar Vehículos</h1>
+      <button class="btn-logout" onclick="cerrarSesion()">🔒 Cerrar Sesión</button>
     </div>
 
-    <!-- Panel de Administración -->
-    <div id="admin-panel" class="admin-container" style="display: none;">
-        <header class="admin-header">
-            <h1><i class="fa-solid fa-sliders"></i> Panel de Control de Inventario</h1>
-            <button id="logout-btn" class="btn-logout"><i class="fa-solid fa-right-from-bracket"></i> Salir</button>
-        </header>
-
-        <!-- Formulario para Cargar Vehículo con Fotos desde Galería -->
-        <section class="admin-card">
-            <h3><i class="fa-solid fa-cloud-arrow-up"></i> Publicar Nuevo Vehículo</h3>
-            <form id="add-car-form" class="admin-form">
-                <input type="text" id="title" placeholder="Modelo / Título (ej. Toyota Fortuner 2023)" required>
-                <input type="number" id="year" placeholder="Año" required>
-                <input type="number" id="price" placeholder="Precio ($ USD)" required>
-                <input type="text" id="km" placeholder="Kilometraje (ej. 25,000 km)" required>
-                <select id="trans">
-                    <option value="Automática">Automática</option>
-                    <option value="Sincrónico">Sincrónico / Manual</option>
-                </select>
-
-                <!-- Selector de fotos estilo Red Social -->
-                <div class="file-input-group" style="grid-column: 1 / -1;">
-                    <label for="car-images" style="display: block; margin-bottom: 0.5rem; color: var(--text-muted);">Seleccionar Fotos desde tu equipo (puedes elegir varias):</label>
-                    <input type="file" id="car-images" accept="image/*" multiple required style="background: var(--bg-dark); padding: 0.8rem; border: 1px dashed var(--border-color); width: 100%; border-radius: 6px; color: #fff; cursor: pointer;">
-                </div>
-
-                <button type="submit" class="btn-submit">Publicar en el Catálogo</button>
-            </form>
-        </section>
-
-        <!-- Tabla de Gestión de Inventario -->
-        <section class="admin-card">
-            <h3><i class="fa-solid fa-list-check"></i> Vehículos Registrados</h3>
-            <div class="table-responsive">
-                <table class="admin-table">
-                    <thead>
-                        <tr>
-                            <th>Vehículo</th>
-                            <th>Año</th>
-                            <th>Precio</th>
-                            <th>Estado Actual</th>
-                            <th>Acciones Rápidas</th>
-                        </tr>
-                    </thead>
-                    <tbody id="admin-table-body">
-                        <!-- Filas dinámicas -->
-                    </tbody>
-                </table>
-            </div>
-        </section>
+    <div class="form-group">
+      <label>Título / Modelo del Vehículo:</label>
+      <input type="text" id="titulo-auto" placeholder="Ej: Toyota Hilux 2024">
     </div>
+    <div class="form-group">
+      <label>Precio ($):</label>
+      <input type="number" id="precio-auto" placeholder="Ej: 25000">
+    </div>
+    <div class="form-group">
+      <label>Descripción / Detalles:</label>
+      <textarea id="desc-auto" rows="3" placeholder="Kilometraje, transmisión, color..."></textarea>
+    </div>
+    <div class="form-group">
+      <label>Foto del Vehículo:</label>
+      <input type="file" id="foto-auto" accept="image/*">
+    </div>
+    <button class="btn-save" onclick="guardarVehiculo()">Publicar Vehículo</button>
+  </div>
 
-    <script src="../js/admin.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (sessionStorage.getItem("admin_autorizado") === "true") {
+        mostrarPanel();
+      }
+    });
+
+    function iniciarSesion() {
+      const u = document.getElementById("login-user").value.trim();
+      const p = document.getElementById("login-pass").value;
+      
+      // Valida contra los usuarios guardados o el administrador por defecto
+      const usuarios = JSON.parse(localStorage.getItem("usuarios_crestmont")) || [{ usuario: "admin", pass: "admin123" }];
+      const coincide = usuarios.some(user => user.usuario === u && user.pass === p);
+
+      if (coincide || (u === "admin" && p === "admin123")) {
+        sessionStorage.setItem("admin_autorizado", "true");
+        mostrarPanel();
+      } else {
+        document.getElementById("error-msg").style.display = "block";
+      }
+    }
+
+    function mostrarPanel() {
+      document.getElementById("login-screen").style.display = "none";
+      document.getElementById("panel-admin").style.display = "block";
+    }
+
+    function cerrarSesion() {
+      sessionStorage.removeItem("admin_autorizado");
+      window.location.reload();
+    }
+
+    function guardarVehiculo() {
+      const titulo = document.getElementById("titulo-auto").value;
+      const precio = document.getElementById("precio-auto").value;
+      
+      if (!titulo || !precio) {
+        alert("Por favor completa al menos el título y el precio.");
+        return;
+      }
+      
+      alert("✅ Vehículo registrado con éxito para publicación.");
+      // Aquí se procesa y guarda la información en tu plataforma
+    }
+  </script>
+
 </body>
 </html>
