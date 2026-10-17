@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="../assets/css/style.css">
 
     <style>
-        /* Estilos limpios, directos y 100% adaptados a teléfonos y PC */
         * {
             box-sizing: border-box;
         }
@@ -63,13 +62,47 @@
         .zoom-container:hover img {
             transform: scale(1.6);
         }
+        /* Estilos para el menú desplegable en móvil */
+        .desktop-nav {
+            display: none;
+        }
+        .menu-btn {
+            display: block;
+            background: none;
+            border: 1px solid #3f3f46;
+            color: #ffffff;
+            padding: 0.6rem 0.9rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            background-color: #09090b;
+            border-bottom: 1px solid #27272a;
+            padding: 1.5rem;
+            gap: 1rem;
+            text-align: center;
+        }
+        @media (min-width: 768px) {
+            .desktop-nav {
+                display: flex;
+            }
+            .menu-btn {
+                display: none;
+            }
+            .mobile-menu {
+                display: none !important;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <!-- 1. BARRA SUPERIOR ADAPTADA A TELÉFONO -->
+    <!-- 1. BARRA SUPERIOR CON MENÚ HAMBURGUESA EN MÓVIL -->
     <header style="background-color: #09090b; border-bottom: 1px solid #27272a; position: sticky; top: 0; z-index: 50; backdrop-filter: blur(10px);">
-        <div class="top-navbar" style="flex-wrap: wrap; gap: 1rem;">
+        <div class="top-navbar">
             <div style="text-align: left;">
                 <span style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.25em; color: #dc2626; font-weight: bold; display: block;">
                     THE CRESTMONT FAMILY
@@ -79,18 +112,48 @@
                 </span>
             </div>
 
-            <nav style="display: flex; align-items: center; gap: 1rem; font-size: 12px; font-weight: 500; flex-wrap: wrap;">
-                <a href="../" style="color: #d1d5db; text-decoration: none; display: flex; align-items: center; gap: 6px;">
-                    <i class="fas fa-home" style="font-size: 11px; color: #dc2626;"></i> Inicio
+            <!-- Menú para PC -->
+            <nav class="desktop-nav" style="align-items: center; gap: 2.5rem; font-size: 14px; font-weight: 500;">
+                <a href="../" style="color: #d1d5db; text-decoration: none; display: flex; align-items: center; gap: 8px;">
+                    <i class="fas fa-home" style="font-size: 12px; color: #dc2626;"></i> Inicio / Portal
                 </a>
                 <a href="#inventario" style="color: #d1d5db; text-decoration: none;">Modelos</a>
                 <a href="#ubicacion" style="color: #d1d5db; text-decoration: none;">Ubicación</a>
                 <a href="#contacto" style="color: #d1d5db; text-decoration: none;">Contacto</a>
             </nav>
+
+            <!-- Botón Hamburguesa para Teléfono -->
+            <button class="menu-btn" onclick="toggleMenu()" aria-label="Abrir menú">
+                <i class="fas fa-bars" id="menu-icon"></i>
+            </button>
+        </div>
+
+        <!-- Panel Desplegable Móvil -->
+        <div class="mobile-menu" id="mobile-menu-panel">
+            <a href="../" onclick="toggleMenu()" style="color: #d1d5db; text-decoration: none; font-size: 14px; padding: 0.5rem 0; display: block;">
+                <i class="fas fa-home" style="color: #dc2626; margin-right: 8px;"></i> Inicio / Portal
+            </a>
+            <a href="#inventario" onclick="toggleMenu()" style="color: #d1d5db; text-decoration: none; font-size: 14px; padding: 0.5rem 0; display: block;">Modelos</a>
+            <a href="#ubicacion" onclick="toggleMenu()" style="color: #d1d5db; text-decoration: none; font-size: 14px; padding: 0.5rem 0; display: block;">Ubicación</a>
+            <a href="#contacto" onclick="toggleMenu()" style="color: #d1d5db; text-decoration: none; font-size: 14px; padding: 0.5rem 0; display: block;">Contacto</a>
         </div>
     </header>
 
-    <!-- 2. FRANJA CENTRAL (100% CENTRADA Y RESPONSIVA) -->
+    <script>
+        function toggleMenu() {
+            const panel = document.getElementById('mobile-menu-panel');
+            const icon = document.getElementById('menu-icon');
+            if (panel.style.display === 'flex') {
+                panel.style.display = 'none';
+                icon.className = 'fas fa-bars';
+            } else {
+                panel.style.display = 'flex';
+                icon.className = 'fas fa-times';
+            }
+        }
+    </script>
+
+    <!-- 2. FRANJA CENTRAL -->
     <section style="background-color: rgba(24, 24, 27, 0.95); border-bottom: 1px solid #27272a; padding: 4rem 1rem;">
         <div class="seccion-centrada">
             <h1 style="font-size: clamp(2rem, 7vw, 4.5rem); font-weight: 300; letter-spacing: 0.2em; color: #ffffff; text-transform: uppercase; margin: 0 0 1rem 0; text-align: center; word-break: break-word;">
@@ -143,7 +206,6 @@
         </div>
     </section>
 
-    <!-- Script rápido para ajustar el grid del banner en PC -->
     <script>
         if (window.innerWidth >= 1024) {
             document.getElementById('banner-grid').style.gridTemplateColumns = 'repeat(2, 1fr)';
@@ -215,7 +277,7 @@
         </script>
 
         <!-- Tarjetas de Vehículos -->
-        <div id="contenedor-vehiculos" style="display: grid; grid-template-columns: 1fr; gap: 2.5rem; text-align: left;" id="vehiculos-grid">
+        <div id="contenedor-vehiculos" style="display: grid; grid-template-columns: 1fr; gap: 2.5rem; text-align: left;">
             
             <!-- Vehículo 1 -->
             <div style="background-color: rgba(24, 24, 27, 0.5); border: 1px solid rgba(39, 39, 42, 0.9); border-radius: 1.5rem; overflow: hidden; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.5); display: flex; flex-direction: column;">
@@ -501,7 +563,7 @@
         }
 
         function cambiarFoto(direccion) {
-            indicesActuales = (indiceActual + direccion + fotosActuales.length) % fotosActuales.length;
+            indiceActual = (indiceActual + direccion + fotosActuales.length) % fotosActuales.length;
             actualizarFoto();
         }
 
