@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Control Privado | Crestmont Motors</title>
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="admin-body">
+
+    <!-- Modal de Autenticación -->
+    <div id="login-overlay" class="login-modal">
+        <div class="login-card">
+            <i class="fa-solid fa-lock login-icon"></i>
+            <h2>Acceso Privado</h2>
+            <p>Ingresa la contraseña de administración</p>
+            <input type="password" id="admin-pass" placeholder="Contraseña">
+            <button id="login-btn" class="btn-primary-admin">Ingresar al Panel</button>
+            <p id="login-error" class="error-msg"></p>
+        </div>
+    </div>
+
+    <!-- Panel de Administración -->
+    <div id="admin-panel" class="admin-container" style="display: none;">
+        <header class="admin-header">
+            <h1><i class="fa-solid fa-sliders"></i> Panel de Control de Inventario</h1>
+            <button id="logout-btn" class="btn-logout"><i class="fa-solid fa-right-from-bracket"></i> Salir</button>
+        </header>
+
+        <!-- Formulario para Cargar Vehículo con Fotos desde Galería -->
+        <section class="admin-card">
+            <h3><i class="fa-solid fa-cloud-arrow-up"></i> Publicar Nuevo Vehículo</h3>
+            <form id="add-car-form" class="admin-form">
+                <input type="text" id="title" placeholder="Modelo / Título (ej. Toyota Fortuner 2023)" required>
+                <input type="number" id="year" placeholder="Año" required>
+                <input type="number" id="price" placeholder="Precio ($ USD)" required>
+                <input type="text" id="km" placeholder="Kilometraje (ej. 25,000 km)" required>
+                <select id="trans">
+                    <option value="Automática">Automática</option>
+                    <option value="Sincrónico">Sincrónico / Manual</option>
+                </select>
+
+                <!-- Selector de fotos estilo Red Social -->
+                <div class="file-input-group" style="grid-column: 1 / -1;">
+                    <label for="car-images" style="display: block; margin-bottom: 0.5rem; color: var(--text-muted);">Seleccionar Fotos desde tu equipo (puedes elegir varias):</label>
+                    <input type="file" id="car-images" accept="image/*" multiple required style="background: var(--bg-dark); padding: 0.8rem; border: 1px dashed var(--border-color); width: 100%; border-radius: 6px; color: #fff; cursor: pointer;">
+                </div>
+
+                <button type="submit" class="btn-submit">Publicar en el Catálogo</button>
+            </form>
+        </section>
+
+        <!-- Tabla de Gestión de Inventario -->
+        <section class="admin-card">
+            <h3><i class="fa-solid fa-list-check"></i> Vehículos Registrados</h3>
+            <div class="table-responsive">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Vehículo</th>
+                            <th>Año</th>
+                            <th>Precio</th>
+                            <th>Estado Actual</th>
+                            <th>Acciones Rápidas</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-table-body">
+                        <!-- Filas dinámicas -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <script src="../js/admin.js"></script>
+</body>
+</html>

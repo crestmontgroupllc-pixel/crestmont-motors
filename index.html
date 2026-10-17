@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crestmont Motors | Concesionario de Vehículos</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Navegación Pública -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <img src="assets/img/logo.png" alt="Logo Crestmont Motors" onerror="this.style.display='none'">
+                <span>CRESTMONT</span> MOTORS
+            </a>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#catalogo">Catálogo</a></li>
+                <li><a href="#empresa">Empresa</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Banner Principal -->
+    <header id="inicio" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content container">
+            <h1>Exclusividad y Confianza sobre Ruedas</h1>
+            <p>Vehículos seleccionados, inspeccionados y listos para llevarte a tu próximo destino.</p>
+            <a href="#catalogo" class="btn-primary"><i class="fa-solid fa-car"></i> Ver Inventario</a>
+        </div>
+    </header>
+
+    <!-- Catálogo de Vehículos -->
+    <section id="catalogo" class="section container">
+        <div class="section-header">
+            <h2>Inventario de Vehículos</h2>
+            <p>Explora nuestras unidades disponibles, reservadas y vendidas en tiempo real</p>
+        </div>
+
+        <!-- Filtros de Estado -->
+        <div class="filter-bar">
+            <button class="filter-btn active" data-filter="todos">Todos</button>
+            <button class="filter-btn" data-filter="disponible">Disponibles</button>
+            <button class="filter-btn" data-filter="reservado">Reservados</button>
+            <button class="filter-btn" data-filter="vendido">Vendidos</button>
+        </div>
+
+        <!-- Contenedor del Catálogo -->
+        <div id="vehicle-grid" class="vehicle-grid">
+            <!-- Las tarjetas se generan dinámicamente -->
+        </div>
+    </section>
+
+    <!-- Sección de Información de Empresa -->
+    <section id="empresa" class="section bg-card">
+        <div class="container features-grid">
+            <div class="feature-box">
+                <i class="fa-solid fa-shield-halved feature-icon"></i>
+                <h3>Garantía de Calidad</h3>
+                <p>Revisiones mecánicas minuciosas e historial verificado de cada unidad.</p>
+            </div>
+            <div class="feature-box">
+                <i class="fa-solid fa-file-signature feature-icon"></i>
+                <h3>Gestión Documental</h3>
+                <p>Asesoría integral y traspasos de propiedad inmediatos sin complicaciones.</p>
+            </div>
+            <div class="feature-box">
+                <i class="fa-solid fa-handshake-simple feature-icon"></i>
+                <h3>Consignaciones</h3>
+                <p>Publicamos y gestionamos la venta de tu vehículo con la mayor efectividad.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ubicación y Contacto -->
+    <section id="contacto" class="section container">
+        <div class="section-header">
+            <h2>Ubicación y Contacto Directo</h2>
+            <p>Visítanos en nuestra sede o agenda tu prueba de manejo por WhatsApp</p>
+        </div>
+
+        <div class="contact-grid">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <div>
+                        <h4>Ubicación</h4>
+                        <p>Sede Comercial, Cabudare / Barquisimeto, Lara</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fa-solid fa-envelope"></i>
+                    <div>
+                        <h4>Correo Electrónico</h4>
+                        <p>contacto@crestmontmotors.com</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <div>
+                        <h4>WhatsApp Directo</h4>
+                        <p>+58 412-0000000</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fa-solid fa-clock"></i>
+                    <div>
+                        <h4>Horario de Atención</h4>
+                        <p>Lunes a Sábado: 8:00 AM - 5:00 PM</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="map-box">
+                <iframe src="https://maps.google.com/maps?q=Cabudare&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="280" style="border:0; border-radius:12px;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <p>&copy; 2026 Crestmont Motors. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
