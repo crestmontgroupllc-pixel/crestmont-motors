@@ -24,6 +24,17 @@
             margin: 0 auto;
             padding: 1.5rem 3rem;
         }
+        /* Forzamos el centrado absoluto con CSS nativo para evitar conflictos */
+        .forced-center-box {
+            text-align: center !important;
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto !important;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
         .zoom-container {
             overflow: hidden;
             cursor: zoom-in;
@@ -61,17 +72,17 @@
         </div>
     </header>
 
-    <!-- 2. FRANJA CENTRAL 100% CENTRADA, GRANDE Y ESPACIADA -->
+    <!-- 2. FRANJA CENTRAL CON CSS NATIVO 100% CENTRADO -->
     <section class="bg-zinc-900/95 border-b border-zinc-800 py-28 px-6">
-        <div class="max-w-4xl mx-auto flex flex-col items-center justify-center text-center space-y-6">
-            <h1 class="text-4xl md:text-7xl font-light tracking-[0.3em] text-white uppercase w-full">
+        <div class="forced-center-box">
+            <h1 class="text-4xl md:text-7xl font-light tracking-[0.3em] text-white uppercase" style="text-align: center;">
                 CRESTMONT MOTORS
             </h1>
-            <div class="w-28 h-1 bg-red-600 my-2"></div>
-            <span class="text-sm md:text-base uppercase tracking-[0.4em] text-red-500 font-bold block w-full">
+            <div class="w-28 h-1 bg-red-600 my-4"></div>
+            <span class="text-sm md:text-base uppercase tracking-[0.4em] text-red-500 font-bold block" style="text-align: center;">
                 CONCESIONARIO Y DISTRIBUIDOR OFICIAL
             </span>
-            <p class="text-gray-300 text-base md:text-xl font-light tracking-widest uppercase pt-2 max-w-2xl mx-auto">
+            <p class="text-gray-300 text-base md:text-xl font-light tracking-widest uppercase pt-3 max-w-2xl" style="text-align: center;">
                 Excelencia, potencia y distinción en cada camino
             </p>
         </div>
@@ -117,14 +128,14 @@
     <!-- 4. SECCIÓN DE INVENTARIO Y FILTROS -->
     <main id="inventario" class="flex-grow max-w-7xl w-full mx-auto px-6 py-36">
         
-        <div class="text-center max-w-4xl mx-auto mb-24 space-y-6">
-            <span class="text-sm uppercase tracking-[0.4em] text-red-500 font-bold block">
+        <div class="forced-center-box mb-24">
+            <span class="text-sm uppercase tracking-[0.4em] text-red-500 font-bold block mb-4" style="text-align: center;">
                 CATÁLOGO OFICIAL
             </span>
-            <h2 class="text-5xl md:text-7xl font-extralight tracking-tight text-white">
+            <h2 class="text-5xl md:text-7xl font-extralight tracking-tight text-white mb-4" style="text-align: center;">
                 Inventario Disponible
             </h2>
-            <p class="text-gray-400 text-lg md:text-xl font-light max-w-2xl mx-auto pt-3 leading-relaxed">
+            <p class="text-gray-400 text-lg md:text-xl font-light max-w-2xl pt-2 leading-relaxed" style="text-align: center;">
                 Selecciona tus preferencias y encuentra el vehículo perfecto que se adapte a tu estilo de vida.
             </p>
         </div>
