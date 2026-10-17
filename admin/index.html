@@ -68,8 +68,8 @@
       <textarea id="desc-auto" rows="3" placeholder="Kilometraje, transmisión, color..."></textarea>
     </div>
     <div class="form-group">
-      <label>Foto del Vehículo:</label>
-      <input type="file" id="foto-auto" accept="image/*">
+      <label>Fotos del Vehículo (Puedes seleccionar varias fotos a la vez):</label>
+      <input type="file" id="foto-auto" accept="image/*" multiple>
     </div>
     <button class="btn-save" onclick="guardarVehiculo()">Publicar Vehículo y Enviar a Inventario</button>
   </div>
@@ -118,7 +118,10 @@
         return;
       }
 
-      function procesarYGuardar(imagenData) {
+      const files = fotoInput.files;
+      const imagenesArray = [];
+
+      function procesarYGuardar() {
         let inventario = JSON.parse(localStorage.getItem("inventario_crestmont")) || [];
         
         const nuevoItem = {
@@ -128,15 +131,15 @@
           precio: precio,
           estado: "Disponible",
           descripcion: desc,
-          imagen: imagenData || ""
+          imagenes: imagenesArray
         };
 
         inventario.push(nuevoItem);
         localStorage.setItem("inventario_crestmont", JSON.stringify(inventario));
 
-        alert("✅ Vehículo publicado con éxito y agregado automáticamente al inventario como 'Disponible'.");
+        alert(`✅ Vehículo publicado con éxito con ${imagenesArray.length} foto(s) y enviado al inventario.`);
         
-        // Limpiar formulario
+        // Limpiar campos
         document.getElementById("vin-auto").value = "";
         document.getElementById("titulo-auto").value = "";
         document.getElementById("ano-auto").value = "";
@@ -145,14 +148,21 @@
         document.getElementById("foto-auto").value = "";
       }
 
-      if (fotoInput.files && fotoInput.files[0]) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          procesarYGuardar(e.target.result);
-        };
-        reader.readAsDataURL(fotoInput.files[0]);
+      if (files && files.length > 0) {
+        let leidas = 0;
+        Array.from(files).forEach((file) => {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            imagenesArray.push(e.target.result);
+            leidas++;
+            if (leidas === files.length) {
+              procesarYGuardar();
+            }
+          };
+          reader.readAsDataURL(file);
+        });
       } else {
-        procesarYGuardar("");
+        procesarYGuardar();
       }
     }
   </script>
