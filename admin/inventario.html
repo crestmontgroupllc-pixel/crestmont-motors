@@ -4,10 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Control de Inventario - Crestmont Motors</title>
-  <link rel="stylesheet" href="../css/admin.css">
   <style>
     body { font-family: Arial, sans-serif; background: #f4f6f9; margin: 0; padding: 20px; }
-    .container { max-width: 1000px; margin: 0 auto; background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    .container { max-width: 1000px; margin: 0 auto; background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); display: none; }
     h1 { color: #111; margin-bottom: 20px; }
     .form-group { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
     .form-group input, .form-group select { padding: 10px; border: 1px solid #ccc; border-radius: 4px; flex: 1; min-width: 150px; }
@@ -24,8 +23,8 @@
 </head>
 <body>
 
-  <div class="container">
-    <h1>📋 Gestor de Inventario - Crestmont Motors</h1>
+  <div class="container" id="panel-inventario">
+    <h1>📋 Gestor de Inventario Privado - Crestmont Motors</h1>
 
     <!-- Formulario para agregar vehículo -->
     <div class="form-group">
@@ -60,8 +59,35 @@
   </div>
 
   <script>
-    // Cargar inventario guardado al abrir
-    document.addEventListener("DOMContentLoaded", cargarInventario);
+    // Verificación de Contraseña al cargar la página
+    document.addEventListener("DOMContentLoaded", function() {
+      verificarAcceso();
+    });
+
+    function verificarAcceso() {
+      const passCorrecta = "admin123";
+      
+      // Revisa si ya inició sesión previamente en la sesión actual
+      if (sessionStorage.getItem("inventario_autorizado") === "true") {
+        mostrarInventario();
+        return;
+      }
+
+      const passIngresada = prompt("🔒 Acceso Restringido - Crestmont Motors:\nIngresa la contraseña para ver el inventario:");
+
+      if (passIngresada === passCorrecta) {
+        sessionStorage.setItem("inventario_autorizado", "true");
+        mostrarInventario();
+      } else {
+        alert("❌ Contraseña incorrecta. Acceso denegado.");
+        window.location.href = "../"; // Lo redirige al inicio del sitio web
+      }
+    }
+
+    function mostrarInventario() {
+      document.getElementById("panel-inventario").style.display = "block";
+      cargarInventario();
+    }
 
     function agregarVehiculo() {
       const vin = document.getElementById("vin").value;
