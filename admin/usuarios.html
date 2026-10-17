@@ -6,7 +6,7 @@
   <title>Gestión de Usuarios y Claves - Crestmont Motors</title>
   <style>
     body { font-family: Arial, sans-serif; background: #f4f6f9; margin: 0; padding: 20px; }
-    .container { max-width: 900px; margin: 0 auto; background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    .container { max-width: 900px; margin: 0 auto; background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); display: none; }
     h1, h2 { color: #111; }
     .section { margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid #eee; }
     .form-group { display: flex; flex-direction: column; gap: 10px; max-width: 400px; margin-bottom: 15px; }
@@ -23,7 +23,7 @@
 </head>
 <body>
 
-  <div class="container">
+  <div class="container" id="panel-usuarios">
     <h1>⚙️ Control de Usuarios y Claves - Crestmont Motors</h1>
 
     <!-- SECCIÓN 1: CAMBIAR MI CONTRASEÑA -->
@@ -44,7 +44,7 @@
         <input type="text" id="nuevo-user" placeholder="Nombre de usuario (ej: vendedor1)">
         <input type="password" id="nuevo-pass" placeholder="Contraseña para este usuario">
         <select id="nuevo-rol">
-          <option value="Vendedor">Vendedor / Gestor (Solo lectura y estado)</option>
+          <option value="Vendedor">Vendedor / Gestor (Acceso a inventario)</option>
           <option value="Administrador">Administrador (Acceso total)</option>
         </select>
         <button class="btn" onclick="crearUsuario()">+ Crear Usuario</button>
@@ -70,8 +70,32 @@
   </div>
 
   <script>
-    // Inicializar usuarios predeterminados si no existen
     document.addEventListener("DOMContentLoaded", function() {
+      verificarAcceso();
+    });
+
+    function verificarAcceso() {
+      const passCorrecta = "admin123";
+
+      if (sessionStorage.getItem("usuarios_autorizado") === "true") {
+        mostrarModulo();
+        return;
+      }
+
+      const passIngresada = prompt("🔒 Área Privada de Gestión de Usuarios:\nIngresa la contraseña del sistema:");
+
+      if (passIngresada === passCorrecta) {
+        sessionStorage.setItem("usuarios_autorizado", "true");
+        mostrarModulo();
+      } else {
+        alert("❌ Contraseña incorrecta. Acceso denegado.");
+        window.location.href = "../";
+      }
+    }
+
+    function mostrarModulo() {
+      document.getElementById("panel-usuarios").style.display = "block";
+      
       if (!localStorage.getItem("usuarios_crestmont")) {
         const usuariosIniciales = [
           { usuario: "admin", pass: "admin123", rol: "Administrador" }
@@ -79,7 +103,7 @@
         localStorage.setItem("usuarios_crestmont", JSON.stringify(usuariosIniciales));
       }
       cargarTablaUsuarios();
-    });
+    }
 
     function cargarTablaUsuarios() {
       const tabla = document.getElementById("tabla-usuarios");
