@@ -23,12 +23,19 @@
 
     <!-- Carrusel de Fondos con los 7 vehículos (Incluyendo Toyota) -->
     <div id="slider-container" class="absolute inset-0 z-0">
+        <!-- 1. Toyota -->
         <div class="slide-bg active" style="background-image: url('https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=1920&q=80');"></div>
+        <!-- 2. Mercedes-Benz -->
         <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1920&q=80');"></div>
+        <!-- 3. Volkswagen -->
         <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1920&q=80');"></div>
+        <!-- 4. Deportivo / Lujo -->
         <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=1920&q=80');"></div>
+        <!-- 5. SUV / Camioneta -->
         <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1920&q=80');"></div>
+        <!-- 6. Sedán Ejecutivo -->
         <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1920&q=80');"></div>
+        <!-- 7. Auto moderno en carretera -->
         <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=1920&q=80');"></div>
     </div>
 
@@ -52,7 +59,7 @@
             </p>
         </div>
 
-        <!-- Botón de Entrada Elegante -->
+        <!-- Botón de Entrada que conecta con la carpeta del catálogo -->
         <div class="flex justify-center items-center w-full">
             <a href="catalogo/" class="group relative inline-flex items-center justify-center px-8 py-4 text-base font-medium tracking-wider text-white transition-all duration-300 bg-white/10 rounded-full border border-white/40 backdrop-blur-md hover:bg-white hover:text-black hover:border-white shadow-2xl">
                 <span>Entrar al Sitio Oficial</span>
@@ -64,7 +71,7 @@
 
     </div>
 
-    <!-- Script del Carrusel (Rotación cada 5 segundos) -->
+    <!-- Script del Carrusel (Rotación automática cada 5 segundos) -->
     <script>
         const slides = document.querySelectorAll('.slide-bg');
         let currentSlide = 0;
