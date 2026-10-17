@@ -7,7 +7,6 @@
   <style>
     body { font-family: Arial, sans-serif; background: #000; color: #fff; margin: 0; padding: 20px; }
     
-    /* LOGIN ESTILO NEGRO Y MODERNO */
     .login-card { max-width: 420px; margin: 100px auto; background: #111; border: 1px solid #333; padding: 45px; border-radius: 10px; box-shadow: 0 8px 25px rgba(255,0,0,0.15); text-align: center; }
     .login-card h2 { margin-top: 0; color: #ff0000; font-size: 28px; font-weight: bold; letter-spacing: 1px; }
     .login-card p { color: #aaa; font-size: 15px; margin-bottom: 30px; }
@@ -17,22 +16,23 @@
     .login-card button:hover { background: #cc0000; }
     .error-msg { color: #ff6b6b; font-size: 14px; margin-top: 15px; display: none; }
 
-    /* PANEL DE INVENTARIO */
-    .container { max-width: 1000px; margin: 40px auto; background: #111; border: 1px solid #333; padding: 35px; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.5); display: none; }
+    .container { max-width: 1100px; margin: 40px auto; background: #111; border: 1px solid #333; padding: 35px; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.5); display: none; }
     .header-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; border-bottom: 2px solid #222; padding-bottom: 20px; }
     h1 { color: #ff0000; margin: 0; font-size: 26px; }
     .btn-logout { background: #ff0000; color: #fff; padding: 10px 18px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; }
     .btn-logout:hover { background: #cc0000; }
-    .form-group { display: flex; gap: 10px; margin-bottom: 25px; flex-wrap: wrap; }
-    .form-group input, .form-group select { padding: 12px; border: 1px solid #444; background: #1a1a1a; color: #fff; border-radius: 6px; flex: 1; min-width: 150px; font-size: 14px; }
-    .btn-add { background: #ff0000; color: #fff; padding: 12px 25px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; }
-    .btn-add:hover { background: #cc0000; }
+    
     table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-    th, td { border: 1px solid #333; padding: 14px; text-align: left; color: #ddd; }
+    th, td { border: 1px solid #333; padding: 14px; text-align: left; color: #ddd; vertical-align: middle; }
     th { background: #1a1a1a; color: #fff; }
     tr:nth-child(even) { background: #161616; }
-    .status-disponible { color: #2ecc71; font-weight: bold; }
-    .status-vendido { color: #e74c3c; font-weight: bold; }
+    
+    .car-img { width: 70px; height: 50px; object-fit: cover; border-radius: 4px; border: 1px solid #444; }
+    .status-select { padding: 8px; border-radius: 4px; border: 1px solid #444; background: #1a1a1a; color: #fff; font-weight: bold; cursor: pointer; }
+    .status-Disponible { color: #2ecc71; border-color: #2ecc71; }
+    .status-Reservado { color: #f39c12; border-color: #f39c12; }
+    .status-Vendido { color: #e74c3c; border-color: #e74c3c; }
+    
     .btn-delete { background: #333; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; }
     .btn-delete:hover { background: #ff0000; }
   </style>
@@ -56,27 +56,15 @@
       <button class="btn-logout" onclick="cerrarSesion()">Cerrar Sesión</button>
     </div>
 
-    <div class="form-group">
-      <input type="text" id="vin" placeholder="VIN / Chasis">
-      <input type="text" id="vehiculo" placeholder="Vehículo (Ej: Ford Mustang)">
-      <input type="number" id="ano" placeholder="Año">
-      <input type="number" id="precio" placeholder="Precio ($)">
-      <select id="estado">
-        <option value="Disponible">Disponible</option>
-        <option value="Reservado">Reservado</option>
-        <option value="Vendido">Vendido</option>
-      </select>
-      <button class="btn-add" onclick="agregarVehiculo()">+ Agregar</button>
-    </div>
-
     <table>
       <thead>
         <tr>
-          <th>VIN</th>
+          <th>Foto</th>
+          <th>VIN / Chasis</th>
           <th>Vehículo</th>
           <th>Año</th>
           <th>Precio</th>
-          <th>Estado</th>
+          <th>Estado de Venta</th>
           <th>Acción</th>
         </tr>
       </thead>
@@ -116,55 +104,53 @@
       window.location.reload();
     }
 
-    function agregarVehiculo() {
-      const vin = document.getElementById("vin").value;
-      const vehiculo = document.getElementById("vehiculo").value;
-      const ano = document.getElementById("ano").value;
-      const precio = document.getElementById("precio").value;
-      const estado = document.getElementById("estado").value;
-
-      if (!vin || !vehiculo || !precio) {
-        alert("Por favor completa los campos principales (VIN, Vehículo, Precio).");
-        return;
-      }
-
-      const nuevoItem = { vin, vehiculo, ano, precio, estado };
-      let inventario = JSON.parse(localStorage.getItem("inventario_crestmont")) || [];
-      inventario.push(nuevoItem);
-      localStorage.setItem("inventario_crestmont", JSON.stringify(inventario));
-
-      document.getElementById("vin").value = "";
-      document.getElementById("vehiculo").value = "";
-      document.getElementById("ano").value = "";
-      document.getElementById("precio").value = "";
-      cargarInventario();
-    }
-
     function cargarInventario() {
       const lista = document.getElementById("lista-inventario");
       lista.innerHTML = "";
       const inventario = JSON.parse(localStorage.getItem("inventario_crestmont")) || [];
 
+      if (inventario.length === 0) {
+        lista.innerHTML = `<tr><td colspan="7" style="text-align:center; color:#777; padding:25px;">No hay vehículos registrados. Publica uno desde el panel principal.</td></tr>`;
+        return;
+      }
+
       inventario.forEach((item, index) => {
-        const claseEstado = item.estado === "Vendido" ? "status-vendido" : "status-disponible";
+        const imgTag = item.imagen ? `<img src="${item.imagen}" class="car-img">` : `<span style="color:#666;">Sin foto</span>`;
+        
         lista.innerHTML += `
           <tr>
-            <td>${item.vin}</td>
+            <td>${imgTag}</td>
+            <td><strong>${item.vin}</strong></td>
             <td>${item.vehiculo}</td>
             <td>${item.ano}</td>
             <td>$${Number(item.precio).toLocaleString()}</td>
-            <td class="${claseEstado}">${item.estado}</td>
+            <td>
+              <select class="status-select status-${item.estado}" onchange="cambiarEstado(${index}, this.value)">
+                <option value="Disponible" ${item.estado === "Disponible" ? "selected" : ""}>Disponible</option>
+                <option value="Reservado" ${item.estado === "Reservado" ? "selected" : ""}>Reservado</option>
+                <option value="Vendido" ${item.estado === "Vendido" ? "selected" : ""}>Vendido</option>
+              </select>
+            </td>
             <td><button class="btn-delete" onclick="eliminarItem(${index})">Eliminar</button></td>
           </tr>
         `;
       });
     }
 
-    function eliminarItem(index) {
+    function cambiarEstado(index, nuevoEstado) {
       let inventario = JSON.parse(localStorage.getItem("inventario_crestmont")) || [];
-      inventario.splice(index, 1);
+      inventario[index].estado = nuevoEstado;
       localStorage.setItem("inventario_crestmont", JSON.stringify(inventario));
       cargarInventario();
+    }
+
+    function eliminarItem(index) {
+      if (confirm("¿Estás segura de eliminar este vehículo del registro?")) {
+        let inventario = JSON.parse(localStorage.getItem("inventario_crestmont")) || [];
+        inventario.splice(index, 1);
+        localStorage.setItem("inventario_crestmont", JSON.stringify(inventario));
+        cargarInventario();
+      }
     }
   </script>
 
