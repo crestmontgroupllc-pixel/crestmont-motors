@@ -11,7 +11,7 @@ nav { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
 nav a { color: #ddd; text-decoration: none; font-size: 14px; font-weight: bold; transition: color 0.3s; }
 nav a:hover { color: #ff0000; }
 
-/* BANNER PRINCIPAL (SOLO TEXTO ELEGANTE ARRIBA) */
+/* BANNER PRINCIPAL CON EL LOGO GRANDE ARRIBA */
 .main-brand-banner {
   background: radial-gradient(circle at center, #141414 0%, #050505 70%, #000000 100%);
   border-bottom: 3px solid #ff0000;
@@ -20,55 +20,52 @@ nav a:hover { color: #ff0000; }
   box-shadow: 0 15px 40px rgba(0,0,0,0.9);
 }
 
+.brand-logo-container {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+/* TAMAÑO GRANDE E IMPONENTE PARA EL LOGO CON FONDO TRANSPARENTE */
+.main-brand-logo {
+  max-width: 320px;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 20px rgba(255, 0, 0, 0.4));
+  margin-bottom: 5px;
+}
+
 .brand-title {
   font-family: 'Playfair Display', serif;
   color: #ffffff;
-  font-size: 45px;
+  font-size: 42px;
   font-weight: 900;
-  letter-spacing: 6px;
-  margin: 0 0 10px 0;
+  letter-spacing: 5px;
+  margin: 0;
   text-transform: uppercase;
 }
 
 .brand-title span { color: #ff0000; }
 
 .brand-divider {
-  width: 90px;
+  width: 80px;
   height: 3px;
   background: linear-gradient(90deg, transparent, #ff0000, transparent);
-  margin: 0 auto 15px auto;
+  margin: 0 auto;
 }
 
 .brand-slogan {
   font-family: 'Montserrat', sans-serif;
   color: #c0c0c0;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
-  letter-spacing: 5px;
+  letter-spacing: 4px;
   margin: 0;
   text-transform: uppercase;
-}
-
-/* NUEVA SECCIÓN DE LOGOTIPO GRANDE ABAJO (IMCONFUNDIBLE Y PROTAGONISTA) */
-.brand-logo-bottom-section {
-  background: linear-gradient(180deg, #000000 0%, #0f0f0f 100%);
-  padding: 60px 20px;
-  text-align: center;
-  border-top: 1px solid #1a1a1a;
-  border-bottom: 1px solid #1a1a1a;
-  margin-top: 50px;
-}
-
-.logo-grande-principal {
-  max-width: 450px; /* Tamaño grande y real que pediste */
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  filter: drop-shadow(0 8px 25px rgba(255, 0, 0, 0.4));
-  transition: transform 0.4s ease;
-}
-.logo-grande-principal:hover {
-  transform: scale(1.02);
 }
 
 /* CONTENEDOR Y FILTROS */
