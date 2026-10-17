@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="../assets/css/style.css">
 
     <style>
-        /* Efecto de Zoom en Imagen del Modal */
         .zoom-container {
             overflow: hidden;
             cursor: zoom-in;
@@ -32,67 +31,69 @@
 </head>
 <body class="bg-black text-gray-100 font-sans antialiased min-h-screen flex flex-col justify-between">
 
-    <!-- 1. ENCABEZADO / MENÚ DE NAVEGACIÓN LIMPIO Y CENTRADO -->
-    <header class="bg-zinc-950/90 border-b border-zinc-800/80 sticky top-0 z-40 backdrop-blur-md py-3">
-        <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 h-20 flex items-center justify-between">
+    <!-- 1. ENCABEZADO EN 3 COLUMNAS (IZQUIERDA - CENTRO - DERECHA) -->
+    <header class="bg-zinc-950/90 border-b border-zinc-800/80 sticky top-0 z-40 backdrop-blur-md py-4">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between">
             
-            <!-- Logo Corporativo con Eslogan -->
-            <a href="../" class="flex flex-col justify-center group">
-                <span class="text-xs uppercase tracking-[0.25em] text-red-500 font-semibold">
-                    The Crestmont Family
+            <!-- ESQUINA IZQUIERDA: Marca Familiar -->
+            <div class="w-1/3 flex flex-col justify-center items-start">
+                <span class="text-[10px] uppercase tracking-[0.25em] text-red-500 font-bold block">
+                    THE CRESTMONT FAMILY
                 </span>
-                <span class="text-2xl md:text-3xl font-light tracking-wider text-white uppercase group-hover:text-gray-300 transition">
-                    Crestmont Motors
+                <span class="text-lg md:text-xl font-light text-gray-300 tracking-wider uppercase">
+                    Crestmont
                 </span>
-            </a>
+            </div>
 
-            <!-- Menú de Enlaces Principal (Sin Admin) -->
-            <nav class="hidden md:flex items-center gap-10 text-sm font-medium">
-                <a href="../" class="text-gray-300 hover:text-white transition flex items-center gap-2">
-                    <i class="fas fa-home text-xs"></i> Inicio / Portal
-                </a>
-                <a href="#inventario" class="text-gray-300 hover:text-white transition">Modelos</a>
-                <a href="#contacto" class="text-gray-300 hover:text-white transition">Contacto</a>
-            </nav>
-
-            <!-- Accesos Rápidos Móvil -->
-            <div class="md:hidden flex items-center gap-4">
-                <a href="https://wa.me/1234567890" target="_blank" class="bg-green-600 text-white p-2.5 rounded-full text-sm">
-                    <i class="fab fa-whatsapp"></i>
-                </a>
-                <a href="../" class="text-gray-300 p-2 text-sm">
-                    <i class="fas fa-home"></i>
+            <!-- CENTRO: Nombre Corporativo Principal -->
+            <div class="w-1/3 text-center flex flex-col items-center justify-center">
+                <a href="../" class="group">
+                    <h1 class="text-xl md:text-3xl font-normal tracking-[0.2em] text-white uppercase group-hover:text-gray-300 transition">
+                        CRESTMONT MOTORS
+                    </h1>
+                    <span class="text-[9px] uppercase tracking-[0.3em] text-gray-500 font-medium block pt-0.5">
+                        Official Dealership
+                    </span>
                 </a>
             </div>
+
+            <!-- ESQUINA DERECHA: Menú de Navegación -->
+            <nav class="w-1/3 flex items-center justify-end gap-8 text-sm font-medium">
+                <a href="../" class="text-gray-300 hover:text-white transition flex items-center gap-1.5 text-xs md:text-sm">
+                    <i class="fas fa-home text-xs"></i> Inicio / Portal
+                </a>
+                <a href="#inventario" class="text-gray-300 hover:text-white transition text-xs md:text-sm">Modelos</a>
+                <a href="#contacto" class="text-gray-300 hover:text-white transition text-xs md:text-sm">Contacto</a>
+            </nav>
 
         </div>
     </header>
 
-    <!-- 2. SECCIÓN PRINCIPAL / CATÁLOGO -->
-    <main id="inventario" class="flex-grow max-w-7xl w-full mx-auto px-6 sm:px-8 lg:px-12 py-16">
+    <!-- 2. SECCIÓN PRINCIPAL / CATÁLOGO (CON ESPACIADO AMPLIO Y ESPACIOSO) -->
+    <main id="inventario" class="flex-grow max-w-7xl w-full mx-auto px-6 lg:px-12 py-20">
         
-        <!-- Título Principal Espacioso -->
-        <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <!-- Título Principal Bien Separado -->
+        <div class="text-center max-w-3xl mx-auto mb-20 space-y-4">
             <span class="text-xs uppercase tracking-[0.35em] text-red-500 font-semibold block">
-                Inventario Disponible
+                INVENTARIO DISPONIBLE
             </span>
-            <h1 class="text-3xl md:text-5xl lg:text-6xl font-extralight tracking-tight text-white">
+            <h2 class="text-3xl md:text-5xl lg:text-6xl font-extralight tracking-tight text-white">
                 Encuentra tu Vehículo Ideal
-            </h1>
-            <p class="text-gray-400 text-sm md:text-base font-light max-w-2xl mx-auto pt-2 leading-relaxed">
+            </h2>
+            <p class="text-gray-400 text-sm md:text-base font-light max-w-2xl mx-auto pt-3 leading-relaxed">
                 Explora nuestras selecciones exclusivas de modelos y revisa sus especificaciones completas.
             </p>
         </div>
 
         <!-- BARRA DE BÚSQUEDA Y FILTROS HOLGADA -->
-        <div class="bg-zinc-900/60 border border-zinc-800 rounded-2xl p-6 mb-20 shadow-2xl flex flex-col md:flex-row gap-6 justify-between items-center max-w-5xl mx-auto">
+        <div class="bg-zinc-900/60 border border-zinc-800/80 rounded-2xl p-6 mb-24 shadow-2xl flex flex-col md:flex-row gap-6 justify-between items-center max-w-5xl mx-auto">
             <div class="relative w-full md:w-1/2">
                 <i class="fas fa-search absolute left-5 top-1/2 -translate-y-1/2 text-gray-500 text-sm"></i>
                 <input type="text" id="input-busqueda" placeholder="Buscar por marca, modelo o año..." class="w-full bg-black/80 border border-zinc-800 rounded-xl pl-12 pr-5 py-3.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-red-600 transition">
             </div>
             
             <div class="flex items-center gap-4 w-full md:w-auto justify-end">
-                <span class="text-xs text-gray-400 uppercase tracking-widest hidden md:inline">Filtrar:</span>
+                <span class="text-xs text-gray-400 uppercase tracking-widest hidden md:inline">FILTRAR:</span>
                 <select id="filtro-categoria" class="bg-black/80 border border-zinc-800 rounded-xl px-5 py-3.5 text-sm text-gray-300 focus:outline-none focus:border-red-600 transition w-full md:w-auto">
                     <option value="todos">Todos los Modelos</option>
                     <option value="sedan">Sedanes</option>
@@ -102,8 +103,8 @@
             </div>
         </div>
 
-        <!-- TARJETAS DE VEHÍCULOS -->
-        <div id="contenedor-vehiculos" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+        <!-- TARJETAS DE VEHÍCULOS BIEN DISTANCIADAS -->
+        <div id="contenedor-vehiculos" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-14">
             
             <!-- TARJETA 1 (TOYOTA CAMRY) -->
             <div class="bg-zinc-900/50 border border-zinc-800/90 rounded-3xl overflow-hidden shadow-2xl flex flex-col hover:border-zinc-700 transition duration-500 group">
@@ -116,9 +117,8 @@
                         2024
                     </span>
 
-                    <!-- Botón Flotante para Abrir Visor de Fotos con Zoom -->
                     <button onclick="abrirGaleria(['https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=1200&q=80', 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1200&q=80'], 'Toyota Camry Executive')" class="absolute bottom-4 right-4 bg-black/80 hover:bg-white hover:text-black text-white px-3.5 py-2 rounded-xl text-xs backdrop-blur-md transition flex items-center gap-2 border border-white/20">
-                        <i class="fas fa-images"></i> Ver fotos y zoom
+                        <i class="fas fa-camera"></i> Ver fotos y zoom
                     </button>
                 </div>
 
@@ -159,7 +159,7 @@
                     </span>
 
                     <button onclick="abrirGaleria(['https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1200&q=80'], 'Mercedes-Benz C-Class')" class="absolute bottom-4 right-4 bg-black/80 hover:bg-white hover:text-black text-white px-3.5 py-2 rounded-xl text-xs backdrop-blur-md transition flex items-center gap-2 border border-white/20">
-                        <i class="fas fa-images"></i> Ver fotos y zoom
+                        <i class="fas fa-camera"></i> Ver fotos y zoom
                     </button>
                 </div>
 
@@ -200,7 +200,7 @@
                     </span>
 
                     <button onclick="abrirGaleria(['https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80'], 'Porsche 911 Carrera S')" class="absolute bottom-4 right-4 bg-black/80 hover:bg-white hover:text-black text-white px-3.5 py-2 rounded-xl text-xs backdrop-blur-md transition flex items-center gap-2 border border-white/20">
-                        <i class="fas fa-images"></i> Ver fotos y zoom
+                        <i class="fas fa-camera"></i> Ver fotos y zoom
                     </button>
                 </div>
 
@@ -232,12 +232,12 @@
         </div>
     </main>
 
-    <!-- 3. FORMULARIO DE CONTACTO (MÁS SEPARADO Y ESPACIOSO) -->
-    <section id="contacto" class="bg-zinc-950 border-t border-zinc-900 py-28 px-6 sm:px-8 lg:px-12 my-12">
+    <!-- 3. FORMULARIO DE CONTACTO (SÚPER HOLGADO Y DISTANCIADO ABAJO) -->
+    <section id="contacto" class="bg-zinc-950 border-t border-zinc-900 py-32 px-6 lg:px-12 mt-20">
         <div class="max-w-3xl mx-auto bg-zinc-900/80 border border-zinc-800 rounded-3xl p-8 md:p-14 shadow-2xl">
-            <div class="text-center mb-10 space-y-3">
-                <span class="text-xs uppercase tracking-[0.3em] text-red-500 font-semibold block">Atención Personalizada</span>
-                <h2 class="text-2xl md:text-4xl font-light text-white">¿Tienes alguna duda o solicitud especial?</h2>
+            <div class="text-center mb-12 space-y-3">
+                <span class="text-xs uppercase tracking-[0.3em] text-red-500 font-semibold block">ATENCIÓN PERSONALIZADA</span>
+                <h3 class="text-2xl md:text-4xl font-light text-white">¿Tienes alguna duda o solicitud especial?</h3>
                 <p class="text-gray-400 text-sm font-light leading-relaxed">Déjanos tus datos y un asesor especializado de Crestmont Motors se comunicará contigo.</p>
             </div>
 
@@ -258,22 +258,21 @@
                 </div>
                 <div class="text-center pt-4">
                     <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-semibold px-10 py-4 rounded-full text-xs tracking-widest uppercase shadow-xl transition hover:shadow-red-900/40 hover:scale-105">
-                        Enviar Consulta
+                        ENVIAR CONSULTA
                     </button>
                 </div>
             </form>
         </div>
     </section>
 
-    <!-- 4. BARRA DE CONTACTO Y REDES SOCIALES -->
-    <section class="bg-zinc-950 border-t border-zinc-900/80 py-12 px-6">
+    <!-- 4. REDES SOCIALES Y CONTACTO DIRECTO -->
+    <section class="bg-zinc-950 border-t border-zinc-900/80 py-14 px-6">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
             <div class="text-center md:text-left space-y-1">
-                <span class="text-xs uppercase tracking-widest text-red-500 font-semibold">Conéctate con Nosotros</span>
-                <p class="text-gray-300 font-light text-sm">Crestmont Motors - Atención y Redes Oficiales</p>
+                <span class="text-xs uppercase tracking-widest text-red-500 font-semibold">CANALES OFICIALES</span>
+                <p class="text-gray-300 font-light text-sm">Crestmont Motors - Atención Inmediata</p>
             </div>
 
-            <!-- Iconos de Redes Sociales -->
             <div class="flex items-center gap-4 flex-wrap justify-center">
                 <a href="https://wa.me/1234567890" target="_blank" title="WhatsApp" class="w-12 h-12 bg-zinc-900 hover:bg-green-600 border border-zinc-800 rounded-2xl flex items-center justify-center text-white text-lg transition duration-300 hover:scale-110">
                     <i class="fab fa-whatsapp"></i>
@@ -306,7 +305,7 @@
         </div>
     </footer>
 
-    <!-- MODAL / VISOR INTERACTIVO CON ZOOM PARA LAS FOTOS -->
+    <!-- MODAL PARA VER FOTOS Y ZOOM -->
     <div id="modal-galeria" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl hidden flex-col justify-between p-6">
         <div class="flex justify-between items-center max-w-6xl w-full mx-auto">
             <h4 id="modal-titulo" class="text-white text-lg font-light tracking-wide"></h4>
@@ -320,7 +319,6 @@
                 <i class="fas fa-chevron-left"></i>
             </button>
 
-            <!-- Contenedor con Zoom -->
             <div class="zoom-container rounded-2xl max-h-[70vh] overflow-hidden flex items-center justify-center">
                 <img id="modal-imagen" src="" alt="Vista previa" class="max-h-[70vh] object-contain rounded-2xl">
             </div>
@@ -333,12 +331,11 @@
         <p class="text-center text-xs text-gray-400 tracking-wider">Pasa el cursor sobre la imagen para hacer ZOOM</p>
     </div>
 
-    <!-- SCRIPTS -->
+    <!-- SCRIPTS CON RUTAS ../ -->
     <script src="../js/config.js"></script>
     <script src="../js/app.js"></script>
     <script src="../assets/js/app.js"></script>
 
-    <!-- LÓGICA DEL VISOR DE FOTOS Y ZOOM -->
     <script>
         let fotosActuales = [];
         let indiceActual = 0;
