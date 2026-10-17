@@ -5,52 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crestmont Motors - Catálogo Oficial</title>
 
-    <!-- Tailwind CSS v4 para Estilos y Maquetación -->
+    <!-- Tailwind CSS v4 -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     
-    <!-- Iconos FontAwesome (WhatsApp, Filtros, Teléfono, Ubicación) -->
+    <!-- Iconos FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Conexión a tus Hojas de Estilo Locales (Saliendo a la raíz con ../) -->
+    <!-- Estilos locales -->
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/admin.css">
     <link rel="stylesheet" href="../assets/css/style.css">
+
+    <style>
+        /* Efecto de Zoom en Imagen del Modal */
+        .zoom-container {
+            overflow: hidden;
+            cursor: zoom-in;
+        }
+        .zoom-container img {
+            transition: transform 0.4s ease;
+        }
+        .zoom-container:hover img {
+            transform: scale(1.6);
+        }
+    </style>
 </head>
 <body class="bg-black text-gray-100 font-sans antialiased min-h-screen flex flex-col justify-between">
 
-    <!-- 1. ENCABEZADO / MENÚ DE NAVEGACIÓN -->
-    <header class="bg-zinc-950/90 border-b border-zinc-800 sticky top-0 z-50 backdrop-blur-md">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+    <!-- 1. ENCABEZADO / MENÚ DE NAVEGACIÓN LIMPIO Y CENTRADO -->
+    <header class="bg-zinc-950/90 border-b border-zinc-800/80 sticky top-0 z-40 backdrop-blur-md py-3">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 h-20 flex items-center justify-between">
             
-            <!-- Logo Corporativo -->
-            <a href="../" class="flex items-center gap-3 group">
-                <img src="../assets/img/logo.png" alt="Crestmont Motors Logo" class="h-10 w-auto object-contain" onerror="this.style.display='none'">
-                <span class="text-xl md:text-2xl font-bold tracking-widest text-white uppercase group-hover:text-gray-300 transition">
+            <!-- Logo Corporativo con Eslogan -->
+            <a href="../" class="flex flex-col justify-center group">
+                <span class="text-xs uppercase tracking-[0.25em] text-red-500 font-semibold">
+                    The Crestmont Family
+                </span>
+                <span class="text-2xl md:text-3xl font-light tracking-wider text-white uppercase group-hover:text-gray-300 transition">
                     Crestmont Motors
                 </span>
             </a>
 
-            <!-- Menú de Enlaces Principal -->
-            <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
-                <!-- Enlace clave para volver a la pantalla de bienvenida -->
+            <!-- Menú de Enlaces Principal (Sin Admin) -->
+            <nav class="hidden md:flex items-center gap-10 text-sm font-medium">
                 <a href="../" class="text-gray-300 hover:text-white transition flex items-center gap-2">
-                    <i class="fas fa-arrow-left text-xs"></i> Inicio / Portal
+                    <i class="fas fa-home text-xs"></i> Inicio / Portal
                 </a>
                 <a href="#inventario" class="text-gray-300 hover:text-white transition">Modelos</a>
                 <a href="#contacto" class="text-gray-300 hover:text-white transition">Contacto</a>
-                
-                <!-- Botón Acceso Panel Admin -->
-                <a href="../admin/" class="bg-red-600 hover:bg-red-700 text-white px-5 py-2.5 rounded-full text-xs font-semibold tracking-wider uppercase transition shadow-lg hover:shadow-red-900/30">
-                    Panel Admin
-                </a>
             </nav>
 
-            <!-- Menú Móvil (Botón WhatsApp Rápido) -->
-            <div class="md:hidden flex items-center gap-3">
-                <a href="https://wa.me/1234567890" target="_blank" class="bg-green-600 hover:bg-green-700 text-white p-2.5 rounded-full text-sm">
+            <!-- Accesos Rápidos Móvil -->
+            <div class="md:hidden flex items-center gap-4">
+                <a href="https://wa.me/1234567890" target="_blank" class="bg-green-600 text-white p-2.5 rounded-full text-sm">
                     <i class="fab fa-whatsapp"></i>
                 </a>
-                <a href="../" class="text-gray-300 hover:text-white p-2 text-sm">
+                <a href="../" class="text-gray-300 p-2 text-sm">
                     <i class="fas fa-home"></i>
                 </a>
             </div>
@@ -59,31 +69,31 @@
     </header>
 
     <!-- 2. SECCIÓN PRINCIPAL / CATÁLOGO -->
-    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <main id="inventario" class="flex-grow max-w-7xl w-full mx-auto px-6 sm:px-8 lg:px-12 py-16">
         
-        <!-- Título de la Sección -->
-        <div class="text-center max-w-3xl mx-auto mb-12">
-            <span class="text-xs uppercase tracking-[0.3em] text-red-500 font-semibold block mb-2">
+        <!-- Título Principal Espacioso -->
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+            <span class="text-xs uppercase tracking-[0.35em] text-red-500 font-semibold block">
                 Inventario Disponible
             </span>
-            <h1 class="text-3xl md:text-5xl font-extralight tracking-tight text-white mb-4">
+            <h1 class="text-3xl md:text-5xl lg:text-6xl font-extralight tracking-tight text-white">
                 Encuentra tu Vehículo Ideal
             </h1>
-            <p class="text-gray-400 text-sm md:text-base font-light">
-                Explora nuestra selección exclusiva de modelos, revisa sus especificaciones completas e inicia tu consulta directa con un asesor.
+            <p class="text-gray-400 text-sm md:text-base font-light max-w-2xl mx-auto pt-2 leading-relaxed">
+                Explora nuestras selecciones exclusivas de modelos y revisa sus especificaciones completas.
             </p>
         </div>
 
-        <!-- BARRA DE BÚSQUEDA Y FILTROS -->
-        <div class="bg-zinc-900/80 border border-zinc-800 rounded-2xl p-4 mb-10 shadow-xl flex flex-col md:flex-row gap-4 justify-between items-center">
-            <div class="relative w-full md:w-96">
-                <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm"></i>
-                <input type="text" id="input-busqueda" placeholder="Buscar por marca, modelo o año..." class="w-full bg-black/60 border border-zinc-800 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-red-600 transition">
+        <!-- BARRA DE BÚSQUEDA Y FILTROS HOLGADA -->
+        <div class="bg-zinc-900/60 border border-zinc-800 rounded-2xl p-6 mb-20 shadow-2xl flex flex-col md:flex-row gap-6 justify-between items-center max-w-5xl mx-auto">
+            <div class="relative w-full md:w-1/2">
+                <i class="fas fa-search absolute left-5 top-1/2 -translate-y-1/2 text-gray-500 text-sm"></i>
+                <input type="text" id="input-busqueda" placeholder="Buscar por marca, modelo o año..." class="w-full bg-black/80 border border-zinc-800 rounded-xl pl-12 pr-5 py-3.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-red-600 transition">
             </div>
             
-            <div class="flex items-center gap-3 w-full md:w-auto justify-end">
-                <span class="text-xs text-gray-400 uppercase tracking-wider hidden md:inline">Filtrar:</span>
-                <select id="filtro-categoria" class="bg-black/60 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm text-gray-300 focus:outline-none focus:border-red-600 transition w-full md:w-auto">
+            <div class="flex items-center gap-4 w-full md:w-auto justify-end">
+                <span class="text-xs text-gray-400 uppercase tracking-widest hidden md:inline">Filtrar:</span>
+                <select id="filtro-categoria" class="bg-black/80 border border-zinc-800 rounded-xl px-5 py-3.5 text-sm text-gray-300 focus:outline-none focus:border-red-600 transition w-full md:w-auto">
                     <option value="todos">Todos los Modelos</option>
                     <option value="sedan">Sedanes</option>
                     <option value="suv">SUVs y Camionetas</option>
@@ -92,78 +102,127 @@
             </div>
         </div>
 
-        <!-- CONTENEDOR DONDE TU JAVASCRIPT (APP.JS) INYECTA LOS AUTOS -->
-        <div id="contenedor-vehiculos" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- TARJETAS DE VEHÍCULOS -->
+        <div id="contenedor-vehiculos" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
             
-            <!-- TARJETA DE MUESTRA 1 (Tu app.js reemplazará o multiplicará esto) -->
-            <div class="bg-zinc-900/60 border border-zinc-800 rounded-2xl overflow-hidden shadow-2xl flex flex-col hover:border-zinc-700 transition duration-300 group">
-                <!-- Carrusel / Galería de Imagen del Auto -->
-                <div class="relative h-60 bg-zinc-950 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=800&q=80" alt="Toyota Camry" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                    <span class="absolute top-3 left-3 bg-red-600 text-white text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full shadow-md">
+            <!-- TARJETA 1 (TOYOTA CAMRY) -->
+            <div class="bg-zinc-900/50 border border-zinc-800/90 rounded-3xl overflow-hidden shadow-2xl flex flex-col hover:border-zinc-700 transition duration-500 group">
+                <div class="relative h-64 bg-zinc-950 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=800&q=80" alt="Toyota Camry" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                    <span class="absolute top-4 left-4 bg-red-600 text-white text-[10px] font-bold tracking-widest uppercase px-3.5 py-1.5 rounded-full shadow-lg">
                         Disponible
                     </span>
-                    <span class="absolute top-3 right-3 bg-black/70 backdrop-blur-md text-gray-200 text-xs font-mono px-3 py-1 rounded-full border border-white/10">
+                    <span class="absolute top-4 right-4 bg-black/70 backdrop-blur-md text-gray-200 text-xs font-mono px-3.5 py-1.5 rounded-full border border-white/10">
                         2024
                     </span>
+
+                    <!-- Botón Flotante para Abrir Visor de Fotos con Zoom -->
+                    <button onclick="abrirGaleria(['https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=1200&q=80', 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1200&q=80'], 'Toyota Camry Executive')" class="absolute bottom-4 right-4 bg-black/80 hover:bg-white hover:text-black text-white px-3.5 py-2 rounded-xl text-xs backdrop-blur-md transition flex items-center gap-2 border border-white/20">
+                        <i class="fas fa-images"></i> Ver fotos y zoom
+                    </button>
                 </div>
 
-                <!-- Detalles Técnicos del Auto -->
-                <div class="p-6 flex-1 flex flex-col justify-between">
+                <div class="p-8 flex-1 flex flex-col justify-between space-y-6">
                     <div>
-                        <h3 class="text-xl font-bold text-white mb-1 group-hover:text-red-500 transition">Toyota Camry Executive</h3>
-                        <p class="text-gray-400 text-xs mb-4 line-clamp-2">Motor 2.5L 4-Cilindros, Transmisión Automática de 8 velocidades, interiores en piel y paquete de seguridad completo.</p>
+                        <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-red-500 transition">Toyota Camry Executive</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6">Motor 2.5L 4-Cilindros, transmisión automática de 8 velocidades, interiores de piel y paquete completo de asistencias.</p>
 
-                        <!-- Especificaciones Rápidas -->
-                        <div class="grid grid-cols-2 gap-2 py-3 border-y border-zinc-800 text-xs text-gray-400 mb-5">
-                            <div class="flex items-center gap-2"><i class="fas fa-car text-zinc-500"></i> Transmisión Auto</div>
-                            <div class="flex items-center gap-2"><i class="fas fa-gas-pump text-zinc-500"></i> Gasolina</div>
-                            <div class="flex items-center gap-2"><i class="fas fa-tachometer-alt text-zinc-500"></i> 0 km</div>
-                            <div class="flex items-center gap-2"><i class="fas fa-shield-alt text-zinc-500"></i> Garantía</div>
+                        <div class="grid grid-cols-2 gap-4 py-4 border-y border-zinc-800/80 text-xs text-gray-300">
+                            <div class="flex items-center gap-2.5"><i class="fas fa-car text-red-500"></i> Automático</div>
+                            <div class="flex items-center gap-2.5"><i class="fas fa-gas-pump text-red-500"></i> Gasolina</div>
+                            <div class="flex items-center gap-2.5"><i class="fas fa-tachometer-alt text-red-500"></i> 0 km</div>
+                            <div class="flex items-center gap-2.5"><i class="fas fa-shield-alt text-red-500"></i> Garantía</div>
                         </div>
                     </div>
 
-                    <!-- Precio y Botón de WhatsApp Directo -->
                     <div class="flex items-center justify-between pt-2">
                         <div>
-                            <span class="text-[10px] uppercase tracking-wider text-gray-500 block">Precio Desde</span>
+                            <span class="text-[10px] uppercase tracking-widest text-gray-500 block mb-1">Precio</span>
                             <span class="text-2xl font-extrabold text-white tracking-tight">$32,500</span>
                         </div>
-                        <a href="https://wa.me/1234567890?text=Hola,%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20el%20Toyota%20Camry%202024" target="_blank" class="bg-green-600 hover:bg-green-500 text-white px-4 py-2.5 rounded-xl text-xs font-bold tracking-wider uppercase flex items-center gap-2 shadow-lg shadow-green-900/20 transition">
+                        <a href="https://wa.me/1234567890?text=Hola,%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20el%20Toyota%20Camry%202024" target="_blank" class="bg-green-600 hover:bg-green-500 text-white px-5 py-3 rounded-2xl text-xs font-bold tracking-wider uppercase flex items-center gap-2 shadow-lg transition hover:scale-105">
                             <i class="fab fa-whatsapp text-sm"></i> WhatsApp
                         </a>
                     </div>
                 </div>
             </div>
 
-            <!-- TARJETA DE MUESTRA 2 -->
-            <div class="bg-zinc-900/60 border border-zinc-800 rounded-2xl overflow-hidden shadow-2xl flex flex-col hover:border-zinc-700 transition duration-300 group">
-                <div class="relative h-60 bg-zinc-950 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80" alt="Mercedes Benz C-Class" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                    <span class="absolute top-3 left-3 bg-zinc-800 text-gray-300 text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full shadow-md">
+            <!-- TARJETA 2 (MERCEDES-BENZ) -->
+            <div class="bg-zinc-900/50 border border-zinc-800/90 rounded-3xl overflow-hidden shadow-2xl flex flex-col hover:border-zinc-700 transition duration-500 group">
+                <div class="relative h-64 bg-zinc-950 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80" alt="Mercedes Benz C-Class" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                    <span class="absolute top-4 left-4 bg-zinc-800 text-gray-200 text-[10px] font-bold tracking-widest uppercase px-3.5 py-1.5 rounded-full shadow-lg">
                         Importación
                     </span>
-                    <span class="absolute top-3 right-3 bg-black/70 backdrop-blur-md text-gray-200 text-xs font-mono px-3 py-1 rounded-full border border-white/10">
+                    <span class="absolute top-4 right-4 bg-black/70 backdrop-blur-md text-gray-200 text-xs font-mono px-3.5 py-1.5 rounded-full border border-white/10">
                         2023
                     </span>
+
+                    <button onclick="abrirGaleria(['https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1200&q=80'], 'Mercedes-Benz C-Class')" class="absolute bottom-4 right-4 bg-black/80 hover:bg-white hover:text-black text-white px-3.5 py-2 rounded-xl text-xs backdrop-blur-md transition flex items-center gap-2 border border-white/20">
+                        <i class="fas fa-images"></i> Ver fotos y zoom
+                    </button>
                 </div>
-                <div class="p-6 flex-1 flex flex-col justify-between">
+
+                <div class="p-8 flex-1 flex flex-col justify-between space-y-6">
                     <div>
-                        <h3 class="text-xl font-bold text-white mb-1 group-hover:text-red-500 transition">Mercedes-Benz C-Class</h3>
-                        <p class="text-gray-400 text-xs mb-4 line-clamp-2">Sedán de lujo, acabados premium en madera y aluminio, techo panorámico y asistente de conducción inteligente.</p>
-                        <div class="grid grid-cols-2 gap-2 py-3 border-y border-zinc-800 text-xs text-gray-400 mb-5">
-                            <div class="flex items-center gap-2"><i class="fas fa-car text-zinc-500"></i> Automático</div>
-                            <div class="flex items-center gap-2"><i class="fas fa-gas-pump text-zinc-500"></i> Híbrido</div>
-                            <div class="flex items-center gap-2"><i class="fas fa-tachometer-alt text-zinc-500"></i> 12,000 km</div>
-                            <div class="flex items-center gap-2"><i class="fas fa-check-circle text-zinc-500"></i> Certificado</div>
+                        <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-red-500 transition">Mercedes-Benz C-Class</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6">Sedán de lujo, acabados premium en madera y aluminio, techo panorámico y sistema MBUX.</p>
+
+                        <div class="grid grid-cols-2 gap-4 py-4 border-y border-zinc-800/80 text-xs text-gray-300">
+                            <div class="flex items-center gap-2.5"><i class="fas fa-car text-red-500"></i> Automático</div>
+                            <div class="flex items-center gap-2.5"><i class="fas fa-leaf text-red-500"></i> Híbrido</div>
+                            <div class="flex items-center gap-2.5"><i class="fas fa-tachometer-alt text-red-500"></i> 12,000 km</div>
+                            <div class="flex items-center gap-2.5"><i class="fas fa-check-circle text-red-500"></i> Certificado</div>
                         </div>
                     </div>
+
                     <div class="flex items-center justify-between pt-2">
                         <div>
-                            <span class="text-[10px] uppercase tracking-wider text-gray-500 block">Precio Especial</span>
+                            <span class="text-[10px] uppercase tracking-widest text-gray-500 block mb-1">Precio</span>
                             <span class="text-2xl font-extrabold text-white tracking-tight">$48,000</span>
                         </div>
-                        <a href="https://wa.me/1234567890?text=Hola,%20deseo%20m%C3%A1s%20detalles%20del%20Mercedes-Benz%20C-Class" target="_blank" class="bg-green-600 hover:bg-green-500 text-white px-4 py-2.5 rounded-xl text-xs font-bold tracking-wider uppercase flex items-center gap-2 shadow-lg shadow-green-900/20 transition">
+                        <a href="https://wa.me/1234567890?text=Hola,%20deseo%20m%C3%A1s%20detalles%20del%20Mercedes-Benz%20C-Class" target="_blank" class="bg-green-600 hover:bg-green-500 text-white px-5 py-3 rounded-2xl text-xs font-bold tracking-wider uppercase flex items-center gap-2 shadow-lg transition hover:scale-105">
+                            <i class="fab fa-whatsapp text-sm"></i> WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TARJETA 3 (PORSCHE 911) -->
+            <div class="bg-zinc-900/50 border border-zinc-800/90 rounded-3xl overflow-hidden shadow-2xl flex flex-col hover:border-zinc-700 transition duration-500 group">
+                <div class="relative h-64 bg-zinc-950 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80" alt="Porsche 911" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                    <span class="absolute top-4 left-4 bg-red-600 text-white text-[10px] font-bold tracking-widest uppercase px-3.5 py-1.5 rounded-full shadow-lg">
+                        Exclusivo
+                    </span>
+                    <span class="absolute top-4 right-4 bg-black/70 backdrop-blur-md text-gray-200 text-xs font-mono px-3.5 py-1.5 rounded-full border border-white/10">
+                        2024
+                    </span>
+
+                    <button onclick="abrirGaleria(['https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80'], 'Porsche 911 Carrera S')" class="absolute bottom-4 right-4 bg-black/80 hover:bg-white hover:text-black text-white px-3.5 py-2 rounded-xl text-xs backdrop-blur-md transition flex items-center gap-2 border border-white/20">
+                        <i class="fas fa-images"></i> Ver fotos y zoom
+                    </button>
+                </div>
+
+                <div class="p-8 flex-1 flex flex-col justify-between space-y-6">
+                    <div>
+                        <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-red-500 transition">Porsche 911 Carrera S</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6">Deportivo de alto rendimiento, motor twin-turbo 6 cilindros, aceleración de 0 a 100 km/h en 3.5s.</p>
+
+                        <div class="grid grid-cols-2 gap-4 py-4 border-y border-zinc-800/80 text-xs text-gray-300">
+                            <div class="flex items-center gap-2.5"><i class="fas fa-car text-red-500"></i> PDK 8-Vel</div>
+                            <div class="flex items-center gap-2.5"><i class="fas fa-bolt text-red-500"></i> 450 HP</div>
+                            <div class="flex items-center gap-2.5"><i class="fas fa-tachometer-alt text-red-500"></i> 0 km</div>
+                            <div class="flex items-center gap-2.5"><i class="fas fa-star text-red-500"></i> Edición S</div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between pt-2">
+                        <div>
+                            <span class="text-[10px] uppercase tracking-widest text-gray-500 block mb-1">Precio</span>
+                            <span class="text-2xl font-extrabold text-white tracking-tight">$125,000</span>
+                        </div>
+                        <a href="https://wa.me/1234567890?text=Hola,%20deseo%20m%C3%A1s%20detalles%20del%20Porsche%20911" target="_blank" class="bg-green-600 hover:bg-green-500 text-white px-5 py-3 rounded-2xl text-xs font-bold tracking-wider uppercase flex items-center gap-2 shadow-lg transition hover:scale-105">
                             <i class="fab fa-whatsapp text-sm"></i> WhatsApp
                         </a>
                     </div>
@@ -173,31 +232,32 @@
         </div>
     </main>
 
-    <!-- 3. FORMULARIO DE CONTACTO / ATENCIÓN AL CLIENTE -->
-    <section id="contacto" class="bg-zinc-950 border-t border-zinc-900 py-16 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-4xl mx-auto bg-zinc-900/90 border border-zinc-800 rounded-3xl p-8 md:p-12 shadow-2xl">
-            <div class="text-center mb-8">
-                <h2 class="text-2xl md:text-4xl font-light text-white mb-2">¿Tienes alguna duda o solicitud especial?</h2>
-                <p class="text-gray-400 text-sm">Déjanos tus datos y un asesor especializado de Crestmont Motors te atenderá de inmediato.</p>
+    <!-- 3. FORMULARIO DE CONTACTO (MÁS SEPARADO Y ESPACIOSO) -->
+    <section id="contacto" class="bg-zinc-950 border-t border-zinc-900 py-28 px-6 sm:px-8 lg:px-12 my-12">
+        <div class="max-w-3xl mx-auto bg-zinc-900/80 border border-zinc-800 rounded-3xl p-8 md:p-14 shadow-2xl">
+            <div class="text-center mb-10 space-y-3">
+                <span class="text-xs uppercase tracking-[0.3em] text-red-500 font-semibold block">Atención Personalizada</span>
+                <h2 class="text-2xl md:text-4xl font-light text-white">¿Tienes alguna duda o solicitud especial?</h2>
+                <p class="text-gray-400 text-sm font-light leading-relaxed">Déjanos tus datos y un asesor especializado de Crestmont Motors se comunicará contigo.</p>
             </div>
 
             <form id="formulario-contacto" class="space-y-6">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                         <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2">Nombre Completo</label>
-                        <input type="text" placeholder="Ej. Juan Pérez" required class="w-full bg-black/60 border border-zinc-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-red-600 transition">
+                        <input type="text" placeholder="Ej. Juan Pérez" required class="w-full bg-black/80 border border-zinc-800 rounded-xl px-5 py-3.5 text-sm text-white focus:outline-none focus:border-red-600 transition">
                     </div>
                     <div>
-                        <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2">Número Telefónico / WhatsApp</label>
-                        <input type="tel" placeholder="+1 (555) 000-0000" required class="w-full bg-black/60 border border-zinc-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-red-600 transition">
+                        <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2">Teléfono / WhatsApp</label>
+                        <input type="tel" placeholder="+1 (555) 000-0000" required class="w-full bg-black/80 border border-zinc-800 rounded-xl px-5 py-3.5 text-sm text-white focus:outline-none focus:border-red-600 transition">
                     </div>
                 </div>
                 <div>
-                    <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2">Vehículo de Interés / Mensaje</label>
-                    <textarea rows="4" placeholder="Cuéntanos qué vehículo buscas o qué consulta tienes..." required class="w-full bg-black/60 border border-zinc-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-red-600 transition"></textarea>
+                    <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2">Mensaje o Vehículo de Interés</label>
+                    <textarea rows="4" placeholder="Cuéntanos qué modelo buscas o qué duda tienes..." required class="w-full bg-black/80 border border-zinc-800 rounded-xl px-5 py-3.5 text-sm text-white focus:outline-none focus:border-red-600 transition"></textarea>
                 </div>
-                <div class="text-center">
-                    <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-medium px-8 py-3.5 rounded-full text-sm tracking-wider uppercase shadow-xl transition hover:shadow-red-900/40">
+                <div class="text-center pt-4">
+                    <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-semibold px-10 py-4 rounded-full text-xs tracking-widest uppercase shadow-xl transition hover:shadow-red-900/40 hover:scale-105">
                         Enviar Consulta
                     </button>
                 </div>
@@ -205,21 +265,106 @@
         </div>
     </section>
 
-    <!-- 4. PIE DE PÁGINA (FOOTER) -->
-    <footer class="bg-black border-t border-zinc-900 py-10 px-4 text-center text-xs text-gray-500">
+    <!-- 4. BARRA DE CONTACTO Y REDES SOCIALES -->
+    <section class="bg-zinc-950 border-t border-zinc-900/80 py-12 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+            <div class="text-center md:text-left space-y-1">
+                <span class="text-xs uppercase tracking-widest text-red-500 font-semibold">Conéctate con Nosotros</span>
+                <p class="text-gray-300 font-light text-sm">Crestmont Motors - Atención y Redes Oficiales</p>
+            </div>
+
+            <!-- Iconos de Redes Sociales -->
+            <div class="flex items-center gap-4 flex-wrap justify-center">
+                <a href="https://wa.me/1234567890" target="_blank" title="WhatsApp" class="w-12 h-12 bg-zinc-900 hover:bg-green-600 border border-zinc-800 rounded-2xl flex items-center justify-center text-white text-lg transition duration-300 hover:scale-110">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="mailto:contacto@crestmontmotors.com" title="Correo Electrónico" class="w-12 h-12 bg-zinc-900 hover:bg-red-600 border border-zinc-800 rounded-2xl flex items-center justify-center text-white text-lg transition duration-300 hover:scale-110">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="https://instagram.com" target="_blank" title="Instagram" class="w-12 h-12 bg-zinc-900 hover:bg-pink-600 border border-zinc-800 rounded-2xl flex items-center justify-center text-white text-lg transition duration-300 hover:scale-110">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://facebook.com" target="_blank" title="Facebook" class="w-12 h-12 bg-zinc-900 hover:bg-blue-600 border border-zinc-800 rounded-2xl flex items-center justify-center text-white text-lg transition duration-300 hover:scale-110">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://tiktok.com" target="_blank" title="TikTok" class="w-12 h-12 bg-zinc-900 hover:bg-zinc-700 border border-zinc-800 rounded-2xl flex items-center justify-center text-white text-lg transition duration-300 hover:scale-110">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. PIE DE PÁGINA (FOOTER) -->
+    <footer class="bg-black border-t border-zinc-900 py-8 px-6 text-center text-xs text-gray-500">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
             <p>&copy; 2026 Crestmont Motors. Todos los derechos reservados.</p>
             <div class="flex gap-6">
                 <a href="../" class="hover:text-white transition">Portal Principal</a>
                 <a href="#inventario" class="hover:text-white transition">Modelos</a>
-                <a href="../admin/" class="hover:text-white transition">Administración</a>
+                <a href="#contacto" class="hover:text-white transition">Contacto</a>
             </div>
         </div>
     </footer>
 
-    <!-- CONEXIÓN A TUS SCRIPTS ORIGINALES DE JS (Ajustados con ../ para salir de catalogo/) -->
+    <!-- MODAL / VISOR INTERACTIVO CON ZOOM PARA LAS FOTOS -->
+    <div id="modal-galeria" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl hidden flex-col justify-between p-6">
+        <div class="flex justify-between items-center max-w-6xl w-full mx-auto">
+            <h4 id="modal-titulo" class="text-white text-lg font-light tracking-wide"></h4>
+            <button onclick="cerrarGaleria()" class="text-gray-400 hover:text-white text-2xl px-3 py-1">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div class="relative flex-1 flex items-center justify-center my-4 max-w-5xl mx-auto w-full">
+            <button onclick="cambiarFoto(-1)" class="absolute left-2 z-10 bg-black/60 hover:bg-white hover:text-black text-white p-3 rounded-full backdrop-blur-md transition">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+
+            <!-- Contenedor con Zoom -->
+            <div class="zoom-container rounded-2xl max-h-[70vh] overflow-hidden flex items-center justify-center">
+                <img id="modal-imagen" src="" alt="Vista previa" class="max-h-[70vh] object-contain rounded-2xl">
+            </div>
+
+            <button onclick="cambiarFoto(1)" class="absolute right-2 z-10 bg-black/60 hover:bg-white hover:text-black text-white p-3 rounded-full backdrop-blur-md transition">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+
+        <p class="text-center text-xs text-gray-400 tracking-wider">Pasa el cursor sobre la imagen para hacer ZOOM</p>
+    </div>
+
+    <!-- SCRIPTS -->
     <script src="../js/config.js"></script>
     <script src="../js/app.js"></script>
     <script src="../assets/js/app.js"></script>
+
+    <!-- LÓGICA DEL VISOR DE FOTOS Y ZOOM -->
+    <script>
+        let fotosActuales = [];
+        let indiceActual = 0;
+
+        function abrirGaleria(fotos, titulo) {
+            fotosActuales = fotos;
+            indiceActual = 0;
+            document.getElementById('modal-titulo').innerText = titulo;
+            actualizarFoto();
+            document.getElementById('modal-galeria').classList.remove('hidden');
+            document.getElementById('modal-galeria').classList.add('flex');
+        }
+
+        function cerrarGaleria() {
+            document.getElementById('modal-galeria').classList.add('hidden');
+            document.getElementById('modal-galeria').classList.remove('flex');
+        }
+
+        function cambiarFoto(direccion) {
+            indiceActual = (indiceActual + direccion + fotosActuales.length) % fotosActuales.length;
+            actualizarFoto();
+        }
+
+        function actualizarFoto() {
+            document.getElementById('modal-imagen').src = fotosActuales[indiceActual];
+        }
+    </script>
 </body>
 </html>
