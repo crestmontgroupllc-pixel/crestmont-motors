@@ -1,99 +1,161 @@
-const defaultVehicles = [
-    {
-        id: "1",
-        title: "Toyota Fortuner 2.7 VVTi",
-        year: 2023,
-        price: 45000,
-        km: "28,000 km",
-        trans: "Automática",
-        status: "disponible",
-        images: [
-            "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80"
-        ]
-    }
-];
+// Variable global para almacenar los vehículos cargados y control de galería modal
+let vehiculosGlobal = [];
+let fotosVehiculoActual = [];
+let indiceFotoActual = 0;
 
-function getStoredVehicles() {
-    const data = localStorage.getItem("crestmont_vehicles");
-    return data ? JSON.parse(data) : defaultVehicles;
-}
-
-let activeFilter = "todos";
-
-function renderCatalog() {
-    const grid = document.getElementById("vehicle-grid");
-    if (!grid) return;
-
-    const vehicles = getStoredVehicles();
-    grid.innerHTML = "";
-
-    const filtered = vehicles.filter(v => activeFilter === "todos" || v.status === activeFilter);
-
-    if (filtered.length === 0) {
-        grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted);">No hay vehículos registrados en esta categoría.</p>`;
-        return;
-    }
-
-    filtered.forEach(car => {
-        const card = document.createElement("div");
-        card.className = "car-card";
-
-        const badgeClass = `badge-${car.status}`;
-        const whatsappMsg = encodeURIComponent(`Hola Crestmont Motors, estoy interesado en el vehículo: ${car.title} (${car.year}) publicado en $${car.price.toLocaleString()}.`);
-
-        card.innerHTML = `
-            <div class="carousel-container">
-                <span class="status-badge ${badgeClass}">${car.status}</span>
-                <img src="${car.images[0]}" class="carousel-img" id="img-${car.id}" alt="${car.title}">
-                ${car.images.length > 1 ? `
-                    <button class="carousel-btn prev" onclick="prevImg('${car.id}')"><i class="fa-solid fa-chevron-left"></i></button>
-                    <button class="carousel-btn next" onclick="nextImg('${car.id}')"><i class="fa-solid fa-chevron-right"></i></button>
-                ` : ''}
-            </div>
-            <div class="car-details">
-                <h3>${car.title}</h3>
-                <div class="car-price">$${car.price.toLocaleString()}</div>
-                <div class="car-specs">
-                    <span><i class="fa-solid fa-calendar"></i> ${car.year}</span>
-                    <span><i class="fa-solid fa-gauge"></i> ${car.km}</span>
-                    <span><i class="fa-solid fa-gear"></i> ${car.trans}</span>
-                </div>
-                <a href="https://wa.me/584120000000?text=${whatsappMsg}" target="_blank" class="btn-whatsapp">
-                    <i class="fa-brands fa-whatsapp"></i> Consultar por WhatsApp
-                </a>
-            </div>
-        `;
-        grid.appendChild(card);
-    });
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-    renderCatalog();
-
-    document.querySelectorAll(".filter-btn").forEach(btn => {
-        btn.addEventListener("click", (e) => {
-            document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
-            e.target.classList.add("active");
-            activeFilter = e.target.getAttribute("data-filter");
-            renderCatalog();
-        });
-    });
+document.addEventListener("DOMContentLoaded", function () {
+  cargarInventarioPublico();
+  aplicarTextosConfig();
 });
 
-const imgIndexes = {};
-function nextImg(carId) {
-    const vehicles = getStoredVehicles();
-    const car = vehicles.find(v => v.id === carId);
-    if (!car) return;
-    imgIndexes[carId] = ((imgIndexes[carId] || 0) + 1) % car.images.length;
-    document.getElementById(`img-${carId}`).src = car.images[imgIndexes[carId]];
+// Cargar inventario desde localStorage (o datos por defecto si está vacío)
+function cargarInventarioPublico() {
+  const guardados = localStorage.getItem("crestmont_inventario");
+  
+  if (guardados) {
+    vehiculosGlobal = JSON.parse(guardados);
+  } else {
+    // Vehículos de demostración iniciales
+    vehiculosGlobal = [
+      {
+        id: 1,
+        marca: "Toyota",
+        modelo: "Hilux GR Sport",
+        ano: 2024,
+        precio: 54000,
+        km: "5,000 km",
+        motor: "2.8L Turbo Diesel",
+        transmision: "Automática",
+        descripcion: "Vehículo en estado impecable, rigorosa inspección de 150 puntos superada.",
+        fotos: ["https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80"]
+      },
+      {
+        id: 2,
+        marca: "Ford",
+        modelo: "Mustang GT Premium",
+        ano: 2023,
+        precio: 62000,
+        km: "12,000 km",
+        motor: "5.0L V8",
+        transmision: "Automática",
+        descripcion: "Exclusiva potencia americana, diseño deportivo y acabados de máxima categoría.",
+        fotos: ["https://images.unsplash.com/photo-1584345604476-8ec5e12e42dd?auto=format&fit=crop&w=800&q=80"]
+      }
+    ];
+    localStorage.setItem("crestmont_inventario", JSON.stringify(vehiculosGlobal));
+  }
+
+  mostrarVehiculos(vehiculosGlobal);
 }
 
-function prevImg(carId) {
-    const vehicles = getStoredVehicles();
-    const car = vehicles.find(v => v.id === carId);
-    if (!car) return;
-    imgIndexes[carId] = ((imgIndexes[carId] || 0) - 1 + car.images.length) % car.images.length;
-    document.getElementById(`img-${carId}`).src = car.images[imgIndexes[carId]];
+// Renderizar vehículos en la grilla pública
+function mostrarVehiculos(lista) {
+  const contenedor = document.getElementById("catalogo-publico");
+  contenedor.innerHTML = "";
+
+  if (lista.length === 0) {
+    contenedor.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: #888; padding: 40px;">No se encontraron vehículos disponibles con los filtros seleccionados.</p>`;
+    return;
+  }
+
+  lista.forEach((car, index) => {
+    let fotoPrincipal = (car.fotos && car.fotos.length > 0) ? car.fotos[0] : "https://via.placeholder.com/400x250?text=Crestmont+Motors";
+    let totalFotos = car.fotos ? car.fotos.length : 1;
+
+    let card = document.createElement("div");
+    card.className = "car-card";
+    card.innerHTML = `
+      <div class="car-thumb-container" onclick="abrirModalGaleria(${index})">
+        <img src="${fotoPrincipal}" alt="${car.marca} ${car.modelo}">
+        <div class="photo-badge">📷 ${totalFotos} ${totalFotos === 1 ? 'Foto' : 'Fotos'}</div>
+      </div>
+      <div class="car-details">
+        <div class="car-title">${car.marca} ${car.modelo} (${car.ano})</div>
+        <div class="car-price">$${Number(car.precio).toLocaleString()}</div>
+        <div class="car-info"><strong>Kilometraje:</strong> ${car.km || 'N/D'}</div>
+        <div class="car-info"><strong>Motor:</strong> ${car.motor || 'N/D'}</div>
+        <div class="car-info"><strong>Transmisión:</strong> ${car.transmision || 'N/D'}</div>
+        <div class="car-desc">${car.descripcion || 'Sin descripción adicional.'}</div>
+      </div>
+    `;
+    contenedor.appendChild(card);
+  });
+}
+
+// Aplicar filtros de búsqueda interactivos
+function aplicarFiltros() {
+  const texto = document.getElementById("filtro-texto").value.toLowerCase();
+  const ano = document.getElementById("filtro-ano").value;
+  const precioMax = parseFloat(document.getElementById("filtro-precio").value) || Infinity;
+
+  const filtrados = vehiculosGlobal.filter(car => {
+    const textoMatch = `${car.marca} ${car.modelo} ${car.descripcion}`.toLowerCase().includes(texto);
+    const anoMatch = ano === "" || String(car.ano) === ano;
+    const precioMatch = Number(car.precio) <= precioMax;
+
+    return textoMatch && anoMatch && precioMatch;
+  });
+
+  mostrarVehiculos(filtrados);
+}
+
+// Aplicar datos del archivo config.js a la interfaz
+function aplicarTextosConfig() {
+  if (typeof CONFIG_EMPRESA !== "undefined") {
+    document.getElementById("txt-tel").innerText = CONFIG_EMPRESA.telefono;
+    document.getElementById("txt-correo").innerText = CONFIG_EMPRESA.correoCorporativo;
+    document.getElementById("txt-ubicacion").innerText = CONFIG_EMPRESA.ubicacion;
+    
+    // Enlaces dinámicos a WhatsApp
+    const urlWp = `https://wa.me/${CONFIG_EMPRESA.whatsappNumero}?text=Hola,%20estoy%20interesado%20en%20los%20vehículos%20de%20Crestmont%20Motors`;
+    document.getElementById("btn-whatsapp-link").href = urlWp;
+    document.getElementById("link-tel-directo").href = urlWp;
+  }
+}
+
+// Funciones para la Galería Modal Independiente
+function abrirModalGaleria(indexVehiculo) {
+  const vehiculo = vehiculosGlobal[indexVehiculo];
+  if (!vehiculo || !vehiculo.fotos || vehiculo.fotos.length === 0) return;
+
+  fotosVehiculoActual = vehiculo.fotos;
+  indiceFotoActual = 0;
+
+  actualizarImagenModal();
+  document.getElementById("modal-galeria").style.display = "flex";
+}
+
+function actualizarImagenModal() {
+  document.getElementById("modal-img").src = fotosVehiculoActual[indiceFotoActual];
+  document.getElementById("modal-counter").innerText = `${indiceFotoActual + 1} / ${fotosVehiculoActual.length}`;
+}
+
+function cambiarFotoModal(direccion) {
+  indiceFotoActual += direccion;
+  if (indiceFotoActual < 0) {
+    indiceFotoActual = fotosVehiculoActual.length - 1;
+  } else if (indiceFotoActual >= fotosVehiculoActual.length) {
+    indiceFotoActual = 0;
+  }
+  actualizarImagenModal();
+}
+
+function cerrarModal() {
+  document.getElementById("modal-galeria").style.display = "none";
+}
+
+// Manejador del formulario de asesoría que redirige ordenado a WhatsApp
+function enviarAsesoria(event) {
+  event.preventDefault();
+  const nombre = document.getElementById("asesoria-nombre").value;
+  const tel = document.getElementById("asesoria-tel").value;
+  const vehiculo = document.getElementById("asesoria-vehiculo").value || "Consulta General";
+  const mensaje = document.getElementById("asesoria-mensaje").value;
+
+  const textoWp = `Hola, mi nombre es *${nombre}* (Tel: ${tel}). Estoy interesado en asesoría para: *${vehiculo}*. Mensaje: ${mensaje}`;
+  
+  let numeroWp = (typeof CONFIG_EMPRESA !== "undefined" && CONFIG_EMPRESA.whatsappNumero) ? CONFIG_EMPRESA.whatsappNumero : "13170000000";
+  const urlWp = `https://wa.me/${numeroWp}?text=${encodeURIComponent(textoWp)}`;
+  
+  window.open(urlWp, '_blank');
 }
