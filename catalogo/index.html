@@ -1,174 +1,225 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Crestmont Motors - Exclusividad, Potencia y Elegancia</title>
-  <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crestmont Motors - Catálogo Oficial</title>
 
-  <!-- ENCABEZADO Y MENÚ PÚBLICO -->
-  <header>
-    <div class="logo-area">
-      <h1>CRESTMONT MOTORS</h1>
-      <p>Exclusividad y Potencia</p>
-    </div>
-    <nav>
-      <a href="#inicio">Inicio</a>
-      <a href="#inventario">Inventario</a>
-      <a href="#contacto">Contacto</a>
-    </nav>
-  </header>
-
-  <!-- BANNER PRINCIPAL: LOGO TRANSPARENTE GRANDE + MARCA + ESLOGAN -->
-  <section class="main-brand-banner" id="inicio">
-    <div class="brand-logo-container">
-      
-      <!-- 1. LOGO TRANSPARENTE MIMETIZADO SOBRE EL FONDO -->
-      <img src="assets/img/tu-logo.png" alt="Crestmont Motors Logo" class="main-brand-logo" onerror="this.style.display='none'">
-      
-      <!-- 2. NOMBRE DE LA MARCA -->
-      <h1 class="brand-title">Crestmont <span>Motors</span></h1>
-      
-      <div class="brand-divider"></div>
-      
-      <!-- 3. ESLOGAN OFICIAL -->
-      <p class="brand-slogan">Exclusividad, Potencia y Elegancia</p>
-    </div>
-  </section>
-
-  <!-- CONTENEDOR PRINCIPAL E INVENTARIO -->
-  <div class="container" id="inventario">
+    <!-- Tailwind CSS v4 para Estilos y Maquetación -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     
-    <div class="section-title">Catálogo e Inventario Disponible</div>
+    <!-- Iconos FontAwesome (WhatsApp, Filtros, Teléfono, Ubicación) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- FILTROS DE BÚSQUEDA -->
-    <div class="filters-bar">
-      <div class="filter-group">
-        <label>Buscar por Marca / Modelo:</label>
-        <input type="text" id="filtro-texto" placeholder="Buscar vehículo..." oninput="aplicarFiltros()">
-      </div>
-      <div class="filter-group">
-        <label>Año:</label>
-        <select id="filtro-ano" onchange="aplicarFiltros()">
-          <option value="">Todos los años</option>
-          <option value="2024">2024</option>
-          <option value="2023">2023</option>
-          <option value="2022">2022</option>
-          <option value="2021">2021 o anterior</option>
-        </select>
-      </div>
-      <div class="filter-group">
-        <label>Precio Máximo ($):</label>
-        <input type="number" id="filtro-precio" placeholder="Precio máximo" oninput="aplicarFiltros()">
-      </div>
-    </div>
+    <!-- Conexión a tus Hojas de Estilo Locales (Saliendo a la raíz con ../) -->
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body class="bg-black text-gray-100 font-sans antialiased min-h-screen flex flex-col justify-between">
 
-    <!-- GRILLA DE VEHÍCULOS -->
-    <div class="grid-vehiculos" id="catalogo-publico"></div>
-
-    <!-- SECCIÓN DE CONTACTO, WHATSAPP, REDES Y ASESORÍA -->
-    <div class="contact-section" id="contacto">
-      <h3>Canales de Atención y Asesoría Exclusiva</h3>
-      
-      <div class="contact-grid-modern">
-        
-        <!-- COLUMNA IZQUIERDA -->
-        <div class="contact-info-col">
-          
-          <!-- Teléfono y WhatsApp -->
-          <div class="contact-card-box">
-            <h4>💬 WhatsApp y Teléfono Directo</h4>
-            <p><strong>Línea Comercial:</strong> <a href="#" id="link-tel-directo" class="contact-link"><span id="txt-tel">+1 (317) 000-0000</span></a></p>
-            <p style="font-size: 13px; color: #aaa; margin-top: 4px;">Chatea con un asesor de inmediato:</p>
-            <a href="#" id="btn-whatsapp-link" target="_blank" class="btn-whatsapp-elegante">
-              <svg class="whatsapp-icon-sm" viewBox="0 0 24 24"><path fill="currentColor" d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.9-4.44 9.9-9.9 0-2.65-1.03-5.14-2.9-7.01C17.18 3.03 14.69 2 12.04 2M12.04 3.65c2.2 0 4.27.86 5.82 2.42 1.56 1.55 2.42 3.63 2.42 5.83 0 4.55-3.7 8.25-8.25 8.25-1.49 0-2.95-.4-4.22-1.17l-.3-.18-3.11.82.83-3.03-.2-.31c-.81-1.28-1.24-2.77-1.24-4.3 0-4.55 3.7-8.25 8.25-8.25m4.74 10.35c-.26-.13-1.52-.75-1.75-.84-.23-.09-.4-.13-.57.13-.18.26-.66.84-.81 1.01-.15.17-.3.19-.56.06-.26-.13-1.1-.4-2.1-1.3-.78-.7-1.3-1.56-1.45-1.82-.15-.26-.02-.4.11-.53.11-.11.26-.3.39-.45.13-.15.17-.26.26-.43.09-.17.04-.32-.02-.45-.06-.13-.57-1.38-.78-1.89-.2-.48-.41-.42-.57-.43h-.49c-.17 0-.45.06-.69.32-.24.26-.92.9-.92 2.19 0 1.29.94 2.53 1.07 2.71.13.18 1.85 2.82 4.48 3.96.63.27 1.12.43 1.5.55.63.2 1.21.17 1.66.1.51-.08 1.52-.62 1.74-1.22.22-.6.22-1.12.15-1.22-.07-.1-.23-.16-.49-.29z"/></svg>
-              Abrir WhatsApp
+    <!-- 1. ENCABEZADO / MENÚ DE NAVEGACIÓN -->
+    <header class="bg-zinc-950/90 border-b border-zinc-800 sticky top-0 z-50 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Logo Corporativo -->
+            <a href="../" class="flex items-center gap-3 group">
+                <img src="../assets/img/logo.png" alt="Crestmont Motors Logo" class="h-10 w-auto object-contain" onerror="this.style.display='none'">
+                <span class="text-xl md:text-2xl font-bold tracking-widest text-white uppercase group-hover:text-gray-300 transition">
+                    Crestmont Motors
+                </span>
             </a>
-          </div>
 
-          <!-- Correo Corporativo Único -->
-          <div class="contact-card-box">
-            <h4>✉️ Correo Electrónico</h4>
-            <p>Para cotizaciones y consultas formales:</p>
-            <p style="margin-top: 6px;"><a href="mailto:contact@crestmontmotors.com" class="contact-link" style="color: #ff0000; font-weight: bold;" id="txt-correo">contact@crestmontmotors.com</a></p>
-          </div>
+            <!-- Menú de Enlaces Principal -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <!-- Enlace clave para volver a la pantalla de bienvenida -->
+                <a href="../" class="text-gray-300 hover:text-white transition flex items-center gap-2">
+                    <i class="fas fa-arrow-left text-xs"></i> Inicio / Portal
+                </a>
+                <a href="#inventario" class="text-gray-300 hover:text-white transition">Modelos</a>
+                <a href="#contacto" class="text-gray-300 hover:text-white transition">Contacto</a>
+                
+                <!-- Botón Acceso Panel Admin -->
+                <a href="../admin/" class="bg-red-600 hover:bg-red-700 text-white px-5 py-2.5 rounded-full text-xs font-semibold tracking-wider uppercase transition shadow-lg hover:shadow-red-900/30">
+                    Panel Admin
+                </a>
+            </nav>
 
-          <!-- Redes Sociales -->
-          <div class="contact-card-box">
-            <h4>🌐 Redes Sociales Oficiales</h4>
-            <p style="font-size: 13px; color: #aaa; margin-bottom: 6px;">Visita nuestros perfiles:</p>
-            <div class="social-buttons-row">
-              <a href="https://instagram.com" target="_blank" class="social-icon-btn">Instagram</a>
-              <a href="https://facebook.com" target="_blank" class="social-icon-btn">Facebook</a>
-              <a href="https://tiktok.com" target="_blank" class="social-icon-btn">TikTok</a>
+            <!-- Menú Móvil (Botón WhatsApp Rápido) -->
+            <div class="md:hidden flex items-center gap-3">
+                <a href="https://wa.me/1234567890" target="_blank" class="bg-green-600 hover:bg-green-700 text-white p-2.5 rounded-full text-sm">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="../" class="text-gray-300 hover:text-white p-2 text-sm">
+                    <i class="fas fa-home"></i>
+                </a>
             </div>
-          </div>
-
-          <!-- Ubicación Barquisimeto -->
-          <div class="contact-card-box">
-            <h4>📍 Ubicación del Showroom</h4>
-            <p id="txt-ubicacion" style="font-weight: bold; color: #fff;">Barquisimeto, Estado Lara</p>
-            <div class="map-box" style="margin-top: 10px;">
-              Showroom Principal — Barquisimeto, Estado Lara
-            </div>
-          </div>
 
         </div>
+    </header>
 
-        <!-- COLUMNA DERECHA: FORMULARIO DE ASESORÍA -->
-        <div class="form-asesoria">
-          <h4>Solicitar Asesoría Personalizada</h4>
-          <p style="font-size: 13px; color: #aaa; margin-bottom: 20px;">Déjanos tus datos y un especialista se pondrá en contacto contigo.</p>
-          
-          <form onsubmit="enviarAsesoria(event)">
-            <div class="form-group-asesoria">
-              <label>Nombre y Apellido:</label>
-              <input type="text" id="asesoria-nombre" required>
+    <!-- 2. SECCIÓN PRINCIPAL / CATÁLOGO -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        
+        <!-- Título de la Sección -->
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <span class="text-xs uppercase tracking-[0.3em] text-red-500 font-semibold block mb-2">
+                Inventario Disponible
+            </span>
+            <h1 class="text-3xl md:text-5xl font-extralight tracking-tight text-white mb-4">
+                Encuentra tu Vehículo Ideal
+            </h1>
+            <p class="text-gray-400 text-sm md:text-base font-light">
+                Explora nuestra selección exclusiva de modelos, revisa sus especificaciones completas e inicia tu consulta directa con un asesor.
+            </p>
+        </div>
+
+        <!-- BARRA DE BÚSQUEDA Y FILTROS -->
+        <div class="bg-zinc-900/80 border border-zinc-800 rounded-2xl p-4 mb-10 shadow-xl flex flex-col md:flex-row gap-4 justify-between items-center">
+            <div class="relative w-full md:w-96">
+                <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm"></i>
+                <input type="text" id="input-busqueda" placeholder="Buscar por marca, modelo o año..." class="w-full bg-black/60 border border-zinc-800 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-red-600 transition">
             </div>
             
-            <div class="form-group-asesoria">
-              <label>Teléfono / WhatsApp:</label>
-              <input type="tel" id="asesoria-tel" required>
+            <div class="flex items-center gap-3 w-full md:w-auto justify-end">
+                <span class="text-xs text-gray-400 uppercase tracking-wider hidden md:inline">Filtrar:</span>
+                <select id="filtro-categoria" class="bg-black/60 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm text-gray-300 focus:outline-none focus:border-red-600 transition w-full md:w-auto">
+                    <option value="todos">Todos los Modelos</option>
+                    <option value="sedan">Sedanes</option>
+                    <option value="suv">SUVs y Camionetas</option>
+                    <option value="deportivo">Deportivos</option>
+                </select>
             </div>
-
-            <div class="form-group-asesoria">
-              <label>Vehículo de Interés:</label>
-              <input type="text" id="asesoria-vehiculo">
-            </div>
-
-            <div class="form-group-asesoria">
-              <label>Mensaje o Consulta:</label>
-              <textarea id="asesoria-mensaje" rows="4"></textarea>
-            </div>
-
-            <button type="submit" class="btn-enviar-asesoria">Enviar Solicitud de Asesoría</button>
-          </form>
         </div>
 
-      </div>
-    </div>
+        <!-- CONTENEDOR DONDE TU JAVASCRIPT (APP.JS) INYECTA LOS AUTOS -->
+        <div id="contenedor-vehiculos" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- TARJETA DE MUESTRA 1 (Tu app.js reemplazará o multiplicará esto) -->
+            <div class="bg-zinc-900/60 border border-zinc-800 rounded-2xl overflow-hidden shadow-2xl flex flex-col hover:border-zinc-700 transition duration-300 group">
+                <!-- Carrusel / Galería de Imagen del Auto -->
+                <div class="relative h-60 bg-zinc-950 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=800&q=80" alt="Toyota Camry" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <span class="absolute top-3 left-3 bg-red-600 text-white text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full shadow-md">
+                        Disponible
+                    </span>
+                    <span class="absolute top-3 right-3 bg-black/70 backdrop-blur-md text-gray-200 text-xs font-mono px-3 py-1 rounded-full border border-white/10">
+                        2024
+                    </span>
+                </div>
 
-  </div>
+                <!-- Detalles Técnicos del Auto -->
+                <div class="p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-1 group-hover:text-red-500 transition">Toyota Camry Executive</h3>
+                        <p class="text-gray-400 text-xs mb-4 line-clamp-2">Motor 2.5L 4-Cilindros, Transmisión Automática de 8 velocidades, interiores en piel y paquete de seguridad completo.</p>
 
-  <!-- MODAL DE GALERÍA -->
-  <div id="modal-galeria">
-    <button class="modal-close" onclick="cerrarModal()">&times;</button>
-    <button class="modal-btn modal-prev" onclick="cambiarFotoModal(-1)">&#10094;</button>
-    <div class="modal-content">
-      <img id="modal-img" src="" alt="Foto del vehículo">
-    </div>
-    <button class="modal-btn modal-next" onclick="cambiarFotoModal(1)">&#10095;</button>
-    <div class="modal-counter" id="modal-counter">1 / 1</div>
-  </div>
+                        <!-- Especificaciones Rápidas -->
+                        <div class="grid grid-cols-2 gap-2 py-3 border-y border-zinc-800 text-xs text-gray-400 mb-5">
+                            <div class="flex items-center gap-2"><i class="fas fa-car text-zinc-500"></i> Transmisión Auto</div>
+                            <div class="flex items-center gap-2"><i class="fas fa-gas-pump text-zinc-500"></i> Gasolina</div>
+                            <div class="flex items-center gap-2"><i class="fas fa-tachometer-alt text-zinc-500"></i> 0 km</div>
+                            <div class="flex items-center gap-2"><i class="fas fa-shield-alt text-zinc-500"></i> Garantía</div>
+                        </div>
+                    </div>
 
-  <footer>
-    &copy; 2026 Crestmont Motors. Todos los derechos reservados.
-  </footer>
+                    <!-- Precio y Botón de WhatsApp Directo -->
+                    <div class="flex items-center justify-between pt-2">
+                        <div>
+                            <span class="text-[10px] uppercase tracking-wider text-gray-500 block">Precio Desde</span>
+                            <span class="text-2xl font-extrabold text-white tracking-tight">$32,500</span>
+                        </div>
+                        <a href="https://wa.me/1234567890?text=Hola,%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20el%20Toyota%20Camry%202024" target="_blank" class="bg-green-600 hover:bg-green-500 text-white px-4 py-2.5 rounded-xl text-xs font-bold tracking-wider uppercase flex items-center gap-2 shadow-lg shadow-green-900/20 transition">
+                            <i class="fab fa-whatsapp text-sm"></i> WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
 
-  <script src="assets/js/config.js"></script>
-  <script src="assets/js/app.js"></script>
+            <!-- TARJETA DE MUESTRA 2 -->
+            <div class="bg-zinc-900/60 border border-zinc-800 rounded-2xl overflow-hidden shadow-2xl flex flex-col hover:border-zinc-700 transition duration-300 group">
+                <div class="relative h-60 bg-zinc-950 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80" alt="Mercedes Benz C-Class" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <span class="absolute top-3 left-3 bg-zinc-800 text-gray-300 text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full shadow-md">
+                        Importación
+                    </span>
+                    <span class="absolute top-3 right-3 bg-black/70 backdrop-blur-md text-gray-200 text-xs font-mono px-3 py-1 rounded-full border border-white/10">
+                        2023
+                    </span>
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-1 group-hover:text-red-500 transition">Mercedes-Benz C-Class</h3>
+                        <p class="text-gray-400 text-xs mb-4 line-clamp-2">Sedán de lujo, acabados premium en madera y aluminio, techo panorámico y asistente de conducción inteligente.</p>
+                        <div class="grid grid-cols-2 gap-2 py-3 border-y border-zinc-800 text-xs text-gray-400 mb-5">
+                            <div class="flex items-center gap-2"><i class="fas fa-car text-zinc-500"></i> Automático</div>
+                            <div class="flex items-center gap-2"><i class="fas fa-gas-pump text-zinc-500"></i> Híbrido</div>
+                            <div class="flex items-center gap-2"><i class="fas fa-tachometer-alt text-zinc-500"></i> 12,000 km</div>
+                            <div class="flex items-center gap-2"><i class="fas fa-check-circle text-zinc-500"></i> Certificado</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between pt-2">
+                        <div>
+                            <span class="text-[10px] uppercase tracking-wider text-gray-500 block">Precio Especial</span>
+                            <span class="text-2xl font-extrabold text-white tracking-tight">$48,000</span>
+                        </div>
+                        <a href="https://wa.me/1234567890?text=Hola,%20deseo%20m%C3%A1s%20detalles%20del%20Mercedes-Benz%20C-Class" target="_blank" class="bg-green-600 hover:bg-green-500 text-white px-4 py-2.5 rounded-xl text-xs font-bold tracking-wider uppercase flex items-center gap-2 shadow-lg shadow-green-900/20 transition">
+                            <i class="fab fa-whatsapp text-sm"></i> WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
 
+        </div>
+    </main>
+
+    <!-- 3. FORMULARIO DE CONTACTO / ATENCIÓN AL CLIENTE -->
+    <section id="contacto" class="bg-zinc-950 border-t border-zinc-900 py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto bg-zinc-900/90 border border-zinc-800 rounded-3xl p-8 md:p-12 shadow-2xl">
+            <div class="text-center mb-8">
+                <h2 class="text-2xl md:text-4xl font-light text-white mb-2">¿Tienes alguna duda o solicitud especial?</h2>
+                <p class="text-gray-400 text-sm">Déjanos tus datos y un asesor especializado de Crestmont Motors te atenderá de inmediato.</p>
+            </div>
+
+            <form id="formulario-contacto" class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2">Nombre Completo</label>
+                        <input type="text" placeholder="Ej. Juan Pérez" required class="w-full bg-black/60 border border-zinc-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-red-600 transition">
+                    </div>
+                    <div>
+                        <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2">Número Telefónico / WhatsApp</label>
+                        <input type="tel" placeholder="+1 (555) 000-0000" required class="w-full bg-black/60 border border-zinc-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-red-600 transition">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2">Vehículo de Interés / Mensaje</label>
+                    <textarea rows="4" placeholder="Cuéntanos qué vehículo buscas o qué consulta tienes..." required class="w-full bg-black/60 border border-zinc-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-red-600 transition"></textarea>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-medium px-8 py-3.5 rounded-full text-sm tracking-wider uppercase shadow-xl transition hover:shadow-red-900/40">
+                        Enviar Consulta
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- 4. PIE DE PÁGINA (FOOTER) -->
+    <footer class="bg-black border-t border-zinc-900 py-10 px-4 text-center text-xs text-gray-500">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <p>&copy; 2026 Crestmont Motors. Todos los derechos reservados.</p>
+            <div class="flex gap-6">
+                <a href="../" class="hover:text-white transition">Portal Principal</a>
+                <a href="#inventario" class="hover:text-white transition">Modelos</a>
+                <a href="../admin/" class="hover:text-white transition">Administración</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- CONEXIÓN A TUS SCRIPTS ORIGINALES DE JS (Ajustados con ../ para salir de catalogo/) -->
+    <script src="../js/config.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../assets/js/app.js"></script>
 </body>
 </html>
