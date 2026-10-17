@@ -7,7 +7,6 @@
   <style>
     body { font-family: Arial, sans-serif; background: #000; color: #fff; margin: 0; padding: 20px; }
     
-    /* LOGIN ESTILO NEGRO Y MODERNO */
     .login-card { max-width: 420px; margin: 100px auto; background: #111; border: 1px solid #333; padding: 45px; border-radius: 10px; box-shadow: 0 8px 25px rgba(255,0,0,0.15); text-align: center; }
     .login-card h2 { margin-top: 0; color: #ff0000; font-size: 28px; font-weight: bold; letter-spacing: 1px; }
     .login-card p { color: #aaa; font-size: 15px; margin-bottom: 30px; }
@@ -17,7 +16,6 @@
     .login-card button:hover { background: #cc0000; }
     .error-msg { color: #ff6b6b; font-size: 14px; margin-top: 15px; display: none; }
 
-    /* PANEL DE PUBLICACIÓN */
     .container { max-width: 800px; margin: 40px auto; background: #111; border: 1px solid #333; padding: 35px; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.5); display: none; }
     .header-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; border-bottom: 2px solid #222; padding-bottom: 20px; }
     h1 { color: #ff0000; margin: 0; font-size: 26px; }
@@ -29,7 +27,7 @@
     .btn-save { background: #ff0000; color: #fff; padding: 15px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 16px; width: 100%; }
     .btn-save:hover { background: #cc0000; }
 
-    /* VISTA PREVIA DE FOTOS */
+    /* VISTA PREVIA DE FOTOS EN MINIATURA */
     .preview-container { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
     .preview-thumb { width: 70px; height: 70px; object-fit: cover; border-radius: 6px; border: 2px solid #ff0000; }
     .preview-info { font-size: 13px; color: #aaa; margin-top: 5px; }
@@ -76,8 +74,9 @@
     </div>
     
     <div class="form-group">
-      <label>Fotos del Vehículo (Selecciona varias de tu galería):</label>
-      <input type="file" id="foto-auto" accept="image/*" multiple onchange="mostrarVistaPrevia(event)">
+      <label>Fotos del Vehículo (Selecciona varias fotos a la vez):</label>
+      <!-- Input con propiedad multiple asegurada por JS y HTML -->
+      <input type="file" id="foto-auto" accept="image/*" multiple onchange="manejarSeleccionFotos(event)">
       <div class="preview-info" id="preview-info">Ninguna foto seleccionada</div>
       <div class="preview-container" id="preview-container"></div>
     </div>
@@ -92,6 +91,8 @@
       if (sessionStorage.getItem("admin_autorizado") === "true") {
         mostrarPanel();
       }
+      // Forzar atributo multiple desde el código por seguridad de navegadores
+      document.getElementById("foto-auto").setAttribute("multiple", "true");
     });
 
     function iniciarSesion() {
@@ -118,31 +119,28 @@
       window.location.reload();
     }
 
-    function mostrarVistaPrevia(event) {
+    function manejarSeleccionFotos(event) {
       const files = event.target.files;
       const container = document.getElementById("preview-container");
       const info = document.getElementById("preview-info");
-      container.innerHTML = "";
-      imagenesArrayGlobal = [];
-
-      if (!files || files.length === 0) {
-        info.innerText = "Ninguna foto seleccionada";
-        return;
-      }
+      
+      if (!files || files.length === 0) return;
 
       info.innerText = `Cargando ${files.length} foto(s)...`;
 
+      // Leemos cada archivo seleccionado y lo acumulamos en el arreglo global
       Array.from(files).forEach((file) => {
         const reader = new FileReader();
         reader.onload = function(e) {
           imagenesArrayGlobal.push(e.target.result);
           
+          // Crear miniatura visual
           const thumb = document.createElement("img");
           thumb.src = e.target.result;
           thumb.className = "preview-thumb";
           container.appendChild(thumb);
 
-          info.innerText = `✅ ${imagenesArrayGlobal.length} foto(s) lista(s) para publicar`;
+          info.innerText = `✅ ${imagenesArrayGlobal.length} foto(s) seleccionada(s) en total`;
         };
         reader.readAsDataURL(file);
       });
@@ -177,7 +175,7 @@
 
       alert(`✅ Vehículo publicado con éxito con ${imagenesArrayGlobal.length} foto(s) y enviado al inventario.`);
       
-      // Limpiar formulario
+      // Limpiar formulario y variables
       document.getElementById("vin-auto").value = "";
       document.getElementById("titulo-auto").value = "";
       document.getElementById("ano-auto").value = "";
