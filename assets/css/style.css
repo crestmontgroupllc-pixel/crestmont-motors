@@ -58,7 +58,7 @@ nav a:hover { color: #ff0000; }
 
 .brand-slogan {
   font-family: 'Montserrat', sans-serif;
-  color: #c0c0c0; /* Tono plateado elegante */
+  color: #c0c0c0;
   font-size: 17px;
   font-weight: 600;
   letter-spacing: 5px;
@@ -104,44 +104,165 @@ nav a:hover { color: #ff0000; }
 .car-info { font-size: 14px; color: #aaa; margin-bottom: 8px; }
 .car-desc { font-size: 13px; color: #888; border-top: 1px solid #222; padding-top: 10px; margin-top: 10px; line-height: 1.4; }
 
-/* SECCIÓN DE CONTACTO */
+/* SECCIÓN DE CONTACTO Y ASESORÍA MODERNA */
 .contact-section { background: #111; border: 1px solid #333; border-radius: 10px; padding: 40px; margin-top: 60px; }
 .contact-section h3 { color: #ff0000; font-size: 24px; margin-top: 0; text-align: center; }
-.contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 30px; }
-.contact-box { background: #1a1a1a; border: 1px solid #333; padding: 25px; border-radius: 8px; }
-.contact-box h4 { margin: 0 0 12px 0; color: #fff; font-size: 16px; border-bottom: 1px solid #333; padding-bottom: 8px; }
-.contact-box p { margin: 8px 0; color: #ccc; font-size: 14px; }
 
-/* BOTÓN WHATSAPP GRANDE */
-.btn-whatsapp-grande {
+.contact-grid-modern {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 30px;
+  margin-top: 30px;
+}
+@media (max-width: 900px) {
+  .contact-grid-modern { grid-template-columns: 1fr; }
+}
+
+.contact-info-col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact-card-box {
+  background: #151515;
+  border: 1px solid #333;
+  padding: 25px;
+  border-radius: 10px;
+  transition: border-color 0.3s;
+}
+.contact-card-box:hover {
+  border-color: #ff0000;
+}
+.contact-card-box h4 {
+  margin: 0 0 12px 0;
+  color: #fff;
+  font-size: 16px;
+  border-bottom: 1px solid #262626;
+  padding-bottom: 8px;
+}
+.contact-card-box p {
+  margin: 8px 0;
+  color: #ccc;
+  font-size: 14px;
+}
+
+.contact-link {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.contact-link:hover {
+  color: #ff0000;
+  text-decoration: underline;
+}
+
+/* BOTÓN WHATSAPP ELEGANTE */
+.btn-whatsapp-elegante {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #25d366;
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+  margin-top: 10px;
+  transition: all 0.3s;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.2);
+}
+.btn-whatsapp-elegante:hover {
+  background: #1ebe5d;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(37, 211, 102, 0.4);
+}
+.whatsapp-icon-sm { width: 20px; height: 20px; fill: currentColor; }
+
+/* REDES SOCIALES */
+.social-buttons-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+.social-icon-btn {
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  background: #25d366;
+  padding: 10px;
+  border-radius: 6px;
   color: #fff;
-  padding: 14px 20px;
-  border-radius: 8px;
   text-decoration: none;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 13px;
   transition: all 0.3s;
-  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
 }
-.btn-whatsapp-grande:hover {
-  background: #1ebe5d;
+.social-icon-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.5);
+  opacity: 0.95;
 }
-.whatsapp-icon-svg { width: 26px; height: 26px; fill: currentColor; }
+.social-icon-btn.instagram { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+.social-icon-btn.facebook { background: #1877f2; }
+.social-icon-btn.tiktok { background: #111; border: 1px solid #444; }
 
-/* REDES SOCIALES */
-.social-links-grid { display: flex; flex-direction: column; gap: 10px; }
-.social-btn { display: block; text-align: center; padding: 10px; border-radius: 6px; color: #fff; text-decoration: none; font-weight: bold; font-size: 14px; transition: all 0.3s; }
-.social-btn:hover { opacity: 0.9; transform: translateY(-2px); }
-.social-btn.instagram { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
-.social-btn.facebook { background: #1877f2; }
-.social-btn.tiktok { background: #010101; border: 1px solid #444; }
+/* FORMULARIO DE ASESORÍA */
+.form-asesoria {
+  background: #151515;
+  border: 1px solid #333;
+  padding: 30px;
+  border-radius: 10px;
+}
+.form-asesoria h4 {
+  color: #ff0000;
+  margin-top: 0;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.form-group-asesoria {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.form-group-asesoria label {
+  font-size: 13px;
+  color: #aaa;
+  font-weight: bold;
+}
+.form-group-asesoria input,
+.form-group-asesoria textarea {
+  padding: 10px 12px;
+  background: #1a1a1a;
+  border: 1px solid #444;
+  color: #fff;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+}
+.form-group-asesoria input:focus,
+.form-group-asesoria textarea:focus {
+  border-color: #ff0000;
+  outline: none;
+}
+.btn-enviar-asesoria {
+  background: #ff0000;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.3s, transform 0.2s;
+  margin-top: 5px;
+}
+.btn-enviar-asesoria:hover {
+  background: #cc0000;
+  transform: translateY(-2px);
+}
 
 .map-box { background: #1a1a1a; border: 1px solid #333; height: 160px; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: #777; font-size: 14px; text-align: center; padding: 10px; }
 
