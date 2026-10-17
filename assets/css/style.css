@@ -1,232 +1,171 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap');
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crestmont Motors - Exclusividad, Potencia y Elegancia</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
 
-body { font-family: 'Montserrat', sans-serif; background: #000000; color: #ffffff; margin: 0; padding: 0; scroll-behavior: smooth; }
+  <!-- ENCABEZADO Y MENÚ PÚBLICO -->
+  <header>
+    <div class="logo-area">
+      <h1>CRESTMONT MOTORS</h1>
+      <p>Exclusividad y Potencia</p>
+    </div>
+    <nav>
+      <a href="#inicio">Inicio</a>
+      <a href="#inventario">Inventario</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
 
-/* ENCABEZADO SUPERIOR */
-header { background: #0a0a0a; border-bottom: 2px solid #1a1a1a; position: sticky; top: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; flex-wrap: wrap; gap: 15px; }
-.logo-area h1 { color: #ff0000; margin: 0; font-size: 22px; letter-spacing: 2px; font-weight: bold; }
-.logo-area p { color: #888; font-size: 11px; margin: 2px 0 0 0; text-transform: uppercase; letter-spacing: 1px; }
+  <!-- BLOQUE SUPERIOR (TÍTULO Y ESLOGAN LIMPIO) -->
+  <section class="main-brand-banner" id="inicio">
+    <div class="brand-logo-container" style="max-width: 800px; margin: 0 auto;">
+      <h1 class="brand-title">Crestmont <span>Motors</span></h1>
+      <div class="brand-divider"></div>
+      <p class="brand-slogan">Exclusividad, Potencia y Elegancia</p>
+    </div>
+  </section>
 
-nav { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
-nav a { color: #ddd; text-decoration: none; font-size: 14px; font-weight: bold; transition: color 0.3s; }
-nav a:hover { color: #ff0000; }
+  <!-- CONTENEDOR PRINCIPAL E INVENTARIO -->
+  <div class="container" id="inventario">
+    
+    <div class="section-title">Catálogo e Inventario Disponible</div>
 
-/* BLOQUE CENTRAL DE LUJO */
-.main-brand-banner {
-  background: radial-gradient(circle at center, #141414 0%, #050505 70%, #000000 100%);
-  border-bottom: 3px solid #ff0000;
-  padding: 60px 20px;
-  text-align: center;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.9);
-}
+    <!-- FILTROS DE BÚSQUEDA -->
+    <div class="filters-bar">
+      <div class="filter-group">
+        <label>Buscar por Marca / Modelo:</label>
+        <input type="text" id="filtro-texto" placeholder="Buscar vehículo..." oninput="aplicarFiltros()">
+      </div>
+      <div class="filter-group">
+        <label>Año:</label>
+        <select id="filtro-ano" onchange="aplicarFiltros()">
+          <option value="">Todos los años</option>
+          <option value="2024">2024</option>
+          <option value="2023">2023</option>
+          <option value="2022">2022</option>
+          <option value="2021">2021 o anterior</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label>Precio Máximo ($):</label>
+        <input type="number" id="filtro-precio" placeholder="Precio máximo" oninput="aplicarFiltros()">
+      </div>
+    </div>
 
-.brand-logo-container {
-  max-width: 800px;
-  margin: 0 auto;
-}
+    <!-- GRILLA DE VEHÍCULOS -->
+    <div class="grid-vehiculos" id="catalogo-publico"></div>
 
-/* TAMAÑO CONTROLADO PARA QUE NO OCUPE MEDIA PÁGINA */
-.central-logo-img {
-  max-height: 70px;
-  width: auto;
-  object-fit: contain;
-  margin-bottom: 15px;
-  filter: drop-shadow(0 4px 10px rgba(255, 0, 0, 0.4));
-}
+    <!-- SECCIÓN DE LOGOTIPO REAL GRANDE (UBICADO ABAJO CON FUERZA Y PRESENCIA) -->
+    <div class="brand-logo-bottom-section">
+      <img src="assets/img/tu-logo.png" alt="Crestmont Motors Logo Oficial" class="logo-grande-principal">
+    </div>
 
-.brand-title {
-  font-family: 'Playfair Display', serif;
-  color: #ffffff;
-  font-size: 42px;
-  font-weight: 900;
-  letter-spacing: 5px;
-  margin: 0 0 10px 0;
-  text-transform: uppercase;
-}
+    <!-- SECCIÓN DE CONTACTO, WHATSAPP, REDES Y ASESORÍA -->
+    <div class="contact-section" id="contacto">
+      <h3>Canales de Atención y Asesoría Exclusiva</h3>
+      
+      <div class="contact-grid-modern">
+        
+        <!-- COLUMNA IZQUIERDA -->
+        <div class="contact-info-col">
+          
+          <!-- Teléfono y WhatsApp -->
+          <div class="contact-card-box">
+            <h4>💬 WhatsApp y Teléfono Directo</h4>
+            <p><strong>Línea Comercial:</strong> <a href="#" id="link-tel-directo" class="contact-link"><span id="txt-tel">+1 (317) 000-0000</span></a></p>
+            <p style="font-size: 13px; color: #aaa; margin-top: 4px;">Chatea con un asesor de inmediato:</p>
+            <a href="#" id="btn-whatsapp-link" target="_blank" class="btn-whatsapp-elegante">
+              <svg class="whatsapp-icon-sm" viewBox="0 0 24 24"><path fill="currentColor" d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.9-4.44 9.9-9.9 0-2.65-1.03-5.14-2.9-7.01C17.18 3.03 14.69 2 12.04 2M12.04 3.65c2.2 0 4.27.86 5.82 2.42 1.56 1.55 2.42 3.63 2.42 5.83 0 4.55-3.7 8.25-8.25 8.25-1.49 0-2.95-.4-4.22-1.17l-.3-.18-3.11.82.83-3.03-.2-.31c-.81-1.28-1.24-2.77-1.24-4.3 0-4.55 3.7-8.25 8.25-8.25m4.74 10.35c-.26-.13-1.52-.75-1.75-.84-.23-.09-.4-.13-.57.13-.18.26-.66.84-.81 1.01-.15.17-.3.19-.56.06-.26-.13-1.1-.4-2.1-1.3-.78-.7-1.3-1.56-1.45-1.82-.15-.26-.02-.4.11-.53.11-.11.26-.3.39-.45.13-.15.17-.26.26-.43.09-.17.04-.32-.02-.45-.06-.13-.57-1.38-.78-1.89-.2-.48-.41-.42-.57-.43h-.49c-.17 0-.45.06-.69.32-.24.26-.92.9-.92 2.19 0 1.29.94 2.53 1.07 2.71.13.18 1.85 2.82 4.48 3.96.63.27 1.12.43 1.5.55.63.2 1.21.17 1.66.1.51-.08 1.52-.62 1.74-1.22.22-.6.22-1.12.15-1.22-.07-.1-.23-.16-.49-.29z"/></svg>
+              Abrir WhatsApp
+            </a>
+          </div>
 
-.brand-title span { color: #ff0000; }
+          <!-- Correo Corporativo Único -->
+          <div class="contact-card-box">
+            <h4>✉️ Correo Electrónico</h4>
+            <p>Para cotizaciones y consultas formales:</p>
+            <p style="margin-top: 6px;"><a href="mailto:contact@crestmontmotors.com" class="contact-link" style="color: #ff0000; font-weight: bold;" id="txt-correo">contact@crestmontmotors.com</a></p>
+          </div>
 
-.brand-divider {
-  width: 80px;
-  height: 3px;
-  background: linear-gradient(90deg, transparent, #ff0000, transparent);
-  margin: 0 auto 15px auto;
-}
+          <!-- Redes Sociales -->
+          <div class="contact-card-box">
+            <h4>🌐 Redes Sociales Oficiales</h4>
+            <p style="font-size: 13px; color: #aaa; margin-bottom: 6px;">Visita nuestros perfiles:</p>
+            <div class="social-buttons-row">
+              <a href="https://instagram.com" target="_blank" class="social-icon-btn">Instagram</a>
+              <a href="https://facebook.com" target="_blank" class="social-icon-btn">Facebook</a>
+              <a href="https://tiktok.com" target="_blank" class="social-icon-btn">TikTok</a>
+            </div>
+          </div>
 
-.brand-slogan {
-  font-family: 'Montserrat', sans-serif;
-  color: #c0c0c0;
-  font-size: 15px;
-  font-weight: 600;
-  letter-spacing: 4px;
-  margin: 0;
-  text-transform: uppercase;
-}
+          <!-- Ubicación Barquisimeto -->
+          <div class="contact-card-box">
+            <h4>📍 Ubicación del Showroom</h4>
+            <p id="txt-ubicacion" style="font-weight: bold; color: #fff;">Barquisimeto, Estado Lara</p>
+            <div class="map-box" style="margin-top: 10px;">
+              Showroom Principal — Barquisimeto, Estado Lara
+            </div>
+          </div>
 
-/* CONTENEDOR Y FILTROS */
-.container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
-.section-title { font-size: 24px; color: #fff; margin-bottom: 20px; border-left: 4px solid #ff0000; padding-left: 12px; font-weight: 700; }
+        </div>
 
-.filters-bar { background: #0f0f0f; border: 1px solid #222; padding: 20px; border-radius: 8px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 30px; }
-.filter-group { display: flex; flex-direction: column; gap: 6px; }
-.filter-group label { font-size: 13px; color: #aaa; font-weight: bold; }
-.filter-group input, .filter-group select { padding: 10px; background: #151515; border: 1px solid #333; color: #fff; border-radius: 6px; font-size: 14px; }
+        <!-- COLUMNA DERECHA: FORMULARIO DE ASESORÍA -->
+        <div class="form-asesoria">
+          <h4>Solicitar Asesoría Personalizada</h4>
+          <p style="font-size: 13px; color: #aaa; margin-bottom: 20px;">Déjanos tus datos y un especialista se pondrá en contacto contigo.</p>
+          
+          <form onsubmit="enviarAsesoria(event)">
+            <div class="form-group-asesoria">
+              <label>Nombre y Apellido:</label>
+              <input type="text" id="asesoria-nombre" required>
+            </div>
+            
+            <div class="form-group-asesoria">
+              <label>Teléfono / WhatsApp:</label>
+              <input type="tel" id="asesoria-tel" required>
+            </div>
 
-.grid-vehiculos { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
+            <div class="form-group-asesoria">
+              <label>Vehículo de Interés:</label>
+              <input type="text" id="asesoria-vehiculo">
+            </div>
 
-/* TARJETAS CON BRILLO LÁSER ROJO */
-.car-card { 
-  background: #0f0f0f; 
-  border: 1px solid #222; 
-  border-radius: 10px; 
-  overflow: hidden; 
-  box-shadow: 0 4px 15px rgba(0,0,0,0.5); 
-  transition: all 0.4s ease; 
-}
-.car-card:hover { 
-  transform: translateY(-6px); 
-  border-color: #ff0000; 
-  box-shadow: 0 0 25px rgba(255, 0, 0, 0.35), 0 8px 25px rgba(0,0,0,0.8); 
-}
+            <div class="form-group-asesoria">
+              <label>Mensaje o Consulta:</label>
+              <textarea id="asesoria-mensaje" rows="4"></textarea>
+            </div>
 
-.car-thumb-container { position: relative; width: 100%; height: 220px; background: #050505; cursor: pointer; display: flex; align-items: center; justify-content: center; overflow: hidden; border-bottom: 1px solid #1a1a1a; }
-.car-thumb-container img { max-width: 100%; max-height: 100%; object-fit: contain; transition: transform 0.4s; }
-.car-thumb-container:hover img { transform: scale(1.05); }
+            <button type="submit" class="btn-enviar-asesoria">Enviar Solicitud de Asesoría</button>
+          </form>
+        </div>
 
-.photo-badge { position: absolute; bottom: 10px; right: 10px; background: rgba(0,0,0,0.85); color: #fff; padding: 4px 10px; font-size: 12px; border-radius: 4px; border: 1px solid #333; font-weight: bold; }
+      </div>
+    </div>
 
-.car-details { padding: 20px; }
-.car-title { font-size: 18px; font-weight: bold; color: #fff; margin: 0 0 10px 0; }
-.car-price { font-size: 22px; font-weight: bold; color: #ff0000; margin-bottom: 12px; }
-.car-info { font-size: 14px; color: #aaa; margin-bottom: 8px; }
-.car-desc { font-size: 13px; color: #777; border-top: 1px solid #1a1a1a; padding-top: 10px; margin-top: 10px; line-height: 1.4; }
+  </div>
 
-/* SECCIÓN DE CONTACTO Y ASESORÍA */
-.contact-section { background: #0f0f0f; border: 1px solid #222; border-radius: 10px; padding: 40px; margin-top: 60px; }
-.contact-section h3 { color: #ff0000; font-size: 24px; margin-top: 0; text-align: center; }
+  <!-- MODAL DE GALERÍA -->
+  <div id="modal-galeria">
+    <button class="modal-close" onclick="cerrarModal()">&times;</button>
+    <button class="modal-btn modal-prev" onclick="cambiarFotoModal(-1)">&#10094;</button>
+    <div class="modal-content">
+      <img id="modal-img" src="" alt="Foto del vehículo">
+    </div>
+    <button class="modal-btn modal-next" onclick="cambiarFotoModal(1)">&#10095;</button>
+    <div class="modal-counter" id="modal-counter">1 / 1</div>
+  </div>
 
-.contact-grid-modern {
-  display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 30px;
-  margin-top: 30px;
-}
-@media (max-width: 900px) {
-  .contact-grid-modern { grid-template-columns: 1fr; }
-}
+  <footer>
+    &copy; 2026 Crestmont Motors. Todos los derechos reservados.
+  </footer>
 
-.contact-info-col { display: flex; flex-direction: column; gap: 20px; }
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/app.js"></script>
 
-.contact-card-box {
-  background: #141414;
-  border: 1px solid #222;
-  padding: 22px;
-  border-radius: 8px;
-  transition: border-color 0.3s;
-}
-.contact-card-box:hover { border-color: #ff0000; }
-.contact-card-box h4 {
-  margin: 0 0 10px 0;
-  color: #fff;
-  font-size: 15px;
-  border-bottom: 1px solid #222;
-  padding-bottom: 8px;
-}
-.contact-card-box p { margin: 6px 0; color: #ccc; font-size: 14px; }
-
-.contact-link { color: #fff; text-decoration: none; transition: color 0.3s; }
-.contact-link:hover { color: #ff0000; }
-
-/* BOTÓN WHATSAPP */
-.btn-whatsapp-elegante {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  background: #25d366;
-  color: #fff;
-  padding: 10px 16px;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 13px;
-  margin-top: 8px;
-  transition: all 0.3s;
-}
-.btn-whatsapp-elegante:hover { background: #1ebe5d; transform: translateY(-2px); }
-.whatsapp-icon-sm { width: 18px; height: 18px; fill: currentColor; }
-
-/* REDES SOCIALES (ESTILO ELEGANTE NEGRO, ROJO Y GRIS, SIN MORADO NI AZUL CHILLÓN) */
-.social-buttons-row {
-  display: flex;
-  gap: 10px;
-  margin-top: 10px;
-}
-.social-icon-btn {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
-  border-radius: 6px;
-  color: #fff;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 13px;
-  background: #1a1a1a;
-  border: 1px solid #333;
-  transition: all 0.3s;
-}
-.social-icon-btn:hover {
-  background: #ff0000;
-  border-color: #ff0000;
-  transform: translateY(-2px);
-}
-
-/* FORMULARIO DE ASESORÍA (SIN EJEMPLOS EN LOS PLACEHOLDERS) */
-.form-asesoria {
-  background: #141414;
-  border: 1px solid #222;
-  padding: 30px;
-  border-radius: 8px;
-}
-.form-asesoria h4 { color: #ff0000; margin-top: 0; font-size: 18px; margin-bottom: 10px; }
-.form-group-asesoria { margin-bottom: 15px; display: flex; flex-direction: column; gap: 6px; }
-.form-group-asesoria label { font-size: 13px; color: #aaa; font-weight: bold; }
-.form-group-asesoria input, .form-group-asesoria textarea {
-  padding: 10px 12px;
-  background: #0a0a0a;
-  border: 1px solid #282828;
-  color: #fff;
-  border-radius: 6px;
-  font-size: 14px;
-  font-family: inherit;
-}
-.form-group-asesoria input:focus, .form-group-asesoria textarea:focus { border-color: #ff0000; outline: none; }
-.btn-enviar-asesoria {
-  background: #ff0000;
-  color: #fff;
-  border: none;
-  padding: 12px 20px;
-  border-radius: 6px;
-  font-weight: bold;
-  font-size: 15px;
-  cursor: pointer;
-  width: 100%;
-  transition: background 0.3s, transform 0.2s;
-  margin-top: 5px;
-}
-.btn-enviar-asesoria:hover { background: #cc0000; transform: translateY(-2px); }
-
-/* MAPA SHOWROOM BARQUISIMETO */
-.map-box { background: #0a0a0a; border: 1px solid #222; height: 140px; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: #888; font-size: 13px; text-align: center; font-weight: 500; }
-
-/* MODAL Y FOOTER */
-#modal-galeria { display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); justify-content: center; align-items: center; flex-direction: column; }
-.modal-content { position: relative; max-width: 90%; max-height: 80vh; display: flex; align-items: center; justify-content: center; }
-.modal-content img { max-width: 100%; max-height: 75vh; object-fit: contain; border-radius: 6px; border: 1px solid #333; }
-.modal-close { position: absolute; top: 20px; right: 30px; background: #ff0000; color: #fff; border: none; font-size: 24px; font-weight: bold; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; z-index: 10000; }
-.modal-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,0,0,0.8); color: #fff; border: none; font-size: 24px; padding: 12px 18px; cursor: pointer; border-radius: 6px; font-weight: bold; z-index: 10000; }
-.modal-prev { left: 20px; }
-.modal-next { right: 20px; }
-.modal-counter { color: #fff; margin-top: 15px; font-size: 16px; font-weight: bold; }
-footer { text-align: center; padding: 30px; color: #666; font-size: 13px; border-top: 1px solid #1a1a1a; margin-top: 60px; }
+</body>
+</html>
