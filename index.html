@@ -21,49 +21,50 @@
 </head>
 <body class="bg-black text-white h-screen overflow-hidden flex flex-col justify-between relative font-sans">
 
-    <!-- Carrusel de Fondos con 7 vehículos (Incluyendo Toyota) -->
+    <!-- Carrusel de Fondos con los 7 vehículos (Incluyendo Toyota) -->
     <div id="slider-container" class="absolute inset-0 z-0">
-        <!-- 1. Toyota (Modelo moderno/elegante) -->
         <div class="slide-bg active" style="background-image: url('https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=1920&q=80');"></div>
-        <!-- 2. Mercedes-Benz -->
         <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1920&q=80');"></div>
-        <!-- 3. Volkswagen -->
         <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1920&q=80');"></div>
-        <!-- 4. Deportivo / Lujo -->
         <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=1920&q=80');"></div>
-        <!-- 5. SUV / Camioneta -->
         <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1920&q=80');"></div>
-        <!-- 6. Sedán Ejecutivo -->
         <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1920&q=80');"></div>
-        <!-- 7. Auto moderno en carretera -->
         <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=1920&q=80');"></div>
     </div>
 
-    <!-- Filtro oscuro para contraste -->
-    <div class="absolute inset-0 bg-black/55 z-0 backdrop-brightness-90"></div>
+    <!-- Filtro oscuro con degradado para máxima elegancia y legibilidad -->
+    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/30 z-0"></div>
 
     <!-- Contenido Principal -->
-    <div class="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 max-w-4xl mx-auto">
+    <div class="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 max-w-5xl mx-auto">
         
-        <!-- Textos actualizados -->
-        <h1 class="text-3xl md:text-5xl lg:text-6xl font-light tracking-wide mb-3 drop-shadow-md">
-            Crestmont Motors te da la bienvenida
-        </h1>
-        
-        <p class="text-base md:text-xl font-light text-gray-200 mb-10 max-w-2xl drop-shadow">
-            Descubre nuestra gama exclusiva de vehículos, servicios importados y atención personalizada.
-        </p>
+        <!-- Bloque de Texto Estilizado -->
+        <div class="space-y-4 mb-10">
+            <span class="text-xs md:text-sm uppercase tracking-[0.3em] text-gray-300 font-medium block">
+                The Crestmont Family of Dealerships
+            </span>
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-extralight tracking-tight text-white drop-shadow-lg">
+                Crestmont Motors <br>
+                <span class="font-normal text-white">te da la bienvenida</span>
+            </h1>
+            <p class="text-base md:text-xl font-light text-gray-200 max-w-2xl mx-auto pt-2 drop-shadow">
+                Descubre nuestra gama exclusiva de vehículos, servicios importados y atención personalizada.
+            </p>
+        </div>
 
-        <!-- Botón que redirige a tu subcarpeta de catálogo -->
+        <!-- Botón de Entrada Elegante -->
         <div class="flex justify-center items-center w-full">
-            <a href="catalogo/" class="w-full sm:w-auto min-w-[260px] text-center border border-white/80 bg-white/10 hover:bg-white hover:text-black transition-all duration-300 py-3.5 px-8 rounded-full text-base font-medium tracking-wider backdrop-blur-md shadow-2xl">
-                Entrar al Sitio Oficial
+            <a href="catalogo/" class="group relative inline-flex items-center justify-center px-8 py-4 text-base font-medium tracking-wider text-white transition-all duration-300 bg-white/10 rounded-full border border-white/40 backdrop-blur-md hover:bg-white hover:text-black hover:border-white shadow-2xl">
+                <span>Entrar al Sitio Oficial</span>
+                <svg class="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                </svg>
             </a>
         </div>
 
     </div>
 
-    <!-- Script del Carrusel (Rotación de los 7 vehículos) -->
+    <!-- Script del Carrusel (Rotación cada 5 segundos) -->
     <script>
         const slides = document.querySelectorAll('.slide-bg');
         let currentSlide = 0;
@@ -72,7 +73,7 @@
             slides[currentSlide].classList.remove('active');
             currentSlide = (currentSlide + 1) % slides.length;
             slides[currentSlide].classList.add('active');
-        }, 5000); // Rota cada 5 segundos
+        }, 5000);
     </script>
 </body>
 </html>
