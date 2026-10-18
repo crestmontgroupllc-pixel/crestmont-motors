@@ -3,90 +3,127 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Catálogo de Vehículos - Crestmont Motors</title>
+  <title>Crestmont Motors - Catálogo Oficial de Vehículos</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: Arial, sans-serif; background: #0a0a0a; color: #fff; padding: 20px; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0a0a0a; color: #fff; padding: 0; }
     
-    header { text-align: center; margin-bottom: 30px; border-bottom: 2px solid #222; padding-bottom: 20px; }
-    #hero-titulo { color: #ff0000; font-size: 28px; font-weight: bold; }
-    #hero-titulo span { display: block; font-size: 16px; color: #aaa; margin-top: 5px; }
-    #hero-sub { color: #888; font-size: 14px; margin-top: 5px; }
+    /* ENCABEZADO Y NAVEGACIÓN SUPERIOR */
+    header { background: #111; border-bottom: 1px solid #222; padding: 15px 30px; position: sticky; top: 0; z-index: 999; }
+    .nav-container { display: flex; justify-content: space-between; align-items: center; max-width: 1300px; margin: 0 auto; flex-wrap: wrap; gap: 15px; }
+    .logo-marca { font-size: 20px; font-weight: bold; color: #ff0000; letter-spacing: 1px; text-transform: uppercase; }
+    .nav-links { display: flex; gap: 20px; list-style: none; align-items: center; flex-wrap: wrap; }
+    .nav-links a { color: #ccc; text-decoration: none; font-size: 14px; transition: color 0.3s; }
+    .nav-links a:hover { color: #ff0000; }
+    .btn-contacto-nav { background: #ff0000; color: #fff !important; padding: 8px 16px; border-radius: 4px; font-weight: bold; }
+
+    /* FRANJA DE HERO / PRESENTACIÓN */
+    .hero-section { text-align: center; padding: 50px 20px; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat; border-bottom: 2px solid #222; }
+    #hero-titulo { color: #fff; font-size: 38px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; }
+    #hero-titulo span { display: block; font-size: 18px; color: #ff0000; margin-top: 8px; font-weight: 400; letter-spacing: 1px; }
+    #hero-sub { color: #aaa; font-size: 15px; margin-top: 10px; max-width: 600px; margin-left: auto; margin-right: auto; }
 
     /* BARRA DE FILTROS */
-    .filtros-bar { display: flex; flex-wrap: wrap; gap: 10px; max-width: 1200px; margin: 0 auto 25px auto; background: #111; padding: 15px; border-radius: 8px; border: 1px solid #222; }
-    .filtros-bar input, .filtros-bar select { flex: 1; min-width: 150px; padding: 10px; background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 5px; outline: none; }
-    .filtros-bar button { background: #ff0000; color: #fff; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; transition: background 0.3s; }
+    .filtros-wrapper { max-width: 1200px; margin: 30px auto; padding: 0 15px; }
+    .filtros-bar { display: flex; flex-wrap: wrap; gap: 12px; background: #141414; padding: 20px; border-radius: 8px; border: 1px solid #222; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+    .filtros-bar input, .filtros-bar select { flex: 1; min-width: 180px; padding: 12px; background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 6px; outline: none; font-size: 14px; }
+    .filtros-bar button { background: #ff0000; color: #fff; border: none; padding: 12px 25px; border-radius: 6px; cursor: pointer; font-weight: bold; transition: background 0.3s; font-size: 14px; }
     .filtros-bar button:hover { background: #cc0000; }
 
     /* CONTENEDOR DEL CATÁLOGO PÚBLICO */
-    #catalogo-publico { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
+    #catalogo-publico { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; max-width: 1200px; margin: 0 auto 50px auto; padding: 0 15px; }
 
     /* TARJETAS DE VEHÍCULOS */
-    .car-card { background: #111; border: 1px solid #222; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s; }
-    .car-card:hover { transform: translateY(-4px); box-shadow: 0 6px 20px rgba(255,0,0,0.2); }
-    .car-thumb-container { position: relative; width: 100%; height: 200px; background: #000; cursor: pointer; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-    .car-thumb-container img { width: 100%; height: 100%; object-fit: cover; }
-    .photo-badge { position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.75); color: #fff; font-size: 12px; padding: 4px 8px; border-radius: 4px; border: 1px solid #444; }
-    .car-details { padding: 15px; display: flex; flex-direction: column; gap: 8px; flex-grow: 1; }
-    .car-title { font-size: 18px; font-weight: bold; color: #fff; }
-    .car-price { font-size: 20px; font-weight: bold; color: #2ecc71; }
-    .car-info { font-size: 13px; color: #aaa; }
-    .car-desc { font-size: 13px; color: #888; line-height: 1.4; margin-top: 5px; }
+    .car-card { background: #141414; border: 1px solid #222; border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s; }
+    .car-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(255,0,0,0.25); border-color: #ff0000; }
+    .car-thumb-container { position: relative; width: 100%; height: 220px; background: #000; cursor: pointer; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .car-thumb-container img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+    .car-thumb-container:hover img { transform: scale(1.05); }
+    .photo-badge { position: absolute; bottom: 10px; right: 10px; background: rgba(0,0,0,0.8); color: #fff; font-size: 12px; padding: 5px 10px; border-radius: 6px; border: 1px solid #444; font-weight: bold; }
+    .car-details { padding: 20px; display: flex; flex-direction: column; gap: 10px; flex-grow: 1; }
+    .car-title { font-size: 19px; font-weight: bold; color: #fff; }
+    .car-price { font-size: 22px; font-weight: bold; color: #2ecc71; }
+    .car-info { font-size: 13px; color: #bbb; border-top: 1px solid #222; padding-top: 8px; }
+    .car-desc { font-size: 13px; color: #888; line-height: 1.5; margin-top: 5px; flex-grow: 1; }
 
-    /* MODAL DE GALERÍA DE FOTOS */
-    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; z-index: 1000; flex-direction: column; }
+    /* MODAL DE GALERÍA Y ZOOM DE FOTOS */
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); justify-content: center; align-items: center; z-index: 2000; flex-direction: column; }
     .modal-content { position: relative; max-width: 90%; max-height: 80vh; display: flex; justify-content: center; align-items: center; }
-    .modal-content img { max-width: 100%; max-height: 80vh; border-radius: 8px; border: 2px solid #333; }
-    .modal-close { position: absolute; top: -40px; right: 0; color: #fff; font-size: 30px; font-weight: bold; cursor: pointer; }
-    .modal-nav { position: absolute; top: 50%; width: 100%; display: flex; justify-content: space-between; transform: translateY(-50%); padding: 0 10px; }
-    .modal-nav button { background: rgba(255,0,0,0.7); color: #fff; border: none; font-size: 24px; padding: 10px 15px; border-radius: 50%; cursor: pointer; }
-    .modal-counter { color: #fff; margin-top: 15px; font-size: 16px; font-weight: bold; }
+    .modal-content img { max-width: 100%; max-height: 80vh; border-radius: 8px; border: 2px solid #444; object-fit: contain; }
+    .modal-close { position: absolute; top: -45px; right: 0; color: #fff; font-size: 35px; font-weight: bold; cursor: pointer; }
+    .modal-nav { position: absolute; top: 50%; width: 100%; display: flex; justify-content: space-between; transform: translateY(-50%); padding: 0 20px; pointer-events: none; }
+    .modal-nav button { background: rgba(255,0,0,0.8); color: #fff; border: none; font-size: 24px; padding: 12px 18px; border-radius: 50%; cursor: pointer; pointer-events: auto; transition: background 0.3s; }
+    .modal-nav button:hover { background: #ff0000; }
+    .modal-counter { color: #fff; margin-top: 20px; font-size: 16px; font-weight: bold; letter-spacing: 1px; }
 
-    /* FOOTER DE CONTACTO */
-    footer { max-width: 1200px; margin: 40px auto 0 auto; padding-top: 20px; border-top: 1px solid #222; text-align: center; color: #666; font-size: 13px; display: flex; flex-direction: column; gap: 8px; }
-    footer a { color: #2ecc71; text-decoration: none; font-weight: bold; }
+    /* FOOTER Y CONTACTO */
+    footer { background: #111; border-top: 1px solid #222; padding: 40px 20px; text-align: center; color: #777; font-size: 14px; display: flex; flex-direction: column; gap: 12px; }
+    .footer-content { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
+    footer a { color: #2ecc71; text-decoration: none; font-weight: bold; transition: color 0.3s; }
+    footer a:hover { color: #27ae60; }
+    .ubicacion-texto { color: #aaa; font-size: 13px; }
   </style>
 </head>
 <body>
 
+  <!-- BARRA DE NAVEGACIÓN SUPERIOR -->
   <header>
-    <h1 id="hero-titulo">Crestmont Motors <span>Catálogo de Vehículos</span></h1>
-    <p id="hero-sub">Encuentra tu próximo vehículo con la mejor garantía</p>
+    <div class="nav-container">
+      <div class="logo-marca">Crestmont Motors</div>
+      <ul class="nav-links">
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#catalogo-publico">Inventario</a></li>
+        <li><a href="#">Financiamiento</a></li>
+        <li><a href="#">Servicios</a></li>
+        <li><a href="#">Nosotros</a></li>
+        <li><a href="#contacto" class="btn-contacto-nav">Contacto</a></li>
+      </ul>
+    </div>
   </header>
 
-  <!-- FILTROS DE BÚSQUEDA -->
-  <div class="filtros-bar">
-    <input type="text" id="filtro-texto" placeholder="Buscar por modelo o VIN..." onkeyup="aplicarFiltros()">
-    <input type="text" id="filtro-ano" placeholder="Año (Ej: 2024)" onkeyup="aplicarFiltros()">
-    <input type="number" id="filtro-precio" placeholder="Precio máximo ($)" onkeyup="aplicarFiltros()">
-    <button onclick="aplicarFiltros()">Filtrar</button>
+  <!-- BANNER PRINCIPAL / HERO -->
+  <div class="hero-section">
+    <h1 id="hero-titulo">Crestmont Motors <span>Catálogo Exclusivo de Vehículos</span></h1>
+    <p id="hero-sub">Explora nuestra colección premium de vehículos y encuentra el modelo perfecto que se adapta a tu estilo de vida.</p>
   </div>
 
-  <!-- CONTENEDOR DONDE APP.JS PINTA LOS VEHÍCULOS -->
+  <!-- BARRA DE FILTROS -->
+  <div class="filtros-wrapper">
+    <div class="filtros-bar">
+      <input type="text" id="filtro-texto" placeholder="Buscar por modelo o VIN..." onkeyup="aplicarFiltros()">
+      <input type="text" id="filtro-ano" placeholder="Año (Ej: 2024)" onkeyup="aplicarFiltros()">
+      <input type="number" id="filtro-precio" placeholder="Precio máximo ($)" onkeyup="aplicarFiltros()">
+      <button onclick="aplicarFiltros()">Buscar Vehículos</button>
+    </div>
+  </div>
+
+  <!-- CONTENEDOR DONDE APP.JS PINTA LOS VEHÍCULOS DINÁMICAMENTE -->
   <div id="catalogo-publico"></div>
 
-  <!-- MODAL DE GALERÍA -->
+  <!-- MODAL DE GALERÍA CON ZOOM Y NAVEGACIÓN -->
   <div class="modal" id="modal-galeria">
     <div class="modal-content">
       <span class="modal-close" onclick="cerrarModal()">&times;</span>
       <div class="modal-nav">
-        <button onclick="cambiarFotoModal(-1)">&lt;</button>
-        <button onclick="cambiarFotoModal(1)">&gt;</button>
+        <button onclick="cambiarFotoModal(-1)">&#10094;</button>
+        <button onclick="cambiarFotoModal(1)">&#10095;</button>
       </div>
-      <img id="modal-img" src="" alt="Vista ampliada">
+      <img id="modal-img" src="" alt="Vista ampliada con zoom">
     </div>
     <div class="modal-counter" id="modal-counter">1 / 1</div>
   </div>
 
-  <footer>
-    <p>Teléfono: <span id="txt-tel"></span> | Correo: <span id="txt-correo"></span> / <span id="txt-correo2"></span></p>
-    <p>Ubicación: <span id="txt-ubicacion"></span></p>
-    <p><a id="btn-whatsapp-link" href="#" target="_blank">💬 Contactar por WhatsApp</a></p>
+  <!-- FOOTER Y DETALLES DE CONTACTO Y UBICACIÓN -->
+  <footer id="contacto">
+    <div class="footer-content">
+      <p><strong>Teléfono:</strong> <span id="txt-tel">+1 (317) 420-3435</span> | <strong>Correo:</strong> <span id="txt-correo">info@crestmontmotors.com</span> / <span id="txt-correo2">ventas@crestmontmotors.com</span></p>
+      <p class="ubicacion-texto"><strong>Ubicación:</strong> <span id="txt-ubicacion">Cabudare, Lara State, Venezuela / Washington, USA</span></p>
+      <p><a id="btn-whatsapp-link" href="https://wa.me/13174203435?text=Hola,%20estoy%20interesado%20en%20un%20vehículo%20de%20Crestmont%20Motors" target="_blank">💬 Contactar por WhatsApp Directo</a></p>
+    </div>
   </footer>
 
-  <!-- RUTAS ABSOLUTAS DESDE LA RAÍZ PARA EVITAR ERRORES DE MIME TYPE -->
-  <script src="/js/config.js"></script>
-  <script src="/js/app.js"></script>
+  <!-- RUTAS DE SCRIPTS PARA CONECTAR EL INVENTARIO -->
+  <script src="../js/config.js"></script>
+  <script src="../js/app.js"></script>
 </body>
 </html>
