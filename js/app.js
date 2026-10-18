@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function cargarInventarioPublico() {
-  const guardados = localStorage.getItem("crestmont_inventario");
+  const guardados = localStorage.getItem("inventario_crestmont");
   
   if (guardados) {
     vehiculosGlobal = JSON.parse(guardados);
@@ -24,7 +24,7 @@ function cargarInventarioPublico() {
         motor: "2.8L Turbo Diesel",
         transmision: "Automática",
         descripcion: "Vehículo en estado impecable, rigurosa inspección superada.",
-        fotos: ["https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80"]
+        imagenes: ["https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80"]
       },
       {
         id: 2,
@@ -36,10 +36,10 @@ function cargarInventarioPublico() {
         motor: "5.0L V8",
         transmision: "Automática",
         descripcion: "Exclusiva potencia americana y acabados de máxima categoría.",
-        fotos: ["https://images.unsplash.com/photo-1584345604476-8ec5e12e42dd?auto=format&fit=crop&w=800&q=80"]
+        imagenes: ["https://images.unsplash.com/photo-1584345604476-8ec5e12e42dd?auto=format&fit=crop&w=800&q=80"]
       }
     ];
-    localStorage.setItem("crestmont_inventario", JSON.stringify(vehiculosGlobal));
+    localStorage.setItem("inventario_crestmont", JSON.stringify(vehiculosGlobal));
   }
 
   mostrarVehiculos(vehiculosGlobal);
@@ -56,18 +56,20 @@ function mostrarVehiculos(lista) {
   }
 
   lista.forEach((car, index) => {
-    let fotoPrincipal = (car.fotos && car.fotos.length > 0) ? car.fotos[0] : "https://via.placeholder.com/400x250?text=Crestmont+Motors";
-    let totalFotos = car.fotos ? car.fotos.length : 1;
+    const listaImgs = car.imagenes || car.fotos || [];
+    let fotoPrincipal = listaImgs.length > 0 ? listaImgs[0] : "https://via.placeholder.com/400x250?text=Crestmont+Motors";
+    let totalFotos = listaImgs.length;
+    let tituloVehiculo = car.vehiculo || `${car.marca || ''} ${car.modelo || ''}`.trim();
 
     let card = document.createElement("div");
     card.className = "car-card";
     card.innerHTML = `
       <div class="car-thumb-container" onclick="abrirModalGaleria(${index})">
-        <img src="${fotoPrincipal}" alt="${car.marca} ${car.modelo}">
+        <img src="${fotoPrincipal}" alt="${tituloVehiculo}">
         <div class="photo-badge">📷 ${totalFotos}</div>
       </div>
       <div class="car-details">
-        <div class="car-title">${car.marca} ${car.modelo} (${car.ano})</div>
+        <div class="car-title">${tituloVehiculo} (${car.ano})</div>
         <div class="car-price">$${Number(car.precio).toLocaleString()}</div>
         <div class="car-info"><strong>Kilometraje:</strong> ${car.km || 'N/D'}</div>
         <div class="car-info"><strong>Motor:</strong> ${car.motor || 'N/D'}</div>
@@ -85,7 +87,8 @@ function aplicarFiltros() {
   const precioMax = parseFloat(document.getElementById("filtro-precio").value) || Infinity;
 
   const filtrados = vehiculosGlobal.filter(car => {
-    const textoMatch = `${car.marca} ${car.modelo} ${car.descripcion}`.toLowerCase().includes(texto);
+    const tituloBusqueda = car.vehiculo || `${car.marca || ''} ${car.modelo || ''}`;
+    const textoMatch = `${tituloBusqueda} ${car.descripcion}`.toLowerCase().includes(texto);
     const anoMatch = ano === "" || String(car.ano) === ano;
     const precioMatch = Number(car.precio) <= precioMax;
     return textoMatch && anoMatch && precioMatch;
@@ -108,9 +111,11 @@ function aplicarTextosConfig() {
 
 function abrirModalGaleria(indexVehiculo) {
   const vehiculo = vehiculosGlobal[indexVehiculo];
-  if (!vehiculo || !vehiculo.fotos || vehiculo.fotos.length === 0) return;
+  if (!vehiculo) return;
 
-  fotosVehiculoActual = vehiculo.fotos;
+  fotosVehiculoActual = vehiculo.imagenes || vehiculo.fotos || [];
+  if (fotosVehiculoActual.length === 0) return;
+
   indiceFotoActual = 0;
 
   actualizarImagenModal();
