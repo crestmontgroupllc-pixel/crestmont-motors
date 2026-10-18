@@ -1,141 +1,92 @@
-let fotosActualesModal = [];
-let indiceActualModal = 0;
-
-document.addEventListener("DOMContentLoaded", function() {
-  aplicarTextosConfig();
-  inicializarAutosDeMuestra();
-  cargarCatalogoPublico();
-});
-
-function aplicarTextosConfig() {
-  if (typeof CONFIG_EMPRESA !== "undefined") {
-    document.getElementById("hero-titulo").innerHTML = `${CONFIG_EMPRESA.nombre}<span>${CONFIG_EMPRESA.sloganPrincipal}</span>`;
-    document.getElementById("hero-sub").innerText = CONFIG_EMPRESA.subSlogan;
-    document.getElementById("txt-tel").innerText = CONFIG_EMPRESA.telefono;
-    document.getElementById("txt-correo").innerText = CONFIG_EMPRESA.correoCorporativo;
-    document.getElementById("txt-correo2").innerText = CONFIG_EMPRESA.correoSecundario;
-    document.getElementById("txt-ubicacion").innerText = CONFIG_EMPRESA.ubicacion;
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo de Vehículos - Crestmont Motors</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; background: #0a0a0a; color: #fff; padding: 20px; }
     
-    const btnWp = document.getElementById("btn-whatsapp-link");
-    btnWp.href = `https://wa.me/${CONFIG_EMPRESA.whatsappNumero}?text=Hola,%20estoy%20interesado%20en%20un%20vehículo%20de%20${CONFIG_EMPRESA.nombre}`;
-  }
-}
+    header { text-align: center; margin-bottom: 30px; border-bottom: 2px solid #222; padding-bottom: 20px; }
+    #hero-titulo { color: #ff0000; font-size: 28px; font-weight: bold; }
+    #hero-titulo span { display: block; font-size: 16px; color: #aaa; margin-top: 5px; }
+    #hero-sub { color: #888; font-size: 14px; margin-top: 5px; }
 
-function inicializarAutosDeMuestra() {
-  let inventario = JSON.parse(localStorage.getItem("inventario_crestmont")) || [];
-  if (inventario.length === 0) {
-    inventario = [
-      {
-        vin: "1HGCR2F83HA998877",
-        vehiculo: "Toyota Hilux Confort",
-        ano: "2024",
-        precio: "32000",
-        estado: "Disponible",
-        descripcion: "Transmisión automática, tracción 4x4, tapicería de cuero impecable.",
-        imagenes: [
-          "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80",
-          "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80"
-        ]
-      },
-      {
-        vin: "4T1B11HK5LU112233",
-        vehiculo: "Chevrolet Silverado Z71",
-        ano: "2023",
-        precio: "45000",
-        estado: "Disponible",
-        descripcion: "Motor V8, cabina doble, suspensión off-road reforzada.",
-        imagenes: [
-          "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=800&q=80",
-          "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80"
-        ]
-      }
-    ];
-    localStorage.setItem("inventario_crestmont", JSON.stringify(inventario));
-  }
-}
+    /* BARRA DE FILTROS */
+    .filtros-bar { display: flex; flex-wrap: wrap; gap: 10px; max-width: 1200px; margin: 0 auto 25px auto; background: #111; padding: 15px; border-radius: 8px; border: 1px solid #222; }
+    .filtros-bar input, .filtros-bar select { flex: 1; min-width: 150px; padding: 10px; background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 5px; outline: none; }
+    .filtros-bar button { background: #ff0000; color: #fff; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; transition: background 0.3s; }
+    .filtros-bar button:hover { background: #cc0000; }
 
-function cargarCatalogoPublico(listaFiltrada = null) {
-  const contenedor = document.getElementById("catalogo-publico");
-  contenedor.innerHTML = "";
-  
-  let inventario = listaFiltrada || JSON.parse(localStorage.getItem("inventario_crestmont")) || [];
-  let disponibles = inventario.filter(item => item.estado === "Disponible");
+    /* CONTENEDOR DEL CATÁLOGO PÚBLICO */
+    #catalogo-publico { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
 
-  if (disponibles.length === 0) {
-    contenedor.innerHTML = `<div style="text-align:center; color:#777; grid-column:1/-1; padding:30px;">No se encontraron vehículos con los filtros seleccionados.</div>`;
-    return;
-  }
+    /* TARJETAS DE VEHÍCULOS */
+    .car-card { background: #111; border: 1px solid #222; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s; }
+    .car-card:hover { transform: translateY(-4px); box-shadow: 0 6px 20px rgba(255,0,0,0.2); }
+    .car-thumb-container { position: relative; width: 100%; height: 200px; background: #000; cursor: pointer; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .car-thumb-container img { width: 100%; height: 100%; object-fit: cover; }
+    .photo-badge { position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.75); color: #fff; font-size: 12px; padding: 4px 8px; border-radius: 4px; border: 1px solid #444; }
+    .car-details { padding: 15px; display: flex; flex-direction: column; gap: 8px; flex-grow: 1; }
+    .car-title { font-size: 18px; font-weight: bold; color: #fff; }
+    .car-price { font-size: 20px; font-weight: bold; color: #2ecc71; }
+    .car-info { font-size: 13px; color: #aaa; }
+    .car-desc { font-size: 13px; color: #888; line-height: 1.4; margin-top: 5px; }
 
-  disponibles.forEach((auto) => {
-    let fotos = auto.imagenes || (auto.imagen ? [auto.imagen] : []);
-    let fotoPortada = fotos.length > 0 ? fotos[0] : "";
-    
-    let thumbHtml = fotoPortada ? `<img src="${fotoPortada}" alt="${auto.vehiculo}">` : `<span style="color:#555;">Sin fotos</span>`;
-    let badgeHtml = fotos.length > 1 ? `<div class="photo-badge">📷 ${fotos.length} fotos</div>` : "";
-    let fotosJson = encodeURIComponent(JSON.stringify(fotos));
+    /* MODAL DE GALERÍA DE FOTOS */
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; z-index: 1000; flex-direction: column; }
+    .modal-content { position: relative; max-width: 90%; max-height: 80vh; display: flex; justify-content: center; align-items: center; }
+    .modal-content img { max-width: 100%; max-height: 80vh; border-radius: 8px; border: 2px solid #333; }
+    .modal-close { position: absolute; top: -40px; right: 0; color: #fff; font-size: 30px; font-weight: bold; cursor: pointer; }
+    .modal-nav { position: absolute; top: 50%; width: 100%; display: flex; justify-content: space-between; transform: translateY(-50%); padding: 0 10px; }
+    .modal-nav button { background: rgba(255,0,0,0.7); color: #fff; border: none; font-size: 24px; padding: 10px 15px; border-radius: 50%; cursor: pointer; }
+    .modal-counter { color: #fff; margin-top: 15px; font-size: 16px; font-weight: bold; }
 
-    contenedor.innerHTML += `
-      <div class="car-card">
-        <div class="car-thumb-container" onclick='abrirModal("${fotosJson}")'>
-          ${thumbHtml}
-          ${badgeHtml}
-        </div>
-        <div class="car-details">
-          <div class="car-title">${auto.vehiculo} (${auto.ano})</div>
-          <div class="car-price">$${Number(auto.precio).toLocaleString()}</div>
-          <div class="car-info"><strong>VIN / Chasis:</strong> ${auto.vin}</div>
-          <div class="car-desc">${auto.descripcion || "Sin descripción detallada."}</div>
-        </div>
+    /* FOOTER DE CONTACTO */
+    footer { max-width: 1200px; margin: 40px auto 0 auto; padding-top: 20px; border-top: 1px solid #222; text-align: center; color: #666; font-size: 13px; display: flex; flex-direction: column; gap: 8px; }
+    footer a { color: #2ecc71; text-decoration: none; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1 id="hero-titulo">Crestmont Motors <span>Catálogo de Vehículos</span></h1>
+    <p id="hero-sub">Encuentra tu próximo vehículo con la mejor garantía</p>
+  </header>
+
+  <!-- FILTROS DE BÚSQUEDA -->
+  <div class="filtros-bar">
+    <input type="text" id="filtro-texto" placeholder="Buscar por modelo o VIN..." onkeyup="aplicarFiltros()">
+    <input type="text" id="filtro-ano" placeholder="Año (Ej: 2024)" onkeyup="aplicarFiltros()">
+    <input type="number" id="filtro-precio" placeholder="Precio máximo ($)" onkeyup="aplicarFiltros()">
+    <button onclick="aplicarFiltros()">Filtrar</button>
+  </div>
+
+  <!-- CONTENEDOR DONDE APP.JS PINTA LOS VEHÍCULOS -->
+  <div id="catalogo-publico"></div>
+
+  <!-- MODAL DE GALERÍA -->
+  <div class="modal" id="modal-galeria">
+    <div class="modal-content">
+      <span class="modal-close" onclick="cerrarModal()">&times;</span>
+      <div class="modal-nav">
+        <button onclick="cambiarFotoModal(-1)">&lt;</button>
+        <button onclick="cambiarFotoModal(1)">&gt;</button>
       </div>
-    `;
-  });
-}
+      <img id="modal-img" src="" alt="Vista ampliada">
+    </div>
+    <div class="modal-counter" id="modal-counter">1 / 1</div>
+  </div>
 
-function aplicarFiltros() {
-  const texto = document.getElementById("filtro-texto").value.toLowerCase();
-  const ano = document.getElementById("filtro-ano").value;
-  const precioMax = parseFloat(document.getElementById("filtro-precio").value) || Infinity;
+  <footer>
+    <p>Teléfono: <span id="txt-tel"></span> | Correo: <span id="txt-correo"></span> / <span id="txt-correo2"></span></p>
+    <p>Ubicación: <span id="txt-ubicacion"></span></p>
+    <p><a id="btn-whatsapp-link" href="#" target="_blank">💬 Contactar por WhatsApp</a></p>
+  </footer>
 
-  let inventario = JSON.parse(localStorage.getItem("inventario_crestmont")) || [];
-
-  let filtrados = inventario.filter(item => {
-    const coincideTexto = item.vehiculo.toLowerCase().includes(texto) || item.vin.toLowerCase().includes(texto);
-    const coincideAno = ano === "" || item.ano === ano;
-    const coincidePrecio = parseFloat(item.precio) <= precioMax;
-    return coincideTexto && coincideAno && coincidePrecio;
-  });
-
-  cargarCatalogoPublico(filtrados);
-}
-
-function abrirModal(fotosCodificadas) {
-  try {
-    fotosActualesModal = JSON.parse(decodeURIComponent(fotosCodificadas));
-  } catch (e) {
-    fotosActualesModal = [];
-  }
-  if (fotosActualesModal.length === 0) return;
-
-  indiceActualModal = 0;
-  actualizarModalImagen();
-  document.getElementById("modal-galeria").style.display = "flex";
-}
-
-function cerrarModal() {
-  document.getElementById("modal-galeria").style.display = "none";
-}
-
-function cambiarFotoModal(direccion) {
-  indiceActualModal += direccion;
-  if (indiceActualModal < 0) indiceActualModal = fotosActualesModal.length - 1;
-  if (indiceActualModal >= fotosActualesModal.length) indiceActualModal = 0;
-  actualizarModalImagen();
-}
-
-function actualizarModalImagen() {
-  const imgTag = document.getElementById("modal-img");
-  const counterTag = document.getElementById("modal-counter");
-
-  imgTag.src = fotosActualesModal[indiceActualModal];
-  counterTag.innerText = `${indiceActualModal + 1} / ${fotosActualesModal.length}`;
-}
+  <!-- RUTAS AJUSTADAS PARA SALIR DE LA CARPETA 'catalogo' Y ENTRAR A 'js' -->
+  <script src="../js/config.js"></script>
+  <script src="../js/app.js"></script>
+</body>
+</html>
